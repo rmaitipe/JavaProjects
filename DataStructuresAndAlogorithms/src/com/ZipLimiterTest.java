@@ -71,25 +71,25 @@ public class ZipLimiterTest {
 		public void zipLimiterDataTest() {
 			ZipLimiter zip = new ZipLimiter();
 			
-			List<Pair> test1 = zip.test("resources/zipInputNoConflictPairs.txt");
+			List<Pair> test1 = zip.test("resources/test/zipInputNoConflictPairs.txt");
 			//Test size
 			Assert.assertEquals("failure - expected result size match", 7, test1.size());
 			//Test content
 			Assert.assertEquals("failure - expected result content match", testNonConflict, test1);
 			
-			List<Pair> test2 = zip.test("resources/zipInputMergeSortedPairs.txt");
+			List<Pair> test2 = zip.test("resources/test/zipInputMergeSortedPairs.txt");
 			//Test size
 			Assert.assertEquals("failure - expected result size match", 4, test2.size());
 			//Test content
 			Assert.assertEquals("failure - expected result content match", testSorted, test2);
 			
-			List<Pair> test3 = zip.test("resources/zipInputMergeUnsortedPairs.txt");
+			List<Pair> test3 = zip.test("resources/test/zipInputMergeUnsortedPairs.txt");
 			//Test size
 			Assert.assertEquals("failure - expected result size match", 4, test3.size());
 			//Test content
 			Assert.assertEquals("failure - expected result content match", testUnsorted, test3);
 			
-			List<Pair> test4 = zip.test("resources/zipInputBadDataPairs.txt");
+			List<Pair> test4 = zip.test("resources/test/zipInputBadDataPairs.txt");
 			//Test size
 			Assert.assertEquals("failure - expected result size match", 3, test4.size());
 			//Test content

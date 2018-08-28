@@ -35,6 +35,7 @@ public class ZipLimiter {
         	try {
             br = new BufferedReader(new FileReader(fileInput));
             String line = null;
+            System.out.println("Reading and Validating contents of file  :" +fileInput);
             while((line = br.readLine()) != null){
             	 lineNumber++;
                  String [] strArray =line.split(",");
