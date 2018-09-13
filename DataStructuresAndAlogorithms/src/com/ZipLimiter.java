@@ -9,14 +9,13 @@ import java.util.Comparator;
 import java.util.List;
 
 /*
-	This class uses the zipInputPair.txt as source to read a zip code range and compresses the range where values overlap 
+	This class uses the zipInputPair.txt as a source to read a zip code range and then compresses the range where values overlap 
 	Values in the file are assumed to be in comma separated pairs
 */
 public class ZipLimiter {
 	
 	private List<Pair> zipOutputMatchList;
 	private List<Pair> zipInputMatchList;
-	private BufferedReader br = null;
 	private String zipA;
 	private String zipB;
 	private static String fileInput ="resources/zipInputPair.txt";
@@ -32,8 +31,8 @@ public class ZipLimiter {
 		lineNumber=0;
         zipOutputMatchList = new ArrayList<Pair>();
         zipInputMatchList = new ArrayList<Pair>();
-        	try {
-            br = new BufferedReader(new FileReader(fileInput));
+        	//try with resources
+        	try (BufferedReader br = new BufferedReader(new FileReader(fileInput))){
             String line = null;
             System.out.println("Reading and Validating contents of file  :" +fileInput);
             while((line = br.readLine()) != null){
@@ -49,15 +48,12 @@ public class ZipLimiter {
                  }
                  else{
                 	 System.out.println("Error at line number  : "+lineNumber+" Input is not in a 5 digit format");
-                	 
                  }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally{
-            try{if(br != null) br.close();}catch(Exception ex){}
         }
 
 	    zipInputMatchList.sort(Comparator.comparing(Pair::getZipA));
