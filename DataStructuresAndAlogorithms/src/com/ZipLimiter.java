@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 /*
 	This class uses the zipInputPair.txt as a source to read a zip code range and then compresses the range where values overlap 
 	Values in the file are assumed to be in comma separated pairs
