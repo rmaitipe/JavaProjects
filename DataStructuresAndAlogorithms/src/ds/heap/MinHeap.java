@@ -1,7 +1,7 @@
 package ds.heap;
 
 /*A Binary heapArr is a Binary Tree with following properties.
- * 1. Itfs a complete tree 
+ * 1. Itï¿½fs a complete tree 
  * 2. A Binary heapArr is either Min heapArr or Max heapArr
  * 
  * For an array backed implementation the pseudo code can be thought of as 
@@ -76,8 +76,7 @@ public class MinHeap
                 if (heapArr[leftNode(pos)] < heapArr[rightNode(pos)]){
                     swap(pos, leftNode(pos));
                     minHeapify(leftNode(pos));
-                }
-                else{
+                } else{
                     swap(pos, rightNode(pos));
                     minHeapify(rightNode(pos));
                 }

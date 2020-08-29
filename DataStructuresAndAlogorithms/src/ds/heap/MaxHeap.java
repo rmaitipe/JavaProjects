@@ -57,8 +57,7 @@ public class MaxHeap {
                 if (heapArr[leftNode(pos)] > heapArr[rightNode(pos)]){
                     swap(pos, leftNode(pos));
                     maxHeapify(leftNode(pos));
-                }
-                else{
+                } else{
                     swap(pos, rightNode(pos));
                     maxHeapify(rightNode(pos));
                 }
