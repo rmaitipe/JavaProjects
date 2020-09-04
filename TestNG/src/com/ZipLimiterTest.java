@@ -20,7 +20,7 @@ public class ZipLimiterTest {
 	private ArrayList<Pair> testInputData;
 	private ArrayList<Pair> testBadInput;
 	
-	/**
+	/*
 	* These are the values to be compared against the data read from files in test case scenarios.
 	* Called automatically before the Test class is run.
 	*/
@@ -68,7 +68,7 @@ public class ZipLimiterTest {
         this.testBadInput.clear();
     }
     
-    /**
+    /*
     * Runs test cases for different scenarios comparing size of the lists and content of the lists
     * Test cases: No Merge, Sorted Merge, UnSorted Merge, Merge With BadData
     *

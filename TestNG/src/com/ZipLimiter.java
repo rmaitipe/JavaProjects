@@ -20,7 +20,7 @@ public class ZipLimiter {
 	private static String fileInput ="resources/zipInputPair.txt";
 	private int lineNumber;
 	
-    /**
+    /*
     * Returns the compressed List<Pair> after combining overlapping ranges.
     *
     * @param  String The location of the text file with input zip ranges.
@@ -61,7 +61,7 @@ public class ZipLimiter {
 	    
 	}
 
-    /**
+    /*
     * Indicates if the input from file is a valid integer along with the line number where the failure occurred
     *
     * @param  String The input is a zip code.
@@ -83,7 +83,7 @@ public class ZipLimiter {
 		return isStop;
 	}
 
-    /**
+    /*
     * Iterate and merge the zip codes where overlap exists
     *
     * @param  List<Pair> This input list consists of Pair values created from data read from file.
@@ -115,7 +115,7 @@ public class ZipLimiter {
 		zip.test(fileInput);
 	}
 	
-    /**
+    /*
     * Returns the compressed List<Pair> after combining overlapping ranges.
     *
     * @param  String with input zip ranges.
@@ -124,12 +124,12 @@ public class ZipLimiter {
 	public List<Pair> testv3(String line){
         zipOutputMatchList = new ArrayList<Pair>();
         zipInputMatchList = new ArrayList<Pair>();
-   	  	String [] strArray1 =line.split("|");
+   	  	String [] strArray1 =line.split("\\|");
    	  	for (String s:strArray1) {
    	  		String [] strArray2 =s.split(",");
-   	  		if (strArray2[0].length()==6 & strArray2[1].length()==6){
-   	  			zipA =strArray2[0].substring(1, 6);
-   	  			zipB =strArray2[1].substring(0, 5);
+   	  		if (strArray2[0].length()==5 && strArray2[1].length()==5){
+   	  			zipA =strArray2[0];
+   	  			zipB =strArray2[1];
    	  			if (!validateStop(zipA) && !validateStop(zipB)){
    	  				Pair pair= new Pair(Integer.parseInt(zipA),Integer.parseInt(zipB));
    	  				zipInputMatchList.add(pair);
@@ -144,7 +144,7 @@ public class ZipLimiter {
 	    return zipOutputMatchList;
 	}
 	
-    /**
+    /*
      * Returns the compressed List<Pair>.
      *
      * @param  String with input zip ranges.

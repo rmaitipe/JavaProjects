@@ -23,7 +23,7 @@ public class ZipLimiterTestv2 {
 	List<Pair> expectedtest3;
 	List<Pair> expectedtest4;
 	
-	/**
+	/*
 	* These are the values to be compared against the data read from files in test case scenarios.
 	* Called automatically before the Test class is run.
 	*/
@@ -41,7 +41,7 @@ public class ZipLimiterTestv2 {
         System.out.println("@After - tearDown");
     }
     
-    /**
+    /*
     * Runs test cases for different scenarios comparing size of the lists and content of the lists
     * Test cases: No Merge, Sorted Merge, UnSorted Merge, Merge With BadData
     *
@@ -68,7 +68,7 @@ public class ZipLimiterTestv2 {
 		
 	}
     
-    /**
+    /*
      * Returns the compressed List<Pair>.
      *
      * @param  String The location of the text file with input zip ranges.
