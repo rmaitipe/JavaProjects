@@ -71,7 +71,7 @@ public class Pair {
 		return true;
 	}
 	 
-	/**
+	/*
      * Returns a string representation of this object in [zipA, ZipB] format.
      * @return String representation of this Pair object
      */

@@ -10,19 +10,15 @@ import java.util.List;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
+//import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 /*
- * This v2 class is to Unit test the ZipLimiter class. 
+ * This v3 class is to Unit test the ZipLimiter class. 
  */
-public class ZipLimiterTestv2 {
+public class ZipLimiterTestv3 {
 
-	List<Pair> expectedtest1;
-	List<Pair> expectedtest2;
-	List<Pair> expectedtest3;
-	List<Pair> expectedtest4;
-	
 	/*
 	* These are the values to be compared against the data read from files in test case scenarios.
 	* Called automatically before the Test class is run.
@@ -30,10 +26,6 @@ public class ZipLimiterTestv2 {
  	@BeforeAll
     public void setUp() {
     	System.out.println("@Before - setUp");
-    	expectedtest1 = read("resources/test/expectedv2/expectedZipInputNoConflictPairs.txt");
-		expectedtest2 = read("resources/test/expectedv2/expectedZipInputMergeSortedPairs.txt");
-		expectedtest3 = read("resources/test/expectedv2/expectedZipInputMergeUnsortedPairs.txt");
-		expectedtest4 = read("resources/test/expectedv2/expectedZipInputBadDataPairs.txt");
     }
     
     @AfterAll
@@ -46,22 +38,12 @@ public class ZipLimiterTestv2 {
     * Test cases: No Merge, Sorted Merge, UnSorted Merge, Merge With BadData
     *
     */
-    @Test
-	public void zipLimiterDataTest() {
+    @ParameterizedTest
+    @CsvFileSource(resources = "C://Users/rmait/git/JavaProjects/JUnit/resources/test/v3", numLinesToSkip = 1)
+	public void zipLimiterDataTest(String key, String description, String input, String expected) {
 		ZipLimiter zip = new ZipLimiter();
-		
-		List<Pair> test1 = zip.test("resources/test/zipInputNoConflictPairs.txt");
-		Assertions.assertIterableEquals(expectedtest1, test1);
-		
-		List<Pair> test2 = zip.test("resources/test/zipInputMergeSortedPairs.txt");
-		Assertions.assertIterableEquals(expectedtest2, test2);
-		
-		List<Pair> test3 = zip.test("resources/test/zipInputMergeUnsortedPairs.txt");
-		Assertions.assertIterableEquals(expectedtest3, test3);
-		
-		List<Pair> test4 = zip.test("resources/test/zipInputBadDataPairs.txt");
-		Assertions.assertIterableEquals(expectedtest4, test4);
-		
+		List<Pair> test1 = zip.testv3(input);
+		Assertions.assertEquals("failure - expected result content match", test1, expected);
 	}
     
     /*

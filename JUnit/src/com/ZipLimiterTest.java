@@ -3,15 +3,15 @@ package com;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /*
-This class is to Unit test the ZipLimiter class. 
-It users the files to load different data sets and compare with expectations using Junit4 test cases
-*/
+ * This class is to Unit test the ZipLimiter class. 
+ * It users the files to load different data sets and compare with expectations using Junit4 test cases
+ */
 public class ZipLimiterTest {
 	
 	private ArrayList<Pair> testNonConflict;
@@ -20,11 +20,11 @@ public class ZipLimiterTest {
 	private ArrayList<Pair> testInputData;
 	private ArrayList<Pair> testBadInput;
 	
-	/**
+	/*
 	* These are the values to be compared against the data read from files in test case scenarios.
 	* Called automatically before the Test class is run.
 	*/
- 	@Before
+ 	@BeforeAll
     public void setUp() {
     	System.out.println("@Before - setUp");
     	this.testNonConflict = new ArrayList<Pair>();
@@ -58,7 +58,7 @@ public class ZipLimiterTest {
     	testBadInput.add(new Pair(94800,94850));
     }
     
-    @After
+    @AfterAll
     public void tearDown() {
         System.out.println("@After - tearDown");
         this.testNonConflict.clear();
@@ -68,7 +68,7 @@ public class ZipLimiterTest {
         this.testBadInput.clear();
     }
     
-    /**
+    /*
     * Runs test cases for different scenarios comparing size of the lists and content of the lists
     * Test cases: No Merge, Sorted Merge, UnSorted Merge, Merge With BadData
     *
@@ -77,20 +77,13 @@ public class ZipLimiterTest {
 	public void zipLimiterDataTest() {
 		ZipLimiter zip = new ZipLimiter();
 		
-		List<Pair> test1 = zip.test("resources/test/zipInputNoConflictPairs.txt");
-		Assert.assertEquals("failure - expected result size match", 7, test1.size());
-		Assert.assertEquals("failure - expected result content match", testNonConflict, test1);
-		
+		List<Pair> test1 = zip.test("resources/test/zipInputNoConflictPairs.txt");		
+		Assertions.assertIterableEquals(testNonConflict, test1);
 		List<Pair> test2 = zip.test("resources/test/zipInputMergeSortedPairs.txt");
-		Assert.assertEquals("failure - expected result size match", 4, test2.size());
-		Assert.assertEquals("failure - expected result content match", testSorted, test2);
-		
+		Assertions.assertIterableEquals(testSorted, test2);
 		List<Pair> test3 = zip.test("resources/test/zipInputMergeUnsortedPairs.txt");
-		Assert.assertEquals("failure - expected result size match", 4, test3.size());
-		Assert.assertEquals("failure - expected result content match", testUnsorted, test3);
-		
+		Assertions.assertIterableEquals(testUnsorted, test3);
 		List<Pair> test4 = zip.test("resources/test/zipInputBadDataPairs.txt");
-		Assert.assertEquals("failure - expected result size match", 2, test4.size());
-		Assert.assertEquals("failure - expected result content match", testBadInput, test4);
+		Assertions.assertIterableEquals(testBadInput, test4);
 	}
 }

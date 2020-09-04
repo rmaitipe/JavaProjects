@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 /*
-	This class uses the zipInputPair.txt as a source to read a zip code range and then compresses the range where values overlap 
-	Values in the file are assumed to be in comma separated pairs
-*/
+ * This class uses the zipInputPair.txt as a source to read a zip code range and then compresses the range where values overlap 
+ * Values in the file are assumed to be in comma separated pairs
+ */
 public class ZipLimiter {
 	
 	private List<Pair> zipOutputMatchList;
@@ -20,7 +20,7 @@ public class ZipLimiter {
 	private static String fileInput ="resources/zipInputPair.txt";
 	private int lineNumber;
 	
-    /**
+    /*
     * Returns the compressed List<Pair> after combining overlapping ranges.
     *
     * @param  String The location of the text file with input zip ranges.
@@ -60,8 +60,8 @@ public class ZipLimiter {
 	    return zipOutputMatchList;
 	    
 	}
-
-    /**
+	
+    /*
     * Indicates if the input from file is a valid integer along with the line number where the failure occurred
     *
     * @param  String The input is a zip code.
@@ -83,7 +83,7 @@ public class ZipLimiter {
 		return isStop;
 	}
 
-    /**
+    /*
     * Iterate and merge the zip codes where overlap exists
     *
     * @param  List<Pair> This input list consists of Pair values created from data read from file.
@@ -115,7 +115,7 @@ public class ZipLimiter {
 		zip.test(fileInput);
 	}
 	
-    /**
+    /*
     * Returns the compressed List<Pair> after combining overlapping ranges.
     *
     * @param  String with input zip ranges.
@@ -144,7 +144,7 @@ public class ZipLimiter {
 	    return zipOutputMatchList;
 	}
 	
-    /**
+    /*
      * Returns the compressed List<Pair>.
      *
      * @param  String with input zip ranges.
