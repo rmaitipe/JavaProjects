@@ -124,7 +124,7 @@ public class ZipLimiter {
 	public List<Pair> testv3(String line){
         zipOutputMatchList = new ArrayList<Pair>();
         zipInputMatchList = new ArrayList<Pair>();
-   	  	String [] strArray1 =line.split("|");
+   	  	String [] strArray1 =line.split("\\|");
    	  	for (String s:strArray1) {
    	  		String [] strArray2 =s.split(",");
    	  		if (strArray2[0].length()==6 & strArray2[1].length()==6){

@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 
 /*
@@ -27,7 +27,7 @@ public class ZipLimiterTestv2 {
 	* These are the values to be compared against the data read from files in test case scenarios.
 	* Called automatically before the Test class is run.
 	*/
- 	@BeforeAll
+ 	@Before
     public void setUp() {
     	System.out.println("@Before - setUp");
     	expectedtest1 = read("resources/test/expectedv2/expectedZipInputNoConflictPairs.txt");
@@ -36,7 +36,7 @@ public class ZipLimiterTestv2 {
 		expectedtest4 = read("resources/test/expectedv2/expectedZipInputBadDataPairs.txt");
     }
     
-    @AfterAll
+    @After
     public void tearDown() {
         System.out.println("@After - tearDown");
     }
@@ -51,16 +51,16 @@ public class ZipLimiterTestv2 {
 		ZipLimiter zip = new ZipLimiter();
 		
 		List<Pair> test1 = zip.test("resources/test/zipInputNoConflictPairs.txt");
-		Assertions.assertIterableEquals(expectedtest1, test1);
+		Assert.assertEquals(expectedtest1, test1);
 		
 		List<Pair> test2 = zip.test("resources/test/zipInputMergeSortedPairs.txt");
-		Assertions.assertIterableEquals(expectedtest2, test2);
+		Assert.assertEquals(expectedtest2, test2);
 		
 		List<Pair> test3 = zip.test("resources/test/zipInputMergeUnsortedPairs.txt");
-		Assertions.assertIterableEquals(expectedtest3, test3);
+		Assert.assertEquals(expectedtest3, test3);
 		
 		List<Pair> test4 = zip.test("resources/test/zipInputBadDataPairs.txt");
-		Assertions.assertIterableEquals(expectedtest4, test4);
+		Assert.assertEquals(expectedtest4, test4);
 		
 	}
     

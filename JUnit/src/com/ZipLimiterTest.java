@@ -3,10 +3,10 @@ package com;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /*
  * This class is to Unit test the ZipLimiter class. 
@@ -24,7 +24,7 @@ public class ZipLimiterTest {
 	* These are the values to be compared against the data read from files in test case scenarios.
 	* Called automatically before the Test class is run.
 	*/
- 	@BeforeAll
+ 	@Before
     public void setUp() {
     	System.out.println("@Before - setUp");
     	this.testNonConflict = new ArrayList<Pair>();
@@ -58,7 +58,7 @@ public class ZipLimiterTest {
     	testBadInput.add(new Pair(94800,94850));
     }
     
-    @AfterAll
+    @After
     public void tearDown() {
         System.out.println("@After - tearDown");
         this.testNonConflict.clear();
@@ -78,12 +78,12 @@ public class ZipLimiterTest {
 		ZipLimiter zip = new ZipLimiter();
 		
 		List<Pair> test1 = zip.test("resources/test/zipInputNoConflictPairs.txt");		
-		Assertions.assertIterableEquals(testNonConflict, test1);
+		Assert.assertEquals(testNonConflict, test1);
 		List<Pair> test2 = zip.test("resources/test/zipInputMergeSortedPairs.txt");
-		Assertions.assertIterableEquals(testSorted, test2);
+		Assert.assertEquals(testSorted, test2);
 		List<Pair> test3 = zip.test("resources/test/zipInputMergeUnsortedPairs.txt");
-		Assertions.assertIterableEquals(testUnsorted, test3);
+		Assert.assertEquals(testUnsorted, test3);
 		List<Pair> test4 = zip.test("resources/test/zipInputBadDataPairs.txt");
-		Assertions.assertIterableEquals(testBadInput, test4);
+		Assert.assertEquals(testBadInput, test4);
 	}
 }
