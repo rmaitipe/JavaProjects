@@ -1,4 +1,4 @@
-package ds.heap;
+package heapsort;
 
 public class MaxHeap {
 

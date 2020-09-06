@@ -1,4 +1,4 @@
-package ds.heap;
+package heapsort;
 
 /*A Binary heapArr is a Binary Tree with following properties.
  * 1. It�fs a complete tree 
