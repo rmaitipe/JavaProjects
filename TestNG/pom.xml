@@ -33,9 +33,9 @@
    		<version>1.0</version>
 	</dependency>
 	<dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <version>1.7.6</version>
+      	<groupId>org.slf4j</groupId>
+      	<artifactId>slf4j-simple</artifactId>
+      	<version>1.7.6</version>
     </dependency>	
 	<dependency>
    		<groupId>commons-io</groupId>
@@ -50,7 +50,7 @@
 	<dependency>
     	<groupId>com.univocity</groupId>
     	<artifactId>univocity-parsers</artifactId>
-    <version>2.1.1</version>
-</dependency>
+    	<version>2.1.1</version>
+	</dependency>
   </dependencies>
 </project>

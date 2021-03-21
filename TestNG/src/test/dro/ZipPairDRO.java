@@ -1,17 +1,17 @@
-package dro;
+package test.dro;
 
 public class ZipPairDRO {
 
     private String key;
     private String description;
-    private String input_zips;
-    private String expected_zips;   
+    private String inputZips;
+    private String expectedZips;   
 
     public ZipPairDRO(String Key, String description, String input, String expected) {
 		this.key=Key;
 		this.description=description;
-		this.input_zips=input;
-		this.expected_zips=expected;
+		this.inputZips=input;
+		this.expectedZips=expected;
 	}
 
 	public String getKey() {
@@ -30,20 +30,20 @@ public class ZipPairDRO {
 		this.description = description;
 	}
 
-	public String getInput_zips() {
-		return input_zips;
+	public String getInputZips() {
+		return inputZips;
 	}
 
-	public void setInput_zips(String input_zips) {
-		this.input_zips = input_zips;
+	public void setInputZips(String inputZips) {
+		this.inputZips = inputZips;
 	}
 
-	public String getExpected_zips() {
-		return expected_zips;
+	public String getExpectedZips() {
+		return expectedZips;
 	}
 
-	public void setExpected_zips(String expected_zips) {
-		this.expected_zips = expected_zips;
+	public void setExpectedZips(String expectedZips) {
+		this.expectedZips = expectedZips;
 	}
 	
 }

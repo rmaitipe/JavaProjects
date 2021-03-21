@@ -1,4 +1,4 @@
-package csv.reader;
+package test.dataprovider;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,29 +13,34 @@ import com.univocity.parsers.common.processor.AbstractRowProcessor;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
 
-import dro.ZipPairDRO;
+import test.dro.ZipPairDRO;
 
 
-public class DP {
+public class DataProvider1 {
 
 	@DataProvider (name="getData")
 	public ZipPairDRO[] getData() throws IOException
 	{
 		//Rows - Number of test cases.
 		//Columns - Number of parameters in test data.
-
-		CSVReader csvReader = new CSVReader(new FileReader("C://Users/rmait/git/JavaProjects/TestNG/resources/test/v3/completev3.csv"), ',');
+		ZipPairDRO[] list = null;
+		try(CSVReader csvReader = new CSVReader(new FileReader("resources/test/v3/completev3.csv"), ',')){
 		
-		//Adding parser to get file dimensions - improve if possible later.
-		CsvDimension myDimensionProcessor  = parserLogic();
-		int rowCount= (int) myDimensionProcessor.rowCount;
-		
-		ZipPairDRO[] list=new ZipPairDRO[rowCount];	
-		String[] csvData =null;
-		while ((csvData =csvReader.readNext()) !=null) {
-    		for (int i=0;i<rowCount;i++) {
-    				list[i] =new ZipPairDRO(csvData[0],csvData[1],csvData[2],csvData[3]);
-	    	}
+			//Adding parser to get file dimensions - improve if possible later.
+			CsvDimension myDimensionProcessor  = parserLogic();
+			int rowCount = (int) myDimensionProcessor.rowCount-1;//skip Column Info row- Custom
+			
+			list=new ZipPairDRO[rowCount];	
+			int i=0;
+			csvReader.readNext();//skip Column Info row- Custom
+			String[] csvData = null;
+			
+			while ((csvData =csvReader.readNext()) != null) {
+				list[i] = new ZipPairDRO(csvData[0],csvData[1],csvData[2],csvData[3]);
+				i++;
+		    }
+		} catch (Exception ex) {
+	        ex.printStackTrace();
 	    }
 	return list;
 	}
@@ -63,7 +68,7 @@ public class DP {
 	    //We instruct the parser to send all rows parsed to your custom RowProcessor. 
 	    settings.setRowProcessor(myDimensionProcessor);
 		CsvParser parser = new CsvParser(settings);
-		parser.parse(new FileReader(new File("C://Users/rmait/git/JavaProjects/TestNG/resources/test/v3/completev3.csv")));
+		parser.parse(new FileReader(new File("resources/test/v3/completev3.csv")));
 		return myDimensionProcessor;
 	}
 	 
