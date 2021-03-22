@@ -4,12 +4,12 @@ package com;
  * If the upper bound is smaller than the lower bound it will inverse the values.
  */
 
-public class Pair {
+public class ZipCodePair {
 
 	private Integer zipA;
 	private Integer zipB;
 	
-	Pair(Integer zipA,Integer zipB){
+	public ZipCodePair(Integer zipA,Integer zipB){
 		if (zipA<zipB){
 			this.zipA=zipA;
 			this.zipB=zipB;
@@ -55,7 +55,7 @@ public class Pair {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Pair other = (Pair) obj;
+		ZipCodePair other = (ZipCodePair) obj;
 		if (zipA == null) {
 			if (other.zipA != null)
 				return false;
