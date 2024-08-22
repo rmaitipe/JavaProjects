@@ -4,7 +4,7 @@ public class MergeSort {
 
 	/*
 	 * Divide & Conquer algorithm. Sort left side of array, sort right side of array, then merge the now sorted arrays.
-	 * uses sub arrays
+	 * uses sub arrays O(n log n)
 	 */
 	public void mergeSort(int[] array, int left, int right) {
 	    if (left <= right) return;
@@ -15,8 +15,7 @@ public class MergeSort {
 	    merge(array, left, mid, right);
 	}
 	
-	public static void main(String args[])
-    {
+	public static void main(String args[]) {
 		MergeSort ob = new MergeSort();
         int arr[] = {23, 34, 15, 12, 22, 10, 0};
         ob.mergeSort(arr,0,arr.length-1);
@@ -24,8 +23,7 @@ public class MergeSort {
         ob.printArray(arr);
     }
 	
-    void printArray(int arr[])
-    {
+    void printArray(int arr[]) {
         int n = arr.length;
         for (int i=0; i<n; ++i) {
         	System.out.print(arr[i] + " ");
