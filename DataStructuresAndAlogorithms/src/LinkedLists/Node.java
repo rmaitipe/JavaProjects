@@ -4,6 +4,13 @@ public class Node<T> implements Comparable<T> {
     private T value;
     private Node<T> next;
 
+    public Node(T value) {
+        this.value=value;
+    }
+
+    public Node() {
+    }
+
     public T getValue() {
         return value;
     }

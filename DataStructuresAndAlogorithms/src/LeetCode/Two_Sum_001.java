@@ -13,7 +13,7 @@ public class Two_Sum_001 {
 	public int[] twoSumMethod(int arr[],int k){
 		int length = arr.length;
 		int [] retVal=null;
-		Map<Integer,Integer> myMap =new HashMap<Integer,Integer>();
+		Map<Integer,Integer> myMap =new HashMap<>();
 		for (int i=0;i<length;i++) {
 			if (myMap.containsKey(k-arr[i])){
 				Integer j= myMap.get(k-arr[i]);
@@ -26,7 +26,6 @@ public class Two_Sum_001 {
 		return retVal;
 	}
 
-	
 	public static void main(String args[])
     {
         int target =25;

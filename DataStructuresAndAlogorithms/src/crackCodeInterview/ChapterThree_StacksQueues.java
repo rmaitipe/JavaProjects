@@ -1,7 +1,7 @@
 package crackCodeInterview;
 
 
-import java.util.Stack;
+import java.util.*;
 
 public class ChapterThree_StacksQueues {
     /*
@@ -30,7 +30,7 @@ public class ChapterThree_StacksQueues {
      * or they can select whether they would prefer a dog or a cat (and will receive the oldest animal of
      * that type). They cannot select which specific animal they would like. Create the data structures to
      * maintain this system and implement operations such as enqueue, dequeueAny, dequeueDog,
-     * and dequeueCat. You may use the built-in Linked list data structure.
+     * and dequeueCat. You may use the built-in LinkedList data structure.
      */
 
     public static void main(String args[]){
@@ -53,10 +53,11 @@ public class ChapterThree_StacksQueues {
             array = new int [size];
             index1=size/3;
             index2=size*2/3;
-            index2=size;
+            index3=size;
             tempIndex1=0;
             tempIndex2=(size/3)+1;
             tempIndex3=(size*2/3)+1;
+
         }
         public void pushStack1(int val){
             if (tempIndex1==index1) { System.out.println("Stack1 is full");}
@@ -96,29 +97,25 @@ public class ChapterThree_StacksQueues {
      */
     static class StackMin{
         Stack<Integer> s;
-        Integer minEle;
+        Stack<Integer> minEle;
 
         StackMin() { s = new Stack<Integer>(); }
-        void getMin()
-        {
+        void getMin() {
             if (s.isEmpty())
                 System.out.println("Stack is empty");
             else
-                System.out.println("Minimum Element in the " + " stack is: " + minEle);
+                System.out.println("Minimum Element in the " + " stack is: " + minEle.peek());
         }
-        void peek()
-        {
+
+        void peek() {
             if (s.isEmpty()) {
                 System.out.println("Stack is empty ");
                 return;
             }
             Integer t = s.peek(); // Top element.
-            System.out.print("Top Most Element is: ");
-            if (t < minEle)
-                System.out.println(minEle);
-            else
-                System.out.println(t);
+            System.out.print("Top Most Element is: "+t);
         }
+
         void pop() throws Exception {
             if (s.isEmpty()) {
                 System.out.println("Stack is empty");
@@ -126,28 +123,21 @@ public class ChapterThree_StacksQueues {
             }
             System.out.print("Top Most Element Removed: ");
             Integer t = s.pop();
-            if (t < minEle) {
-                System.out.println(minEle);
-                minEle = 2*minEle - t;
-            }
-            else
+            if (t == minEle.peek()) {
+                System.out.println("minElement removed");
+                minEle.pop();
+            } else {
                 System.out.println(t);
+            }
         }
 
-        void push(Integer x) throws Exception
-        {
-            if (s.isEmpty()) {
-                minEle = x;
+        void push(Integer x) throws Exception {
+            if (x <= minEle.peek()) {
                 s.push(x);
-                System.out.println("Number Inserted: " + x);
-                return;
-            }
-            if (x < minEle) {
-                s.push(2*x - minEle);
-                minEle = x;
-            }
-            else
+                minEle.push(x);
+            } else {
                 s.push(x);
+            }
             System.out.println("Number Inserted: " + x);
         }
     }
@@ -185,6 +175,7 @@ public class ChapterThree_StacksQueues {
         }
     }
 
+    //The stack supports the following operations: push, pop, peek, and isEmpty
     Stack sortStack(Stack<Integer> input) throws Exception {
         Stack<Integer> tmpStack = new Stack();
         while (!input.isEmpty()) {
@@ -194,6 +185,25 @@ public class ChapterThree_StacksQueues {
             }
             tmpStack.push(tmp);
         }
-        return tmpStack;
+        /* Copy the elements from r back into s. */
+         while (!tmpStack.empty()) {
+             input.push(tmpStack.pop());
+         }
+        return input;
     }
+
+    /*
+        dequeueAny() peek both lists and remove oldest
+
+    static class ShelterStruct{
+        List catList=new LinkedList<Animal>();
+        List dogList=new LinkedList<Animal>();
+
+        public void enqueue(Animal o) {
+            o.setTimeField(System.currentTimeMillis());
+        }
+
+    }
+
+    */
 }

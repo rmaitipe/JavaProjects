@@ -1,7 +1,10 @@
 package core;
 
 public class Inheritance {
-
+    /*
+    Method overriding
+    If a Parent type reference refers to a Child object method is called. This is called RUN TIME POLYMORPHISM
+     */
     public static void main(String args[]){
         Parent p =new Child();
         p.test();
@@ -12,7 +15,7 @@ public class Inheritance {
             System.out.println("Parent Constructor");
         }
         public void test(){
-            System.out.println("Parent test");
+            System.out.println("Parent test"+ value);
         }
     }
 
@@ -22,7 +25,7 @@ public class Inheritance {
             System.out.println("Child Constructor");
         }
         public void test(){
-            System.out.println("Child test");
+            System.out.println("Child test:"+ value);
         }
     }
 }

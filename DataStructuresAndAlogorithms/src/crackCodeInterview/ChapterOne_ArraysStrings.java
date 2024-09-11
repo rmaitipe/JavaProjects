@@ -1,7 +1,8 @@
 package crackCodeInterview;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ChapterOne_ArraysStrings {
     /*
@@ -35,43 +36,64 @@ public class ChapterOne_ArraysStrings {
     public static void main(String args[]){
         ChapterOne_ArraysStrings cc = new ChapterOne_ArraysStrings();
         String test1="wqasdserww";
-        String test2="asdserwwwq";
+        String test2="asdverwxyq";
         String test3="tacoatc";
-        String test4="taco cat";
-        cc.isUnique(test1); cc.isUnique2(test1);
+        String test4="taco cat  ";
+        cc.isUnique(test1); cc.isUniqueNoStrctures(test1); cc.isUniqueOptimal(test2);
         cc.isPermutation(test1,test2);
         cc.isOneAway(test1,test2);
+        cc.isOneAway("test1","test2");
+        cc.isOneAway("test1","test");
         cc.urlify(test4);
+        cc.urlifyInSpace("Mr John Smith    ",13);
         cc.isPermutePalindrome(test3);
         cc.compressString(test1);
         cc.StringRotate(test1, test2);
+        int[][] scores = new int[3][3];
+        scores[0][0] = 1;
+        scores[0][1] = 1;
+        scores[1][0] = 1;
+        scores[1][1] = 1;
+        scores[2][2] = 1;
+        scores[1][2] = 1;
+        scores[2][1] = 1;
+        cc.modifyMatrix(scores);
     }
 
     private boolean isUnique(String test) {//HashSet add() method
-        boolean ret=false;
+        boolean ret=true;
         char[] arr1 =test.toCharArray();
-        HashMap<Character,Integer> map=new HashMap<>();
+        Set<Character> set=new HashSet<>();
         for (Character c:arr1){
-            if (map.containsKey(c)){
-                map.put(c, map.get(c)+1);
-				/*put Returns: the previous value associated with key, or null if there was no mapping for key.
-			    (A null return can also indicate that the map previously associated null with key.)*/
+            if (set.add(c)){
             }
             else{
-                map.put(c, 1);
+                System.out.println("isUnique test failed: " +test);
+                ret=false;
+                break;
             }
-        }
-        Integer aval =map.entrySet().stream().reduce((i, j) -> i.getValue() > j.getValue() ? i : j).get().getValue();
-        if (aval>2){
-            System.out.println("isUnique test failed: " +test);
-        }
-        else{
-            ret=true;
-            System.out.println("isUnique test passed: " +test);
         }
         return ret;
     }
-    private boolean isUnique2(String test) {
+
+    private boolean isUniqueOptimal(String test){
+        boolean ret=true;
+        boolean[] uniqueArr=new boolean[128];//ASCII char set
+        char[] arr1 =test.toCharArray();
+        for (Character c:arr1){
+            if (uniqueArr[c]==false){
+                uniqueArr[c]=true;
+            }
+            else{
+                System.out.println("isUnique test failed: " +test);
+                ret=false;
+                break;
+            }
+        }
+        return ret;
+    }
+
+    private boolean isUniqueNoStrctures(String test) {
         boolean ret=true;
         char[] arr1 =test.toCharArray();
         nest_loop:
@@ -86,6 +108,7 @@ public class ChapterOne_ArraysStrings {
         }
         return ret;
     }
+
     private boolean isPermutation(String a, String b) {
         boolean ret=false;
         if (a.length()!=b.length()){
@@ -105,6 +128,7 @@ public class ChapterOne_ArraysStrings {
             }
         }
         return ret;
+        //Another solution is to use the leverage unique test, when iterating over 2nd string char count should match,
     }
 
     private void urlify(String test4) {
@@ -116,6 +140,27 @@ public class ChapterOne_ArraysStrings {
         }
         sb.append(arr[length-1]);
         System.out.println("urlify: "+sb.toString());
+    }
+
+    private void urlifyInSpace(String test4,int length) {
+        char[] arr= test4.toCharArray();
+        int rightIndex=arr.length-1   ;
+        for (int i=length-1;i>0;i--){
+            //if actual char shift right
+            //if space move next spot by 3 to left
+            if (arr[i]==' ') {
+                arr[rightIndex]='0';
+                rightIndex--;
+                arr[rightIndex]='2';
+                rightIndex--;
+                arr[rightIndex]='%';
+                rightIndex--;
+            }else{
+                arr[rightIndex]=arr[i];
+                rightIndex--;
+            }
+        }
+        System.out.println(String.valueOf(arr));
     }
 
     private boolean isOneAway(String test1, String test2) {//abc abb ab abcd
@@ -134,26 +179,52 @@ public class ChapterOne_ArraysStrings {
                 if (count==1) ret=true;
             }
             else{
-                if (test1.contains(test2)|| test2.contains(test1)){
-                    ret=true;
+                if (test1.length()>test2.length()){//abcd acd   abc
+                    int j=0; int jump=0;
+                    for (int i=0;i<test2.length();i++){
+                        if (test1.charAt(j+jump)!=test2.charAt(i)){
+                            jump++;
+                        } else{
+                            j++;
+                        }
+                    }
+                    if (j==test2.length()){
+                        jump++;
+                    }
+                    if (jump==1) ret=true;
                 }
             }
         }
+        System.out.println("isOneAway:"+ret);
         return ret;
     }
 
     private boolean isPermutePalindrome(String test1) { //tacocat -> aaccott
         boolean ret= false;
-        char[] arr1 =test1.toCharArray();
-        Arrays.sort(arr1);
+        char[] charArray =test1.toCharArray();
+        int[] arr =new int [128];
+        int oddCount=0;
+        for (char c: charArray){
+            arr[c]=arr[c]+1;
+            if (arr[c]%2==0){
+                oddCount++;
+            } else{
+                oddCount--;
+            }
+        }
+        if (oddCount>1){	System.out.println("isPermPalindrome test failed: " +test1);	}
+        else{ System.out.println("isPermPalindrome test passed: " +test1); ret=true; }
+        return ret;
+        /*
+        Arrays.sort(charArray);
         int odd=0;
-        char oddchar = 0;
+        char oddchar = null;
         //if length 1 return true
-        for (int i =1;i<arr1.length;i++){
-            if (arr1[i-1]==arr1[i]){
-                if (arr1[i]==oddchar){
+        for (int i =1;i<charArray.length;i++){
+            if (charArray[i-1]==charArray[i]){
+                if (charArray[i]==oddchar){
                     odd--;
-                    oddchar=0;//reset
+                    oddchar=null;//reset
                 }
             }
             else{
@@ -161,9 +232,7 @@ public class ChapterOne_ArraysStrings {
                 oddchar=arr1[i];
             }
         }
-        if (odd>1){	System.out.println("isPermPalindrome test failed: " +test1); ret=false;	}
-        else{ System.out.println("isPermPalindrome test passed: " +test1); ret=true; }
-        return ret;
+        */
     }
 
     public String compressString(String str){//aabcccccaaa -> a2blc5a3
@@ -194,31 +263,50 @@ public class ChapterOne_ArraysStrings {
         return str;
     }
 
-    public static void modifyMatrix(int mat[ ][ ], int R, int C)
-    {
-        int row[ ]= new int [R];
-        int col[ ]= new int [C];
+    private void modifyMatrix(int mat [][]){
+        int row[]= new int [mat.length];
+        int col[]= new int [mat[0].length];
+        Arrays.fill(row,1);
+        Arrays.fill(col,1);
+        /*
         int i, j;
-        for (i = 0; i < R; i++) /* Initialize all values of row[] as 0 */
-            row[i] = 0;
-        for (i = 0; i < C; i++) /* Initialize all values of col[] as 0 */
-            col[i] = 0;
-        /* Store the rows and columns to be marked as 1 in row[] and col[] arrays respectively */
-        for (i = 0; i < R; i++) {
-            for (j = 0; j < C; j++) {
-                if (mat[i][j] == 1) {
-                    row[i] = 1;
-                    col[j] = 1;
+        for (i = 0; i < row.length; i++)
+            row[i] = 1;
+        for (i = 0; i < col.length; i++)
+            col[i] = 1;
+         */
+        /* Store the rows and columns to be marked as 0 in row[] and col[] arrays respectively */
+        for (int i = 0; i < row.length; i++) {
+            for (int j = 0; j < col.length; j++) {
+                if (mat[i][j] == 0) {
+                    row[i] = 0;
+                    col[j] = 0;
                 }
             }
         }
         /* Modify the input matrix mat[] using the above constructed row[] and col[] arrays */
-        for (i = 0; i < R; i++) {
-            for (j = 0; j < C; j++) {
-                if ( row[i] == 1 || col[j] == 1 ) {
-                    mat[i][j] = 1;
-                }
+        for (int i = 0; i < row.length; i++) {
+            if ( row[i] == 0 ) {
+                nullifyRow(mat,i);
             }
+        }
+        for (int j = 0; j < col.length; j++) {
+            if ( col[j] == 0 ) {
+                nullifyCol(mat,j);
+            }
+        }
+        System.out.println("modifyMatrix complete");
+    }
+
+    private void nullifyCol(int[][] mat, int j) {
+        for (int i= 0; i < mat.length; i++) {
+            mat[i][j] = 0;
+        }
+    }
+
+    private void nullifyRow(int[][] mat, int i) {
+        for (int j = 0; j < mat[0].length; j++) {
+            mat[i][j] = 0;
         }
     }
 
@@ -246,5 +334,6 @@ public class ChapterOne_ArraysStrings {
         }
         return ret;
     }
+    /* concatenate it a 2nd time and original text will be found inside the string*/
 }
 
