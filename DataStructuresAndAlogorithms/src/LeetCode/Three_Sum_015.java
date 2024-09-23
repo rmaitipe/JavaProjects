@@ -15,7 +15,7 @@ public class Three_Sum_015 {
 
 	private void sumMethod(int[] arr) {
 		for (int i=0;i< arr.length-2;i++){
-			int[] val=threeSum(Arrays.copyOfRange(arr,i+1, arr.length),-arr[i],i);
+			int[] val=twoSumExtend(Arrays.copyOfRange(arr,i+1, arr.length),-arr[i],i);
 			if (val!=null){
 				System.out.println(String.valueOf(val)+"," +i);
 			}
@@ -23,9 +23,9 @@ public class Three_Sum_015 {
 
 	}
 
-	public int[] threeSum(int arr[],int k,int offset){
+	public int[] twoSumExtend(int arr[],int k,int offset){
 		int length = arr.length;
-		int [] retVal=null;
+		int[] retVal=null;
 		Map<Integer,Integer> myMap =new HashMap<>();
 		for (int i=0;i<length;i++) {
 			if (myMap.containsKey(k-arr[i])){

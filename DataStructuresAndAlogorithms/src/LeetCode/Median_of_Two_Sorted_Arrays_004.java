@@ -3,6 +3,10 @@ package LeetCode;
 import java.util.Arrays;
 
 public class Median_of_Two_Sorted_Arrays_004 {
+    /*
+    Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+    The overall run time complexity should be O(log (m+n)).
+     */
 
     private int findMedianBasic(int[] arr1, int[] arr2) {
         int length=arr1.length+arr2.length;
@@ -12,12 +16,11 @@ public class Median_of_Two_Sorted_Arrays_004 {
         }
         Arrays.sort(arr3);
         if (length%2==0){
-            return  (arr3[(length/2)-1]+ arr3[length/2])/2;
+            return (arr3[(length/2)-1]+ arr3[length/2])/2;
         } else{
             return arr3[(length/2)];
         }
     }
-    /* figure out the split and use 2 pointers and keep moving until desired index*/
 
     public static void main(String args[])    {
         int[] arr1 ={3, 10, 11, 13, 17, 19, 21};
@@ -30,6 +33,7 @@ public class Median_of_Two_Sorted_Arrays_004 {
         System.out.println(ob.findMedianAdvanced(arr1, arr3));
     }
 
+    /* figure out the split and use 2 pointers and keep moving until desired index*/
     private int findMedianAdvanced(int[] arr1, int[] arr2) {
         int length=arr1.length+arr2.length;//9->4  8->4
         int left = 0, right =0;

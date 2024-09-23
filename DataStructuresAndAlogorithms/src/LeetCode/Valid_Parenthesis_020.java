@@ -21,7 +21,6 @@ public class Valid_Parenthesis_020 {
 	private boolean validateMethod(String input) {
 		char[] array=input.toCharArray();
 		Stack<Character> stack=new Stack<>();
-		boolean isValid=false;
 		for (char c:array){
 			if (c == '(' || c == '{' || c == '[') {
 				stack.push(c);
@@ -39,10 +38,7 @@ public class Valid_Parenthesis_020 {
 				else break;
 			}
 		}
-		if (stack.isEmpty()){
-			isValid=true;
-		}
-		return isValid;
+		return stack.isEmpty();
 	}
 
 }

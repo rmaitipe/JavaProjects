@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ChapterFour_TreesGraphs {
     /*
-    1 Route Between Nodes: Given a directed graph, design an algorithm to find out whether there is a route between two nodes.
+    1. Route Between Nodes: Given a directed graph, design an algorithm to find out whether there is a route between two nodes.
     2. Minimal Tree: Given a sorted (increasing order) array with unique integer elements, write an algorithm to create
         a binary search tree with minimal height.
     3. List of Depths: Given a binary tree, design an algorithm which creates a linked list of all the nodes
@@ -16,35 +16,35 @@ public class ChapterFour_TreesGraphs {
         node never differ by more than one.
 
     5. Validate BST: Implement a function to check if a binary tree is a binary search tree.
-    6 Successor: Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a
+    6. Successor: Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a
         binary search tree. You may assume that each node has a link to its parent.
-    7 Build Order: You are given a list of projects and a list of dependencies (which is a list of pairs of
+    7. Build Order: You are given a list of projects and a list of dependencies (which is a list of pairs of
         projects, where the second project is dependent on the first project). All of a project's dependencies
         must be built before the project is. Find a build order that will allow the projects to be built. If there
         is no valid build order, return an error.
         EXAMPLE Input:projects: a, b, c, d, e, f    dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
         Output: f, e, a, b, d, c
 
-    8 First Common Ancestor: Design an algorithm and write code to find the first common ancestor
+    8. First Common Ancestor: Design an algorithm and write code to find the first common ancestor
         of two nodes in a binary tree. Avoid storing additional nodes in a data structure. NOTE: This is not
         necessarily a binary search tree.
 
-    9 BST Sequences: A binary search tree was created by traversing through an array from left to right
+    9. BST Sequences: A binary search tree was created by traversing through an array from left to right
         and inserting each element. Given a binary search tree with distinct elements, print all possible
         arrays that could have led to this tree.
         EXAMPLE Input:   Output: {2, 1, 3}, {2, 3, 1}
 
-    1O Check Subtree: Tl and T2 are two very large binary trees, with Tl much bigger than T2. Create an
+    1O. Check Subtree: Tl and T2 are two very large binary trees, with Tl much bigger than T2. Create an
         algorithm to determine if T2 is a subtree of Tl.
         A tree T2 is a subtree of Tl if there exists a node n in Tl such that the subtree of n is identical to T2.
         That is, if you cut off the tree at node n, the two trees would be identical.
 
-    11 Random Node: You are implementing a binary tree class from scratch which, in addition to
+    11. Random Node: You are implementing a binary tree class from scratch which, in addition to
         insert, find, and delete, has a method getRandomNode() which returns a random node
         from the tree. All nodes should be equally likely to be chosen. Design and implement an algorithm
         for getRandomNode, and explain how you would implement the rest of the methods.
 
-    12 Paths with Sum: You are given a binary tree in which each node contains an integer value (which
+    12. Paths with Sum: You are given a binary tree in which each node contains an integer value (which
         might be positive or negative). Design an algorithm to count the number of paths that sum to a
         given value. The path does not need to start or end at the root or a leaf, but it must go downwards
         (traveling only from parent nodes to child nodes).
@@ -82,12 +82,14 @@ public class ChapterFour_TreesGraphs {
             int mid = (left + right) / 2;
             node.val = (arr[mid]);
             assignMidPartition(arr, left, mid - 1, node.left);
-            assignMidPartition(arr, mid + 1, arr.length, node.right);
+            assignMidPartition(arr, mid + 1, arr.length, right);
         }
     }*/
     public Node assignMidPartition(int[] arr,int left, int right) {
-        Node node=null;
-        if (left<=right){
+        Node node;
+        if (left>right){
+            return null;
+        }else{
             node=new Node();
             int mid = (left + right) / 2;
             node.val = (arr[mid]);
@@ -95,7 +97,6 @@ public class ChapterFour_TreesGraphs {
             node.right=assignMidPartition(arr, mid + 1, right);
         }
         return node;
-        //common logic that's reused
     }
 
     public List<ArrayList<Node>> levelDepthList(Node node){
@@ -123,6 +124,30 @@ public class ChapterFour_TreesGraphs {
         }
         return list;
     }
+    /*
+    ArrayList<LinkedList<TreeNode>> createLevelLinkedlistAccepted(TreeNode root) {
+        ArrayList<LinkedList<TreeNode>> result = new ArrayList<Linkedlist<TreeNode>>();
+        LinkedList<TreeNode> current= new LinkedList<TreeNode>();
+        if (root != null) {
+            current.add(root);        // "Visit" the root
+        }
+        while (current.size() > 0) {
+            result.add(current);// Add previous level
+            Linkedlist<TreeNode> parents = current;//Go to next level
+            current = new LinkedList<TreeNode>();
+            for (TreeNode parent : parents) {
+                // Visit the children
+                if (parent.left != null) {
+                    current.add(parent.left);
+                }
+                if (parent.right != null) {
+                    current.add(parent.right);
+                }
+            }
+        }
+        return result;
+       }
+     */
 
     //4 level traversal+nodeCount - find min & find max see diff
     public boolean isBalanced(Node n) {
@@ -166,6 +191,7 @@ public class ChapterFour_TreesGraphs {
         }
         return retVal;
     }
+
     private boolean isBST(Node node) {
         boolean isValid = true;
         if (node != null) {
@@ -275,12 +301,7 @@ class Node implements Comparable<Node> {
     @Override
     public int compareTo(Node t) {
         //if(this.val==t.val && this.left==t.left && this.right==t.right)
-        if (this.equals(t))
-        {
-            return 1;
-        }
-        else
-            return -1;
+        return this.val-t.val;
     }
 
     @Override

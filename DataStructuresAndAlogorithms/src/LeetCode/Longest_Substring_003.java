@@ -1,21 +1,19 @@
 package LeetCode;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
 public class Longest_Substring_003 {
-
 	/*
 	 * Given a string s, find the length of the longest substring without repeating characters.
 	 *
 	 * Use sliding window with hashset, use left and right pointers to move the window .
 	 * If the set doesn't contain character then first add into the set and calculate the maxLength hand-in-hand.
 	 * if character already present in the set that means you have to move your sliding window by 1 ,
-	 * before that you have to remove all the characters that are infront of the character that is present already in window before.
+	 * before that you have to remove all the characters that are in front of the character that is present already in window before.
 	 * Now you have to remove that character also and move the left pointer and also add the new character into the set.
 	 */
-	public String detectLongestSubStringFirstTry(String input) {
+	public String detectLongestSubString(String input) {
 		String longString="";
 		StringBuilder sb=new StringBuilder();
 		char[] arr=input.toCharArray();
@@ -43,11 +41,11 @@ public class Longest_Substring_003 {
 	public static void main(String args[]) {
 		Longest_Substring_003 ob = new Longest_Substring_003();
 		String s = "abcaecdfbxwzer";
-		System.out.println(ob.detectLongestSubStringFirstTry(s).length());
+		System.out.println(ob.detectLongestSubString(s).length());
 		System.out.println(ob.lengthOfLongestSubstring(s));
 	}
 
-	public int bookMethod(String str) {
+	public int detectLongestSubStringAccepted(String str) {
 		if (str.length() == 0)
 			return 0;
 		// if string length 1

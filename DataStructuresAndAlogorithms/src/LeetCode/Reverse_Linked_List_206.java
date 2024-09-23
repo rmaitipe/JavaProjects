@@ -4,7 +4,7 @@ public class Reverse_Linked_List_206 {
 
 	/*
 	 * Given the head of a singly linked list, reverse the list, and return the reversed list.
-	 * Not Optimal. It can further be reduced?
+	 * Not Optimal. It can further be reduced.
 	 */
 	public ListNode reverseMethod(ListNode l1) {
 		ListNode pre=null;
@@ -39,6 +39,7 @@ public class Reverse_Linked_List_206 {
 			 finalNode=finalNode.next;
 		 }
     }
+
 	public static class ListNode {
     	int val;
   		ListNode next;
@@ -46,5 +47,17 @@ public class Reverse_Linked_List_206 {
     	ListNode(int val) { this.val = val; }
      	ListNode(int val, ListNode next) { this.val = val; this.next = next;}
 	}
+
+	    public ListNode reverseListAccepted(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+        while(current != null) {
+            ListNode next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+       return prev;
+    }
 
 }

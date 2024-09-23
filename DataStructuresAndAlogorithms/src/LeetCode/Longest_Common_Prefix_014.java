@@ -5,6 +5,7 @@ public class Longest_Common_Prefix_014 {
 	/*
 	 * Write a function to find the longest common prefix string amongst an array of strings.
 	 * If there is no common prefix, return an empty string "".
+	 * Input: strs = ["flower","flow","flight"]   Output: "fl"
 	 */
 	public String longestCommonPrefix(String[] input) {
 		StringBuilder sb=new StringBuilder(input[0]);
