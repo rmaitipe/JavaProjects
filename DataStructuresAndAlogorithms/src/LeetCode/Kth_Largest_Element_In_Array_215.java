@@ -2,8 +2,7 @@ package LeetCode;
 
 import java.util.PriorityQueue;
 
-public class Kth_Largest_In_Array_215 {
-
+public class Kth_Largest_Element_In_Array_215 {
 	/*
 	 * Given an integer array nums and an integer k, return the kth largest element in the array.
 	 * Note that it is the kth largest element in the sorted order, not the kth distinct element.
@@ -24,7 +23,7 @@ public class Kth_Largest_In_Array_215 {
 	}
 
 	public static void main(String args[]) {
-		Kth_Largest_In_Array_215 ob = new Kth_Largest_In_Array_215();
+		Kth_Largest_Element_In_Array_215 ob = new Kth_Largest_Element_In_Array_215();
 		int [] arr={5,8,12,78,123,145,60,-45,4};//
 		int k=3;
 		Integer finalNode = ob.searchMethod(arr,k);

@@ -1,55 +1,47 @@
 package LeetCode;
 
 public class Search_2D_Matrix_II_240 {
-
 	/*
 	 * Write an efficient algorithm that searches for a value target in an m x n integer matrix matrix.
-	 * This matrix has the following properties:
-	 * Integers in each row are sorted in ascending from left to right.
+	 * This matrix has the following properties:Integers in each row are sorted in ascending from left to right.
 	 * Integers in each column are sorted in ascending from top to bottom.
+	 * Input:matrix=[[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target=5 Output:true
 	 */
-
-	public static void main(String args[]) {
-		Search_2D_Matrix_II_240 ob = new Search_2D_Matrix_II_240();
-		int[][] scores = new int[4][4];
-		scores[0][0] = 1;
-		scores[0][1] = 4;
-		scores[0][2] = 7;
-		scores[1][0] = 2;
-		scores[1][1] = 5;
-		scores[1][2] = 8;
-		scores[2][0] = 3;
-		scores[2][1] = 6;
-		scores[2][2] = 9;
-    }
-
-	public void setZeroesAccepted(int[][] matrix) {
-		boolean fr = false,fc = false;
-		for(int i = 0; i < matrix.length; i++) {
-			for(int j = 0; j < matrix[0].length; j++) {
-				if(matrix[i][j] == 0) {
-					if(i == 0) fr = true;
-					if(j == 0) fc = true;
-					matrix[0][j] = 0;
-					matrix[i][0] = 0;
+	private boolean search2D(int matrix [][], int target){
+		int row=matrix.length;
+		int col = matrix[0].length;
+		int downRow=0; int upRow=row-1;
+		int leftCol=0; int rightCol=col-1;
+		while (matrix[upRow][leftCol]>target && matrix[upRow][rightCol]>target){
+			upRow--;
+		}
+		while (matrix[downRow][leftCol]<target && matrix[downRow][rightCol]<target){
+			downRow++;
+		}
+		while (matrix[downRow][leftCol]>target && matrix[upRow][leftCol]>target){
+			leftCol++;
+		}
+		while (matrix[downRow][rightCol]>target && matrix[upRow][rightCol]>target){
+			rightCol--;
+		}
+		for (int i=downRow;i<=upRow;i++){
+			for (int j=leftCol;j<=rightCol;j++){
+				if (matrix[i][j]==target){
+					return true;
 				}
 			}
 		}
-		for(int i = 1; i < matrix.length; i++) {
-			for(int j = 1; j < matrix[0].length; j++) {
-				if(matrix[i][0] == 0 || matrix[0][j] == 0) {
-					matrix[i][j] = 0;
-				}}
-		}
-		if(fr) {
-			for(int j = 0; j < matrix[0].length; j++) {
-				matrix[0][j] = 0;
-			}
-		}
-		if(fc) {
-			for(int i = 0; i < matrix.length; i++) {
-				matrix[i][0] = 0;
-			}
-		}
+		return false;
+	}
+
+	public static void main(String args[]) {
+		Search_2D_Matrix_II_240 ob = new Search_2D_Matrix_II_240();
+		int[][] scores = new int[5][5];
+		scores[0] = new int[]{1,4,7,11,15};
+		scores[1] = new int[]{2,5,8,12,19};
+		scores[2] = new int[]{3,6,9,16,22};
+		scores[3] = new int[]{10,13,14,17,24};
+		scores[4] = new int[]{18,21,23,26,30};
+		System.out.println(ob.search2D(scores,5));
 	}
 }

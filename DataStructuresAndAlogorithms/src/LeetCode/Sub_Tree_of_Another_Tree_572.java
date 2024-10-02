@@ -3,13 +3,17 @@ package LeetCode;
 
 import java.util.*;
 
-public class Symmetric_Tree_101 {
+public class Sub_Tree_of_Another_Tree_572 {
     /*
-     * Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+     * Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same
+     * structure and node values of subRoot and false otherwise.
+     * A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants.
+     * The tree tree could also be considered as a subtree of itself.
      */
 
     public static void main(String args[]) {
-        Symmetric_Tree_101 c4 = new Symmetric_Tree_101();
+        Sub_Tree_of_Another_Tree_572 c4 = new Sub_Tree_of_Another_Tree_572();
+        Node l1Head = new Node(13);
         Node l2Head = new Node(3);
         l2Head.left = new Node(9);
         l2Head.right = new Node(9);
@@ -17,32 +21,47 @@ public class Symmetric_Tree_101 {
         l2Head.right.right = new Node(7);
         l2Head.left.left = new Node(7);
         l2Head.left.right = new Node(15);
-        System.out.println(c4.symTraverse(l2Head));
+        System.out.println(c4.isSubTree(l1Head, l2Head));
     }
 
-    public boolean symTraverse(Node root) {
+    public boolean isSubTree(Node head1,Node head2) {
         boolean retVal=true;
-        if (root==null){
-            return retVal;
-        } else{
-            retVal= isSym(root.left,root.right);
+        Node node = findIntersect(head1,head2);
+        if (node==null){
+            retVal=false;
+        }else{
+            retVal = isSameTree(node,head2);
         }
         return retVal;
     }
 
-    private boolean isSym(Node left, Node right) {
-        boolean retVal=false;
-        if (left==null && right==null){
-            retVal=true;
-        }
-        else if (left!=null && right!=null){
-            if (left.val==right.val){
-                retVal=isSym(left.left,right.right) && isSym(left.right,right.left);
+    private Node findIntersect(Node node1, Node node2) {
+        Node retVal=null;
+        while (node1!=null){
+            if (node1.val==node2.val) {
+                retVal= node1;
+            }else {
+                retVal=findIntersect(node1.left, node2)==null? findIntersect(node1.right, node2): findIntersect( node1.left, node2);
             }
         }
         return retVal;
     }
 
+    public boolean isSameTree(Node node1, Node node2) {
+        boolean retVal=true;
+        if (node1==null && node2==null){
+            return retVal;
+        } else if(node1!=null ^ node2!=null ){//XOR logic?
+            retVal=false;
+        } else{
+            if (node1.val==node2.val){
+                retVal= isSameTree(node1.left,node2.left) && isSameTree(node1.right,node2.right);
+            }else{
+                retVal=false;
+            }
+        }
+        return retVal;
+    }
     static class Node implements Comparable<Node> {
         Integer val;
         Node left;

@@ -6,24 +6,9 @@ import java.util.stream.Collectors;
 
 public class Binary_Tree_Right_Side_View_199 {
     /*
-     Given the root of a binary tree, imagine yourself standing on the right side of it,
-     return the values of the nodes you can see ordered from top to bottom.
+     * Given the root of a binary tree, imagine yourself standing on the right side of it,
+     * return the values of the nodes you can see ordered from top to bottom.
      */
-
-    public static void main(String args[]) {
-        Binary_Tree_Right_Side_View_199 c4 = new Binary_Tree_Right_Side_View_199();
-        Node l2Head = new Node(3);
-        l2Head.left = new Node(9);
-        l2Head.right = new Node(20);
-        l2Head.right.left = new Node(15);
-        l2Head.right.right = new Node(7);
-        l2Head.left.left = new Node(17);
-        l2Head.left.left.left = new Node(6);
-        LinkedHashMap<Integer,Node> map=c4.transposedTree(l2Head);
-        System.out.println(map);
-        System.out.println(c4.rightSideViewAccepted(l2Head));
-    }
-
     public LinkedHashMap<Integer,Node> transposedTree(Node root) {
         PriorityQueue<Node> pq=new PriorityQueue<>();
         LinkedHashMap<Node,Integer> map =new LinkedHashMap<>();
@@ -49,6 +34,20 @@ public class Binary_Tree_Right_Side_View_199 {
         LinkedHashMap<Integer,Node>map2=map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue,Map.Entry::getKey,
                 (oldValue, newValue) -> oldValue, LinkedHashMap::new));//better way for this?
         return map2;
+    }
+
+    public static void main(String args[]) {
+        Binary_Tree_Right_Side_View_199 c4 = new Binary_Tree_Right_Side_View_199();
+        Node l2Head = new Node(3);
+        l2Head.left = new Node(9);
+        l2Head.right = new Node(20);
+        l2Head.right.left = new Node(15);
+        l2Head.right.right = new Node(7);
+        l2Head.left.left = new Node(17);
+        l2Head.left.left.left = new Node(6);
+        LinkedHashMap<Integer,Node> map=c4.transposedTree(l2Head);
+        System.out.println(map);
+        System.out.println(c4.rightSideViewAccepted(l2Head));
     }
 
     static class Node implements Comparable<Node> {

@@ -1,14 +1,15 @@
 package LeetCode;
 
 public class Reverse_Linked_List_206 {
-
 	/*
 	 * Given the head of a singly linked list, reverse the list, and return the reversed list.
-	 * Not Optimal. It can further be reduced.
+	 * Input: head = [1,2,3,4,5]	Output: [5,4,3,2,1]
+	 *
+	 * Not Optimal. It can further be reduced without using New nodes.
 	 */
 	public ListNode reverseMethod(ListNode l1) {
 		ListNode pre=null;
-		ListNode curr=null;
+		ListNode curr;
 		ListNode retVal=null;
 		while (l1!=null){
 			if (pre==null){
@@ -27,13 +28,17 @@ public class Reverse_Linked_List_206 {
 
 	public static void main(String args[]) {
 	    ListNode l2Head =new ListNode(1);
-		l2Head.next=new ListNode(7);
+		l2Head.next=new ListNode(2);
 		l2Head.next.next =new ListNode(3);
-		l2Head.next.next.next =new ListNode(6);
-		l2Head.next.next.next.next=new ListNode(9);
-
+		l2Head.next.next.next =new ListNode(4);
+		l2Head.next.next.next.next=new ListNode(5);
 	    Reverse_Linked_List_206 ob = new Reverse_Linked_List_206();
- 	    ListNode finalNode = ob.reverseMethod(l2Head);
+		/*ListNode finalNode = ob.reverseMethod(l2Head);
+		while (finalNode!=null){
+			System.out.print(finalNode.val);
+			finalNode=finalNode.next;
+		}*/
+ 	    ListNode finalNode = ob.reverseListAccepted(l2Head);
 		 while (finalNode!=null){
 			 System.out.print(finalNode.val);
 			 finalNode=finalNode.next;
@@ -48,16 +53,16 @@ public class Reverse_Linked_List_206 {
      	ListNode(int val, ListNode next) { this.val = val; this.next = next;}
 	}
 
-	    public ListNode reverseListAccepted(ListNode head) {
+	public ListNode reverseListAccepted(ListNode head) {
         ListNode prev = null;
         ListNode current = head;
         while(current != null) {
-            ListNode next = current.next;
+            ListNode temp = current.next;//tcnp pccn
             current.next = prev;
             prev = current;
-            current = next;
+            current = temp;
         }
-       return prev;
+        return prev;
     }
 
 }

@@ -1,12 +1,11 @@
 package LeetCode;
 
-
 import java.util.Objects;
 
 public class Maximum_Depth_of_Binary_Tree_104 {
     /*
-    Given the root of a binary tree, return its maximum depth.
-    A binary tree's maximum depth is the number of nodes along the longest path from the root down to the farthest leaf.
+     * Given the root of a binary tree, return its maximum depth.
+     * A binary tree's maximum depth is the number of nodes along the longest path from the root down to the farthest leaf.
      */
 
     public static void main(String args[]) {

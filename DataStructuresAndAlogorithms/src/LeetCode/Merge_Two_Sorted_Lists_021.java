@@ -1,7 +1,5 @@
 package LeetCode;
 
-import java.util.HashSet;
-
 public class Merge_Two_Sorted_Lists_021 {
 	/*
 	 * You are given the heads of two sorted linked lists list1 and list2.

@@ -2,11 +2,11 @@ package LeetCode;
 
 import java.util.HashMap;
 
-/*
-A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a
- dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
+    /*
+    A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a
+    dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
 
-Implement the Trie class:
+    Implement the Trie class:
     Trie() Initializes the trie object.
     void insert(String word) Inserts the string word into the trie.
     boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before),
@@ -24,7 +24,7 @@ public class Implement_Trie_208 {
         headMap=new HashMap<>();
     }
 
-    private void insert(String input){
+    public void insert(String input){
         HashMap<Character,Nodes<Character>> map=headMap;
         for (char c:input.toCharArray()){
             if (!map.containsKey(c)){
@@ -34,7 +34,7 @@ public class Implement_Trie_208 {
         }
     }
 
-    private boolean search(String input){
+    public boolean search(String input){
         HashMap<Character,Nodes<Character>> map=headMap;
         for (char c:input.toCharArray()){
             if (map.containsKey(c)){
@@ -46,7 +46,7 @@ public class Implement_Trie_208 {
         return true;
     }
 
-    private boolean startsWith(String input){
+    public boolean startsWith(String input){
         HashMap<Character,Nodes<Character>> map=headMap;
         for (char c:input.toCharArray()){
             if (map.containsKey(c)){

@@ -3,13 +3,15 @@ package LeetCode;
 
 import java.util.*;
 
-public class Symmetric_Tree_101 {
+public class Same_Tree_100 {
     /*
-     * Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+     * Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+     * Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
      */
 
     public static void main(String args[]) {
-        Symmetric_Tree_101 c4 = new Symmetric_Tree_101();
+        Same_Tree_100 c4 = new Same_Tree_100();
+        Node l1Head = new Node(3);
         Node l2Head = new Node(3);
         l2Head.left = new Node(9);
         l2Head.right = new Node(9);
@@ -17,27 +19,20 @@ public class Symmetric_Tree_101 {
         l2Head.right.right = new Node(7);
         l2Head.left.left = new Node(7);
         l2Head.left.right = new Node(15);
-        System.out.println(c4.symTraverse(l2Head));
+        System.out.println(c4.isSameTree(l1Head,l2Head));
     }
 
-    public boolean symTraverse(Node root) {
+    public boolean isSameTree(Node node1, Node node2) {
         boolean retVal=true;
-        if (root==null){
+        if (node1==null && node2==null){
             return retVal;
+        } else if(node1!=null ^ node2!=null ){//XOR logic?
+            retVal=false;
         } else{
-            retVal= isSym(root.left,root.right);
-        }
-        return retVal;
-    }
-
-    private boolean isSym(Node left, Node right) {
-        boolean retVal=false;
-        if (left==null && right==null){
-            retVal=true;
-        }
-        else if (left!=null && right!=null){
-            if (left.val==right.val){
-                retVal=isSym(left.left,right.right) && isSym(left.right,right.left);
+            if (node1.val==node2.val){
+                retVal= isSameTree(node1.left,node2.left) && isSameTree(node1.right,node2.right);
+            }else{
+                retVal=false;
             }
         }
         return retVal;

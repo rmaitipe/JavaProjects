@@ -1,14 +1,15 @@
 package LeetCode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Two_Sum_001 {
-
 	/*
-	 * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+	 * Given an array of integers nums, return indices of the two numbers such that they add up to target.
 	 * You may assume that each input would have exactly one solution, and you may not use the same element twice.
 	 * You can return the answer in any order.
+	 * Input: nums = [2,7,11,15], target = 9	Output: [0,1]
 	 */
 	public int[] twoSumMethod(int arr[],int k){
 		int length = arr.length;
@@ -26,12 +27,11 @@ public class Two_Sum_001 {
 		return retVal;
 	}
 
-	public static void main(String args[])
-    {
+	public static void main(String args[]){
         int target =25;
         int arr[] = {23, 34, 15, 12, 22, 10, 0};
 		Two_Sum_001 ob = new Two_Sum_001();
-        System.out.println(ob.twoSumMethod(arr, target));
+        System.out.println(Arrays.toString(ob.twoSumMethod(arr, target)));
     }
 
 }

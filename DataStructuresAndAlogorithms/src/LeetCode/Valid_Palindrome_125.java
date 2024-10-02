@@ -2,9 +2,9 @@ package LeetCode;
 
 public class Valid_Palindrome_125 {
     /*
-    A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all
-    non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include
-    letters and numbers. Given a string s, return true if it is a palindrome, or false otherwise.
+     * A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all
+     * non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include
+     * letters and numbers. Given a string s, return true if it is a palindrome, or false otherwise.
      */
 
     public static void main(String args[]) {
@@ -35,7 +35,7 @@ public class Valid_Palindrome_125 {
 
     private int validateLeft(String input,int index) {
         while( index<input.length()){
-            if (Character.isLetterOrDigit(input.charAt(index))){//randomy slected boundries
+            if (Character.isLetterOrDigit(input.charAt(index))){
                 break;
             } else{
                 index++;

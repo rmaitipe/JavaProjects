@@ -1,39 +1,34 @@
 package LeetCode;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Three_Sum_015 {
-
 	/*
-	 * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+	 * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k,
+	 * and j != k, and nums[i] + nums[j] + nums[k] == 0.
 	 * Notice that the solution set must not contain duplicate triplets.
 	 * Can be reduced to -a= b + c,
-	 * Incomplete - Sort Array first for better performing algorithms and avoid duplicate condition
+	 * Incomplete - Sort Array first for better performing algorithms
 	 */
-
 	private void sumMethod(int[] arr) {
 		for (int i=0;i< arr.length-2;i++){
-			int[] val=twoSumExtend(Arrays.copyOfRange(arr,i+1, arr.length),-arr[i],i);
+			int[] val=twoSumExtend(arr,-arr[i],i);
 			if (val!=null){
-				System.out.println(String.valueOf(val)+"," +i);
+				System.out.println(Arrays.toString(val) +"," +arr[i]);
 			}
 		}
-
 	}
 
 	public int[] twoSumExtend(int arr[],int k,int offset){
-		int length = arr.length;
 		int[] retVal=null;
 		Map<Integer,Integer> myMap =new HashMap<>();
-		for (int i=0;i<length;i++) {
-			if (myMap.containsKey(k-arr[i])){
-				Integer j= myMap.get(k-arr[i]);
-				retVal= new int[]{offset+i,offset+j};
+		for (int j=offset+1;j<arr.length;j++) {
+			if (myMap.containsKey(k-arr[j])){
+				Integer idx=myMap.get(k-arr[j]);
+				retVal= new int[]{arr[j],arr[idx]};
 				break;
 			} else{
-				myMap.put(arr[i],i+offset);
+				myMap.put(arr[j],j);
 			}
 		}
 		return retVal;
@@ -43,5 +38,42 @@ public class Three_Sum_015 {
 		int arr[] = {23, 34, 15, 12, 22, -10, -5};
 		Three_Sum_015 ob = new Three_Sum_015();
 		ob.sumMethod(arr);
+		System.out.println(ob.threeSumAccepted(arr));
+	}
+
+	/*
+	The input array nums is sorted in ascending order. Sorting is essential for the two pointers approach.
+	The code uses two pointers (j and k) to iterate through the array while checking for triplets that sum up to zero.
+	The outer loop (i) iterates through each element as a potential first element of the triplet.
+	The while loop continues until the two pointers meet. The sum of the current triplet is calculated at each iteration.
+
+	If the sum is zero, the triplet is added to a HashSet to ensure uniqueness.
+	If the sum is less than zero, the left pointer (j) is moved to the right.
+	If the sum is greater than zero, the right pointer (k) is moved to the left.
+    Time complexity: nlogn->Sorting  O(n log n + n^2) ≈ O(n^2)	Space complexity: O(n) due to HashMap
+	*/
+	public List<List<Integer>> threeSumAccepted(int[] nums) {
+		int target = 0;
+		Arrays.sort(nums);
+		List<List<Integer>> ans = new ArrayList<>();
+		Set<List<Integer>> set = new HashSet<>();
+		for(int i=0; i<nums.length; i++){
+			int j = i+1;
+			int k = nums.length - 1;
+			while(j<k){
+				int sum = nums[i]+nums[j]+nums[k];
+				if(sum == target){
+					set.add(Arrays.asList(nums[i],nums[j],nums[k]));
+					j++;
+					k--;
+				}else if(sum < target){
+					j++;
+				}else{
+					k--;
+				}
+			}
+		}
+		ans.addAll(set);
+		return ans;
 	}
 }

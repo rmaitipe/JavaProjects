@@ -6,10 +6,9 @@ import java.util.HashMap;
 public class Majority_Element_169 {
 
     /*
-    Given an array nums of size n, return the majority element.
-    The majority element is the element that appears more than ⌊n / 2⌋ times.
-    You may assume that the majority element always exists in the array.
-    Follow-up: Could you solve the problem in linear time and in O(1) space?
+     * Given an array nums of size n, return the majority element. The majority element is the element that appears
+     * more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+     * Follow-up: Could you solve the problem in linear time and in O(1) space?
      */
 
     public static void main(String args[]) {
@@ -22,7 +21,7 @@ public class Majority_Element_169 {
     }
 
     private Integer searchMethod(int[] arr) {
-        Arrays.sort(arr);
+        Arrays.sort(arr);//n(log(n)
         return arr[arr.length/2];
     }
 

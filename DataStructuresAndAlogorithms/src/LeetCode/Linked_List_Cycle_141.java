@@ -35,6 +35,7 @@ public class Linked_List_Cycle_141 {
 	    Linked_List_Cycle_141 ob = new Linked_List_Cycle_141();
 		System.out.println(ob.isLoop(l2Head));
     }
+
 	public static class ListNode {
     	int val;
   		ListNode next;
