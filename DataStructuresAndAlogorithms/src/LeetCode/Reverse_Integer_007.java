@@ -15,9 +15,20 @@ public class Reverse_Integer_007 {
 			isNeg=true;
 			k=k*-1;
 		}
+		int prev_rev_num = 0, rev_num = 0;
 		while (k!=0){
 			nextDigit=k%10;
+			rev_num = (rev_num*10) + nextDigit;
 			sb.append(nextDigit);
+			/*
+			Logic for checking if the reverse overflowed or not.
+            The values of (rev_num - nextDigit)/10 and prev_rev_num must be same if there was no problem.
+            if ((rev_num - nextDigit)/10 != prev_rev_num) {
+                System.out.println("WARNING OVERFLOWED!!!");
+                return 0;
+            }
+			 */
+			prev_rev_num = rev_num;
 			k=k/10;
 		}
 		if (isNeg) {
@@ -28,8 +39,7 @@ public class Reverse_Integer_007 {
 	}
 
 	
-	public static void main(String args[])
-    {
+	public static void main(String args[]) {
         int input =-34525;
 		Reverse_Integer_007 ob = new Reverse_Integer_007();
         System.out.println(ob.reverseMethod(input));

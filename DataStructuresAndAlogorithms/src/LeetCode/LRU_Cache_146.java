@@ -40,7 +40,7 @@ public class LRU_Cache_146 {
     public Integer get(Integer key){
         if (headMap.containsKey(key)) {
             int val = headMap.remove(key);
-            headMap.put(key, val);
+            headMap.put(key, val);//refresh order
             return headMap.get(key);
         }else return -1;
     }

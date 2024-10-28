@@ -13,20 +13,20 @@ public class Word_Break_139 {
 
     public static void main(String args[]) {
         Word_Break_139 ob = new Word_Break_139();
-        Implement_Trie_208_Modified dict=new Implement_Trie_208_Modified();
-        dict.insert("apple");
-        dict.insert("pen");
+        //Implement_Trie_208_Modified dict=new Implement_Trie_208_Modified();
+        //dict.insert("apple");
+        //dict.insert("pen");
         List<String> wordDict = Arrays.asList("apple", "pen");
         String input="applepenapple";
-        System.out.println(ob.evalWord(dict,input));
+        System.out.println(ob.evalWord(wordDict,input));
         System.out.println(ob.wordBreakAcceptedDP(input,wordDict));
     }
 
-    private boolean evalWord(Implement_Trie_208_Modified wordDict,String s) {
+    private boolean evalWord(List<String> wordDict,String s) {
         boolean retVal=false;
         for (int i=1;i<=s.length();i++){
             String inner=s.substring(0,i);
-            boolean isStart=wordDict.startsWith(inner);
+            /*boolean isStart=wordDict.startsWith(inner);
             if (isStart) {
                 boolean isWord = wordDict.search(inner);
                 if (isWord) {
@@ -38,7 +38,7 @@ public class Word_Break_139 {
                 }
             }else{
                 break;
-            }
+            }*/
         }
         return retVal;
     }

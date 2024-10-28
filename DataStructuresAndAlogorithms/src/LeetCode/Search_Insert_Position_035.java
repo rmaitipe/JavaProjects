@@ -11,7 +11,7 @@ public class Search_Insert_Position_035 {
 		int right = arr.length-1;
 	    int left=0;
 		while (left<=right){//while (left<right){
-			int mid=(left+((right-left)/2));
+			int mid=left+(right-left)/2;
 			if (arr[mid]==k){
 				return mid;
 			} else if (arr[mid]>k){
@@ -24,11 +24,13 @@ public class Search_Insert_Position_035 {
 	}
 	
 	public static void main(String args[]) {
-       //int arr[] = {3, 13, 15, 22, 25, 30, 45};
-		int arr[] = {1, 3, 5, 6};
+        int arr[] = {3, 13, 15, 22, 25, 30, 45};
+		int arr2[] = {1, 3, 5, 6};
 		Search_Insert_Position_035 ob = new Search_Insert_Position_035();
 		System.out.println(ob.findLocMethod(arr,7));
-		System.out.println(ob.searchInsertAccepted(arr,7));
+		System.out.println("Accepted: "+ob.searchInsertAccepted(arr,7));
+		System.out.println(ob.findLocMethod(arr2,7));
+		System.out.println("Accepted: "+ob.searchInsertAccepted(arr2,7));
     }
 
 	public int searchInsertAccepted(int[] nums, int target) {

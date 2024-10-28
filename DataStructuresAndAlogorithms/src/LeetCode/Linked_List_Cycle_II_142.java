@@ -7,9 +7,9 @@ public class Linked_List_Cycle_II_142 {
 	 * Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
 	 * There is a cycle in a linked list if there is some node in the list that can be reached again by continuously
 	 * following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is
-	 *  connected to  (0-indexed). It is -1 if there is no cycle. Note that pos is not passed as a parameter.
+	 * connected to  (0-indexed). It is -1 if there is no cycle. Note that pos is not passed as a parameter.
 	 *
-	 * Accepted Solution- Floyd's Cycle Detection Algorithm (Tortoise and Hare)?
+	 * Accepted Solution- Floyd's Cycle Detection Algorithm (Tortoise and Hare)
 	 */
 	private Integer findLoopStart(ListNode sl1) {
 		ListNode node = sl1;
@@ -23,7 +23,6 @@ public class Linked_List_Cycle_II_142 {
 				node = node.next;
 				index++;
 			}
-
 		}
 		return null;
 	}
@@ -38,6 +37,7 @@ public class Linked_List_Cycle_II_142 {
 		l2Head.next.next.next.next.next=loop;
 	    Linked_List_Cycle_II_142 ob = new Linked_List_Cycle_II_142();
 		System.out.println(ob.findLoopStart(l2Head));
+		System.out.println(ob.detectCycleAccepted(l2Head));
     }
 	public static class ListNode {
     	int val;
@@ -64,6 +64,17 @@ public class Linked_List_Cycle_II_142 {
 		if(fast!=slow){
 			return null;
 		}
+		/*
+		Finding the Cycle Start: If fast and slow meet, it confirms the presence of a cycle.
+		To find the starting node of the cycle, reset one of the pointers to the head of the list (slow = head).
+		Move both slow and fast one step at a time. The point at which they meet again is the start of the cycle.
+		Explanation: if distance before start of Node is x and then y distance was travelled before 2 pointers met
+		slow node travelled x+y, fast node travelled x+y+(full circle length*n) then
+		since fast moves twice as fast as slow, it has traveled double the distance of slow at ANY point in time
+		2(x+y)=x+y+nc -> x+y=nc ->x=nc-y
+		you can see faster pointer is nc-y points to go to entry node. after reset if slow pointer travels x,
+		faster point will meet it there.
+		*/
 		slow = head;
 		while(slow!=fast){
 			fast= fast.next;

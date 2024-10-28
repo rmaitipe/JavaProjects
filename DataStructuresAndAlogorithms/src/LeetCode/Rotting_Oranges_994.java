@@ -9,7 +9,6 @@ public class Rotting_Oranges_994 {
      * Every minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten.
      * Return the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.
      */
-
     public static void main(String args[]) {
         Rotting_Oranges_994 ob = new Rotting_Oranges_994();
         int[][] oranges = new int[3][3];
@@ -106,48 +105,50 @@ public class Rotting_Oranges_994 {
         */
     }
 
+    /*
+     * The problem requires can be modeled as a breadth-first search (BFS) problem. The BFS is appropriate here because
+     * it allows us to explore the grid level by level (minute by minute)
+     */
     public int orangesRottingAccepted(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
-        int[][] visited = grid;
-        Queue<int[]> q = new LinkedList<>();
+        Queue<int[]> qRotten = new LinkedList<>();
         int countFreshOrange = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (visited[i][j] == 2) {
-                    q.offer(new int[] {i, j});
+                if (grid[i][j] == 2) {
+                    qRotten.offer(new int[] {i, j});
                 }
-                if (visited[i][j] == 1) {
+                if (grid[i][j] == 1) {
                     countFreshOrange++;
                 }
             }
         }
         if (countFreshOrange == 0)
             return 0;
-        if (q.isEmpty())
+        if (qRotten.isEmpty())
             return -1;
 
         int minutes = -1;
         int[][] dirs = {{1, 0},{-1, 0},{0, -1},{0, 1}};
-        while (!q.isEmpty()) {
-            int size = q.size();
+        while (!qRotten.isEmpty()) {
+            int size = qRotten.size();
             while (size-- > 0) {
-                int[] cell = q.poll();
+                int[] cell = qRotten.poll();
                 int x = cell[0];
                 int y = cell[1];
                 for (int[] dir : dirs) {
                     int i = x + dir[0];
                     int j = y + dir[1];
-                    if (i >= 0 && i < m && j >= 0 && j < n && visited[i][j] == 1) {
-                        visited[i][j] = 2;
+                    if (i >= 0 && i < m && j >= 0 && j < n && grid[i][j] == 1) {
+                        grid[i][j] = 2;
                         countFreshOrange--;
-                        q.offer(new int[] {i, j});
+                        qRotten.offer(new int[] {i, j});
                     }
                 }
             }
             minutes++;
         }
-
         if (countFreshOrange == 0)
             return minutes;
         return -1;

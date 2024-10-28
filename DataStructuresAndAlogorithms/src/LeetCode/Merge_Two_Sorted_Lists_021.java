@@ -23,7 +23,6 @@ public class Merge_Two_Sorted_Lists_021 {
 					curr=curr.next;
 				}
 				leftP=leftP.next;
-
 			}else{
 				if (retVal==null){
 					retVal=new ListNode(rightP.val);

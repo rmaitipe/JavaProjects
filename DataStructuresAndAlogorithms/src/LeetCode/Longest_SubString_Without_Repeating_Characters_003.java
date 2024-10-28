@@ -3,52 +3,45 @@ package LeetCode;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Longest_Substring_003 {
+public class Longest_SubString_Without_Repeating_Characters_003 {
 	/*
 	 * Given a string s, find the length of the longest substring without repeating characters.
-	 *
-	 * Use sliding window with hashset, use left and right pointers to move the window .
-	 * If the set doesn't contain character then first add into the set and calculate the maxLength hand-in-hand.
-	 * if character already present in the set that means you have to move your sliding window by 1 ,
-	 * before that you have to remove all the characters that are in front of the character that is present already in window before.
-	 * Now you have to remove that character also and move the left pointer and also add the new character into the set.
+	 * Input: s = "abcabcbb"	Output: 3	Explanation: The answer is "abc", with the length of 3.
 	 */
-	public String detectLongestSubString(String input) {
+	public int detectLongestSubString(String input) {
 		String longString="";
 		StringBuilder sb=new StringBuilder();
 		char[] arr=input.toCharArray();
 		for (char c:arr){
-			if (sb.isEmpty()){
-				sb.append(c);
-			}else{
-				if (sb.toString().contains(String.valueOf(c))){
-					if (longString.length()<sb.toString().length()){
-						longString=sb.toString();
-						sb.setLength(0);
-						sb.append(c);
-					}
-				} else{
-					sb.append(c);
+			if (sb.toString().contains(String.valueOf(c))){
+				if (longString.length()<sb.toString().length()){
+					longString=sb.toString();
 				}
+				//reset
+				int idx=sb.indexOf(String.valueOf(c));
+				sb.delete(0,idx+1);//sb.setLength(0);
+				sb.append(c);
+			} else{
+				sb.append(c);
 			}
 		}
 		if(longString.length()<sb.length()){
 			longString= sb.toString();
 		}
-		return longString;
+		return longString.length();
 	}
 
 	public static void main(String args[]) {
-		Longest_Substring_003 ob = new Longest_Substring_003();
-		String s = "abcaecdfbxwzer";
-		System.out.println(ob.detectLongestSubString(s).length());
+		Longest_SubString_Without_Repeating_Characters_003 ob = new Longest_SubString_Without_Repeating_Characters_003();
+		String s = "abcbaecdfbxwzer";
+		System.out.println(ob.detectLongestSubString(s));
 		System.out.println(ob.lengthOfLongestSubstring(s));
+		System.out.println(ob.detectLongestSubStringAccepted(s));
 	}
 
 	public int detectLongestSubStringAccepted(String str) {
 		if (str.length() == 0)
 			return 0;
-		// if string length 1
 		if (str.length() == 1)
 			return 1;
 		// if string length is more than 2
@@ -72,6 +65,13 @@ public class Longest_Substring_003 {
 		return maxLength;
 	}
 
+	/*
+	 * Use sliding window with hashset, use left and right pointers to move the window .
+	 * If the set doesn't contain character then first add into the set and calculate the maxLength hand-in-hand.
+	 * if character already present in the set that means you have to move your sliding window by 1 ,
+	 * before that you have to remove all the characters that are in front of the character that is present already in window before.
+	 * Now you have to remove that character also and move the left pointer and also add the new character into the set.
+	 */
 	public int lengthOfLongestSubstring(String s) {
 		int left = 0, right = 0, max = 0;
 		Set<Character> set = new HashSet<>();
@@ -80,7 +80,7 @@ public class Longest_Substring_003 {
 				set.add(s.charAt(right++));
 				max = Math.max(max, set.size());
 			} else {
-				set.remove(s.charAt(left++));
+				set.remove(s.charAt(left++));//keep moving forward by keeping right fixed
 			}
 		}
 		return max;

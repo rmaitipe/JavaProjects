@@ -3,6 +3,7 @@ package LeetCode;
 public class Maximum_SubArray_053 {
     /* Given an integer array, find the subarray with the largest sum, and return its sum.
      * Input: nums = [-2,1,-3,4,-1,2,1,-5,4] Output:The subarray [4,-1,2,1] has the largest sum- 6.
+     * Kadane’s Algorithm
      */
     public int findMaxSubArr(int[] nums) {
         int[] dpSum = new int [nums.length];
@@ -11,11 +12,11 @@ public class Maximum_SubArray_053 {
         for (int i=1;i<nums.length;i++){
             if (nums[i]<nums[i]+dpSum[i-1]){
                 dpSum[i]=nums[i]+dpSum[i-1];
-            }else{
+            } else{
                 dpSum[i]=nums[i];
-                if (dpSum[i]>max){
-                    max=dpSum[i];
-                }
+            }
+            if (dpSum[i]>max){
+                max=dpSum[i];
             }
         }
         return max;
@@ -26,6 +27,8 @@ public class Maximum_SubArray_053 {
         Maximum_SubArray_053 ob = new Maximum_SubArray_053();
         int out=ob.findMaxSubArr(prices);
         System.out.println(String.valueOf(out));
+        System.out.println("Accepted: "+String.valueOf(ob.dynamicProgrammingMaxSubArrAccepted(prices)));
+        System.out.println("Accepted2: "+String.valueOf(ob.maxSubArray(prices)));
     }
 
     private int dynamicProgrammingMaxSubArrAccepted(int[] nums){

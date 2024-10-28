@@ -3,13 +3,14 @@ package LeetCode;
 import java.util.Arrays;
 
 public class Perfect_Squares_279 {
-
     /*
      * Given an integer n, return the least number of perfect square numbers that sum to n.
-     * A perfect square is an integer that is the square of an integer; in other words,
-     * it is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
+     * A perfect square is an integer that is the square of an integer; in other words,it is the product of
+     * some integer with itself. For example, 1, 4, 9 and 16 are perfect squares while 3 and 11 are not.
+     * Input: n = 12    Output: 3   Explanation: 12 = 4 + 4 + 4.    Input: n = 13   Output: 2   Explanation: 13 = 4 + 9
+     *
+     * Check 322
      */
-
     public static void main(String args[]) {
         Perfect_Squares_279 ob = new Perfect_Squares_279();
         System.out.println(ob.numSquares(12));
@@ -24,8 +25,8 @@ public class Perfect_Squares_279 {
         else if (n<4) {
             return n;
         } else {
-            int a= (int) Math.pow(rep-1,2);
-            int b= (int) Math.pow(rep,2);
+            int a = (int) Math.pow(rep-1,2);
+            int b = (int) Math.pow(rep,2);
             if (b>0) {
                 return Math.min(numSquares(n - a) + 1, numSquares(n - b) + 1); //12->3 //8
             } else{
@@ -52,7 +53,7 @@ public class Perfect_Squares_279 {
         for (int i = 1; i <= n; ++i) {
             int min_val = Integer.MAX_VALUE;
             for (int j = 1; j * j <= i; ++j) {
-                System.out.println("i: "+i+" j: "+j+" dp: "+(i - (j * j))+" dpIndex+1: "+(dp[i - j * j]+1));
+                //System.out.println("i: "+i+" j: "+j+" dp: "+(i - (j * j))+" dpIndex+1: "+(dp[i - j * j]+1));
                 min_val = Math.min(min_val, dp[i - j * j] + 1);//i=12, j=1 dp11+1=4 j=2 dp7+1=5 j=3 dp3+1=4
             }
             dp[i] = min_val ;

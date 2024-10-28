@@ -9,14 +9,8 @@ public class Longest_Consecutive_Sequence_128 {
      * Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
      * You must write an algorithm that runs in O(n) time.
      * Input: nums = [100,4,200,1,3,2] Output: 4 (1,2,3,4 elements)
+     * Input: nums = [100,4,101,1,3,2,6,103] Output: 4 (1,2,3,4 elements)
      */
-
-    public static void main(String args[]) {
-        Longest_Consecutive_Sequence_128 ob = new Longest_Consecutive_Sequence_128();
-        int[] input = new int[] {100,4,200,1,3,2};
-        System.out.println(ob.longestConsecutiveSequence(input));
-    }
-
     private int longestConsecutiveSequence(int [] nums){
         int max=-1;
         Map<Integer,Integer> map=new HashMap<>();
@@ -52,6 +46,13 @@ public class Longest_Consecutive_Sequence_128 {
             }
         }
         return max;
+    }
+
+    public static void main(String args[]) {
+        Longest_Consecutive_Sequence_128 ob = new Longest_Consecutive_Sequence_128();
+        int[] input = new int[] {100,4,101,1,3,2,6,103};
+        System.out.println(ob.longestConsecutiveSequence(input));
+        System.out.println("Accepted: "+ob.longestConsecutiveAccepted(input));
     }
 
     public int longestConsecutiveAccepted(int[] nums) {

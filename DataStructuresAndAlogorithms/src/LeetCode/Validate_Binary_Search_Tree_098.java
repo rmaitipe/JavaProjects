@@ -4,14 +4,13 @@ import java.util.Objects;
 import java.util.Stack;
 
 public class Validate_Binary_Search_Tree_098 {
-/*
-    Given the root of a binary tree, determine if it is a valid binary search tree (BST).
-    A valid BST is defined as follows:
-    The left subtree of a node contains only nodes with keys less than the node's key.
-    The right subtree of a node contains only nodes with keys greater than the node's key.
-    Both the left and right subtrees must also be binary search trees.
-
- */
+    /*
+     * Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+     * A valid BST is defined as follows:
+     * The left subtree of a node contains only nodes with keys less than the node's key.
+     * The right subtree of a node contains only nodes with keys greater than the node's key.
+     * Both the left and right subtrees must also be binary search trees.
+     */
     private boolean isBST(Node node) {
         boolean isValid =true;
         if (node!=null){
@@ -27,18 +26,16 @@ public class Validate_Binary_Search_Tree_098 {
                 } else{
                     isValid= false;
                 }
-            }
-            else if(node.left!=null){
-                if (node.val>node.left.val){
-                    isValid=isBST(node.left);
-                } else{
+            } else if(node.left!=null){
+                if (node.val>node.left.val) {
+                    isValid = isBST(node.left);
+                }else{
                     isValid= false;
                 }
-            }
-            else{ //if(node.right!=null){
-                if (node.val<node.right.val){
-                    isValid=isBST(node.right);
-                } else{
+            } else if(node.right!=null){
+                if(node.val<node.right.val) {
+                    isValid = isBST(node.right);
+                }else{
                     isValid= false;
                 }
             }

@@ -10,10 +10,11 @@ public class Single_Number_136 {
 
     public static void main(String args[]) {
         Single_Number_136 ob = new Single_Number_136();
-        int[] input= {64,1,2,1,2};
+        int[] input= {4,1,2,1,2};
         System.out.println(ob.findSingular(input));
     }
 
+    //The XOR operation is perfect for this task because it has the property that x ^ x = 0 and x ^ 0 = x
     private int findSingular(int[] input) {
         int retVal=input[0];
         for (int i=1;i<input.length;i++){

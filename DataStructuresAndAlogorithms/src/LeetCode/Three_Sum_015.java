@@ -7,10 +7,13 @@ public class Three_Sum_015 {
 	 * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k,
 	 * and j != k, and nums[i] + nums[j] + nums[k] == 0.
 	 * Notice that the solution set must not contain duplicate triplets.
+	 * Input: nums = [-1,0,1,2,-1,-4]	Output: [[-1,-1,2],[-1,0,1]] Explanation: [0],[1],[2] = (-1) + 0 + 1 = 0.
+	 * [1],[2],[4] = 0 + 1 + (-1) = 0.	[0],[3],[4] = (-1) + 2 + (-1) = 0. The distinct triplets are [-1,0,1] & [-1,-1,2].
+	 *
 	 * Can be reduced to -a= b + c,
 	 * Incomplete - Sort Array first for better performing algorithms
 	 */
-	private void sumMethod(int[] arr) {
+	private void sumMethod(int[] arr) {//O(n2)
 		for (int i=0;i< arr.length-2;i++){
 			int[] val=twoSumExtend(arr,-arr[i],i);
 			if (val!=null){
@@ -39,6 +42,9 @@ public class Three_Sum_015 {
 		Three_Sum_015 ob = new Three_Sum_015();
 		ob.sumMethod(arr);
 		System.out.println(ob.threeSumAccepted(arr));
+		int arr2[] = {-1,0,1,2,-1,-4};
+		ob.sumMethod(arr2);
+		System.out.println(ob.threeSumAccepted(arr2));
 	}
 
 	/*
@@ -64,6 +70,16 @@ public class Three_Sum_015 {
 				int sum = nums[i]+nums[j]+nums[k];
 				if(sum == target){
 					set.add(Arrays.asList(nums[i],nums[j],nums[k]));
+					/*
+					// Skip duplicate elements for j
+					while (j < k && nums[j] == nums[j + 1]) {
+						j++;
+					}
+					// Skip duplicate elements for k
+					while (j < k && nums[k] == nums[k - 1]) {
+						k--;
+					}
+					*/
 					j++;
 					k--;
 				}else if(sum < target){

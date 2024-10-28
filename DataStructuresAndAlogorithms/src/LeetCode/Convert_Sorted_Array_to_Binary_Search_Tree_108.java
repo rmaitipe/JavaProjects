@@ -7,8 +7,7 @@ public class Convert_Sorted_Array_to_Binary_Search_Tree_108 {
 	/*
 	 * Given an integer array nums where the elements are sorted in ascending order, convert it to a
 	 * height-balanced binary search tree.
-	 * 12(4)-->-5(0)-7(3)=1(1)-->
-	 *
+	 * Input:nums =[-10,-3,0,5,9]	 Output:[0,-3,9,-10,null,5]	   Explanation:[0,-10,5,null,-3,null,9] is also accepted
 	 * int mid = l + (r - l) / 2; // this is the formula to find mid value
 	 */
 

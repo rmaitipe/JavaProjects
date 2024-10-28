@@ -4,6 +4,10 @@ package LeetCode;
 public class Palindrome_Linked_List_234 {
 	/*
 	 * Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+	 * Input: head = [1,2,2,1]		Output: true
+	 *
+	 * Optimal: solve without new nodes
+	 * get count+2 pointers, then Reverse_Linked_List_206
 	 */
 	public boolean validateMethod(ListNode l1) {
 		boolean retVal= true;
@@ -14,8 +18,7 @@ public class Palindrome_Linked_List_234 {
 			ListNode curr= new ListNode(node.val);
 			if (sl2==null){
 				sl2=curr;
-			}
-			else{
+			} else{
 				ListNode temp=sl2;
 				curr.next=temp;
 				sl2=curr;
@@ -37,22 +40,22 @@ public class Palindrome_Linked_List_234 {
 	}
 
 	public static void main(String args[]) {
-		ListNode l1Head =new ListNode(9);
-		l1Head.next=new ListNode(9);
-		l1Head.next.next =new ListNode(9);
-		l1Head.next.next.next =new ListNode(9);
-		l1Head.next.next.next.next=new ListNode(9);
-		l1Head.next.next.next.next.next =new ListNode(9);
-		l1Head.next.next.next.next.next.next =new ListNode(9);
-	    ListNode l2Head =new ListNode(1);
-		l2Head.next=new ListNode(7);
-		l2Head.next.next =new ListNode(3);
-		l2Head.next.next.next =new ListNode(6);
-		l2Head.next.next.next.next=new ListNode(9);
+		ListNode l1EvenHead =new ListNode(4);
+		l1EvenHead.next=new ListNode(3);
+		l1EvenHead.next.next =new ListNode(9);
+		l1EvenHead.next.next.next =new ListNode(9);
+		l1EvenHead.next.next.next.next=new ListNode(3);
+		l1EvenHead.next.next.next.next.next =new ListNode(4);
+	    ListNode l2OddHead =new ListNode(1);
+		l2OddHead.next=new ListNode(7);
+		l2OddHead.next.next =new ListNode(3);
+		l2OddHead.next.next.next =new ListNode(7);
+		l2OddHead.next.next.next.next=new ListNode(1);
 	    Palindrome_Linked_List_234 ob = new Palindrome_Linked_List_234();
-		System.out.println(ob.validateMethod(l1Head));
- 	    System.out.println(ob.validateMethod(l2Head));
+		System.out.println(ob.validateMethod(l1EvenHead));
+ 	    System.out.println(ob.isPalindromeAccepted(l2OddHead));
     }
+
 	public static class ListNode {
     	int val;
   		ListNode next;
@@ -61,4 +64,34 @@ public class Palindrome_Linked_List_234 {
      	ListNode(int val, ListNode next) { this.val = val; this.next = next;}
 	}
 
+	public ListNode reverse(ListNode head) {
+		ListNode prev = null;
+		ListNode curr = head;
+		while(curr != null) {
+			ListNode next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+		}
+		return prev;
+	}
+
+	public boolean isPalindromeAccepted(ListNode head) {
+		ListNode slow = head;
+		ListNode fast = head;
+		while(fast.next != null && fast.next.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		ListNode temp = reverse(slow.next); //12321   12123
+		//slow.next = temp;
+		ListNode p1 = head;
+		ListNode p2 = temp;
+		while(p2 != null) {
+			if(p1.val != p2.val) return false;
+			p1 = p1.next;
+			p2 = p2.next;
+		}
+		return true;
+	}
 }

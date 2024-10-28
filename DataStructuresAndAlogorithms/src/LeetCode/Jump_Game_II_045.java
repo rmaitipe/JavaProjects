@@ -9,9 +9,12 @@ public class Jump_Game_II_045 {
      * if you are at nums[i], you can jump to any nums[i+j] where: 0 <= j <= nums[i] and i+j < n
      * Return the minimum number of jumps to reach nums[n-1]. data is such a solution will exist
      * Input: nums = [2,3,1,1,4] Output: 2
-     * Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+     * Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1,
+     * then 3 steps to the last index.
+     *
+     * See Unique Paths's DP solution
      */
-    private int jumpPath(int[] num) {
+    private int jumpPathDP(int[] num) {
         int[] visited=new int [num.length];
         Arrays.fill(visited,1,num.length,Integer.MAX_VALUE);
         for (int i=0;i<num.length;i++){
@@ -28,11 +31,11 @@ public class Jump_Game_II_045 {
     public static void main(String args[]) {
         Jump_Game_II_045 ob = new Jump_Game_II_045();
         int[] num = {2,3,1,1,4};
-        System.out.println(ob.jumpPath(num));
-        System.out.println(ob.canJumpAccepted(num));
+        System.out.println(ob.jumpPathDP(num));
+        System.out.println(ob.jumpPathAccepted(num));
     }
 
-    public int canJumpAccepted(int[] nums) {// only keeping track of rightmost boundary
+    public int jumpPathAccepted(int[] nums) {// only keeping track of rightmost boundary
         int jumps = 0;       // Number of jumps needed to reach the end
         int currentEnd = 0;  // The end of the current jump range
         int farthest = 0;    // The farthest index we can reach at each step

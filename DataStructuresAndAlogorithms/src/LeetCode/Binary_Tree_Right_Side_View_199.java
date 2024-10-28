@@ -8,9 +8,10 @@ public class Binary_Tree_Right_Side_View_199 {
     /*
      * Given the root of a binary tree, imagine yourself standing on the right side of it,
      * return the values of the nodes you can see ordered from top to bottom.
+     * Input: root = [1,2,3,null,5,null,4]  Output: [1,3,4]
      */
     public LinkedHashMap<Integer,Node> transposedTree(Node root) {
-        PriorityQueue<Node> pq=new PriorityQueue<>();
+        LinkedList<Node> pq=new LinkedList<>();
         LinkedHashMap<Node,Integer> map =new LinkedHashMap<>();
         pq.add(root);
         map.put(root,1);
@@ -28,7 +29,6 @@ public class Binary_Tree_Right_Side_View_199 {
                     pq.add(node.left);
                     map.put(node.left, level+1);
                 }
-
             }
         }
         LinkedHashMap<Integer,Node>map2=map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue,Map.Entry::getKey,
@@ -78,7 +78,9 @@ public class Binary_Tree_Right_Side_View_199 {
             return Objects.hash(val, left, right);
         }
     }
-
+    /*
+     * In BFS/level order conventionally left to right is traversed, for this case we can reverse the order
+     */
     public List<Integer> rightSideViewAccepted(Node root) {
         List<Integer>list=new ArrayList<>();
         Queue<Node>q=new LinkedList<>();

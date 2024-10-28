@@ -9,6 +9,7 @@ public class Number_of_Islands_200 {
      * You may assume all four edges of the grid are all surrounded by water.
      *
      * List addition & removal.
+     * BFS approach is Time complexity:O(m*n)  Space complexity:O(m*n)-> can be reduced to O(1) by updating grid
      * comparable Interface for a Pair class?
      */
 
@@ -38,24 +39,24 @@ public class Number_of_Islands_200 {
             Pair p= totalRemainingList.remove(0);
             List<Pair> listIsle=new ArrayList<>();
             listIsle.add(p);
-            PriorityQueue<Pair> pq=new PriorityQueue<>();
-            pq.add(p);
+            ArrayDeque<Pair> dq=new ArrayDeque<>();
+            dq.add(p);
             visited[p.x][p.y]=1;
-            while (!pq.isEmpty()){
-                Pair pqElem=pq.poll();
-                List<Pair> nextList = calcList(pqElem, grid,visited);
-                pq.addAll(nextList);
+            while (!dq.isEmpty()){
+                Pair dqElem=dq.poll();
+                List<Pair> nextList = calcList(dqElem, grid,visited);
+                dq.addAll(nextList);
                 listIsle.addAll(nextList);
             }
             totalRemainingList.removeAll(listIsle);
             count++;
         }
-        return count-1;
+        return count;
     }
 
     private List<Pair> calcList(Pair p, int [][] grid, int[][] visited){
         List<Pair> nextList=new ArrayList<>();
-        if (p.getX()+1>grid.length && grid[p.x+1][p.y]==1 && visited[p.x+1][p.y]==0) {
+        if (p.getX()+1<grid.length && grid[p.x+1][p.y]==1 && visited[p.x+1][p.y]==0) {
             nextList.add(new Pair(p.getX()+1,p.getY())); visited[p.x+1][p.y]=1;
         }
         if (p.getX()-1>=0 && grid[p.x-1][p.y]==1 && visited[p.x-1][p.y]==0) {
@@ -101,14 +102,48 @@ public class Number_of_Islands_200 {
         public int compareTo(Pair o) {
             return 0;
         }
-        /*
-        @Override
-        public int compareTo(Pair other) {
-            int c = this.getX().compareTo(other.x);
-            if (c != 0) return c;
-            return this.getY().compareTo(other.y);
-        }
-        */
     }
+
+    public int numIslandsAccepted(char[][] grid) {
+        int islands = 0;
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (grid[r][c] == '1') {
+                    islands++;
+                    bfs(grid, r, c, rows, cols);
+                }
+            }
+        }
+        return islands;
+    }
+
+    private void bfs(char[][] grid, int r, int c, int rows, int cols) {
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{r, c});
+        grid[r][c] = '0';
+        int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        while (!q.isEmpty()) {
+            int[] point = q.poll();
+            int row = point[0], col = point[1];
+            for (int[] direction : directions) {
+                int nr = row + direction[0];
+                int nc = col + direction[1];
+                if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && grid[nr][nc] == '1') {
+                    q.add(new int[]{nr, nc});
+                    grid[nr][nc] = '0';
+                }
+            }
+        }
+    }
+
+    /*
+     * We traverse each cell of the grid. Whenever we encounter a land cell ('1'), we: Increment the island count.
+     * Use Depth-First Search (DFS) to explore and mark all connected land cells as water ('0').
+     * After traversing the entire grid, we return the count of islands found.
+     * Time complexity:O(m*n)  Space complexity:O(1)
+     */
 
 }

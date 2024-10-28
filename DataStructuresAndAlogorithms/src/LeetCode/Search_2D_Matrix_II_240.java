@@ -43,5 +43,23 @@ public class Search_2D_Matrix_II_240 {
 		scores[3] = new int[]{10,13,14,17,24};
 		scores[4] = new int[]{18,21,23,26,30};
 		System.out.println(ob.search2D(scores,5));
+		System.out.println(ob.searchMatrixAccepted(scores,5));
+	}
+
+	/*
+	If value is > then target, then move to left i.e. j--
+    If value is < then target, then move down i.e. i++
+    If value is == to target, return true
+    Else return false
+	 */
+	public boolean searchMatrixAccepted(int[][] matrix, int target) {
+		int i = 0;
+		int j = matrix[0].length - 1;
+		while(i >= 0 && i < matrix.length && j >= 0 && j < matrix[0].length){
+			if(matrix[i][j] == target) return true;
+			else if(matrix[i][j] > target) j--;
+			else if(matrix[i][j] < target) i++;
+		}
+		return false;
 	}
 }

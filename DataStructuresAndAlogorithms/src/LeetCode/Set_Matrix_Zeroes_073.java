@@ -1,27 +1,18 @@
 package LeetCode;
 
 import java.util.Arrays;
-import java.util.PriorityQueue;
 
 public class Set_Matrix_Zeroes_073 {
 
 	/*
-	 * Given an integer array nums and an integer k, return the kth largest element in the array.
-	 * Note that it is the kth largest element in the sorted order, not the kth distinct element.
-	 * Can you solve it without sorting?
+	 * Given an m x n integer matrix, if an element is 0, set its entire row and column to 0's. You must do it in place.
 	 */
 	private void modifyMatrix(int mat [][]){
 		int row[]= new int [mat.length];
 		int col[]= new int [mat[0].length];
 		Arrays.fill(row,1);
 		Arrays.fill(col,1);
-        /*
-        int i, j;
-        for (i = 0; i < row.length; i++)
-            row[i] = 1;
-        for (i = 0; i < col.length; i++)
-            col[i] = 1;
-         */
+
 		/* Store the rows and columns to be marked as 0 in row[] and col[] arrays respectively */
 		for (int i = 0; i < row.length; i++) {
 			for (int j = 0; j < col.length; j++) {
@@ -70,13 +61,18 @@ public class Set_Matrix_Zeroes_073 {
  	    ob.modifyMatrix(scores);
     }
 
+	/*
+	 * We can use the 1st row and 1st column of the matrix to keep a track of the cells that need to be marked with 0.
+	 * But here comes a problem. If we try to use the 1st row and 1st column to serve the purpose, the cell matrix[0][0]
+	 * is taken twice. To solve this problem we will take an extra variable fr & fc
+	 */
 	public void setZeroesAccepted(int[][] matrix) {
 		boolean fr = false,fc = false;
 		for(int i = 0; i < matrix.length; i++) {
 			for(int j = 0; j < matrix[0].length; j++) {
 				if(matrix[i][j] == 0) {
-					if(i == 0) fr = true;
-					if(j == 0) fc = true;
+					if(i == 0) fr = true;//for setting value to row 0
+					if(j == 0) fc = true;//for setting value to col 0
 					matrix[0][j] = 0;
 					matrix[i][0] = 0;
 				}
@@ -86,7 +82,8 @@ public class Set_Matrix_Zeroes_073 {
 			for(int j = 1; j < matrix[0].length; j++) {
 				if(matrix[i][0] == 0 || matrix[0][j] == 0) {
 					matrix[i][j] = 0;
-				}}
+				}
+			}
 		}
 		if(fr) {
 			for(int j = 0; j < matrix[0].length; j++) {

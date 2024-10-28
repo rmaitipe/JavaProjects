@@ -5,9 +5,9 @@ public class Sort_List_148 {
 	 * Given the head of a linked list, return the list after sorting it in ascending order.
 	 * Input: head = [-1,5,3,4,0]	Output: [-1,0,3,4,5] -1 3 5
 	 *
-	 * Follow up: Can you sort the linked list in O(n logn) time and O(1) memory (i.e. constant space)?
+	 * Follow up: Can you sort the linked list in O(n log(n)) time and O(1) memory (i.e. constant space)?
 	 */
-	public ListNode sortList(ListNode head) {
+	public ListNode sortList(ListNode head) { //Insert Sort O(n2)
 		ListNode node=head;
 		ListNode sortedBound=node;
 		while (node!=null){
@@ -106,7 +106,7 @@ public class Sort_List_148 {
 		return slow;
 	}
 
-	// Function to merge two sorted linked lists
+	// Function to merge two sorted linked lists i.e 5,7 & 2,6
 	private ListNode merge(ListNode left, ListNode right) {
 		ListNode dummy = new ListNode(0);
 		ListNode current = dummy;

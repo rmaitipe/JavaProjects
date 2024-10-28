@@ -8,6 +8,9 @@ public class Kth_Largest_Element_In_Array_215 {
 	 * Note that it is the kth largest element in the sorted order, not the kth distinct element.
 	 * Can you solve it without sorting?
 	 *
+	 * Input: nums = [3,2,1,5,6,4], k = 2	Output: 5
+	 * Input: nums = [3,2,3,1,2,4,5,5,6], k = 4	Output: 4
+	 *
 	 * PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 	 * PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 	 */
@@ -24,7 +27,7 @@ public class Kth_Largest_Element_In_Array_215 {
 
 	public static void main(String args[]) {
 		Kth_Largest_Element_In_Array_215 ob = new Kth_Largest_Element_In_Array_215();
-		int [] arr={5,8,12,78,123,145,60,-45,4};//
+		int [] arr={5,8,12,78,123,145,60,-45,4};
 		int k=3;
 		Integer finalNode = ob.searchMethod(arr,k);
 		System.out.println("Result: "+finalNode);

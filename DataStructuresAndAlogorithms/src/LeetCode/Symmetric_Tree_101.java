@@ -1,12 +1,57 @@
 package LeetCode;
 
-
 import java.util.*;
 
 public class Symmetric_Tree_101 {
     /*
-     * Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+     * Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center). 1
+     * Input: root = [1,2,2,3,4,4,3]    Output: true                                                              2   2
+     * // both positive and negative can be coded, negative code can exit faster if in a loop                    3 4 4 3
      */
+    public boolean symTraverse(Node root) {
+        boolean retVal=true;
+        if (root==null){
+            return retVal;
+        } else{
+            retVal= isSym2(root.left,root.right);
+        }
+        return retVal;
+    }
+
+    private boolean isSym2(Node left, Node right) {
+        boolean retVal=true;
+        if (left!=null && right!=null){
+            if (left.val==right.val){
+                retVal=isSym2(left.left,right.right) && isSym2(left.right,right.left);
+            } else{
+                retVal=false;
+            }
+        } else if (left==null && right==null){
+        } else{
+            retVal=false;
+        }
+        return retVal;
+    }
+
+    public boolean symTraverse2(Node root) {
+        boolean retVal=false;
+        if (root!=null){
+            retVal= isSym(root.left,root.right);
+        }
+        return retVal;
+    }
+
+    private boolean isSym(Node left, Node right) {
+        boolean retVal=false;
+        if (left==null && right==null){
+            retVal=true;
+        } else if (left!=null && right!=null){
+            if (left.val==right.val){
+                retVal=isSym(left.left,right.right) && isSym(left.right,right.left);
+            }
+        }
+        return retVal;
+    }
 
     public static void main(String args[]) {
         Symmetric_Tree_101 c4 = new Symmetric_Tree_101();
@@ -18,29 +63,7 @@ public class Symmetric_Tree_101 {
         l2Head.left.left = new Node(7);
         l2Head.left.right = new Node(15);
         System.out.println(c4.symTraverse(l2Head));
-    }
-
-    public boolean symTraverse(Node root) {
-        boolean retVal=true;
-        if (root==null){
-            return retVal;
-        } else{
-            retVal= isSym(root.left,root.right);
-        }
-        return retVal;
-    }
-
-    private boolean isSym(Node left, Node right) {
-        boolean retVal=false;
-        if (left==null && right==null){
-            retVal=true;
-        }
-        else if (left!=null && right!=null){
-            if (left.val==right.val){
-                retVal=isSym(left.left,right.right) && isSym(left.right,right.left);
-            }
-        }
-        return retVal;
+        System.out.println(c4.symTraverse2(l2Head));
     }
 
     static class Node implements Comparable<Node> {
@@ -70,37 +93,6 @@ public class Symmetric_Tree_101 {
         public int hashCode() {
             return Objects.hash(val, left, right);
         }
-    }
-
-    public List<List<Integer>> levelOrderAccepted(Node root) {
-        // Check if the root is null
-        if (root == null) {
-            return new ArrayList<>();  // Return an empty list if the tree is empty
-        }
-        Queue<Node> queue = new ArrayDeque<Node>();
-        List<List<Integer>> traversal = new ArrayList<>();
-        queue.add(root);  // Add the root node to the queue
-        // Start level-order traversal
-        while (!queue.isEmpty()) {
-            List<Integer> currLevel = new ArrayList<>();
-            int currSize = queue.size();  // Get the number of nodes at the current level
-            // Process all nodes at the current level
-            for (int i = 0; i < currSize; i++) {
-                Node currNode = queue.poll();  // Get the next node
-                // Add its value to the current level's list
-                currLevel.add(currNode.val);
-                // Add the children to the queue if they are not null
-                if (currNode.left != null) {
-                    queue.add(currNode.left);
-                }
-                if (currNode.right != null) {
-                    queue.add(currNode.right);
-                }
-            }
-            // Add the current level's list to the result
-            traversal.add(currLevel);
-        }
-        return traversal;
     }
 
 }

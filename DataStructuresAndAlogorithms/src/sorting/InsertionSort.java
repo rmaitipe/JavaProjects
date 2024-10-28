@@ -4,7 +4,9 @@ public class InsertionSort {
 
 	/*
 	 * Divides to sorted and unsorted section at start - loops iterate on opposite directions. O(n^2)
-	 * inner loop will bubble the element to sorted portion
+	 * Selection sort finds the smallest element in the unsorted portion of the array and swaps it to the front,
+	 * while insertion sort iteratively takes an element from the unsorted portion and places it in its correct position
+	 * within the already sorted part of the array
 	 */
 	public void insertionSort(int arr[]){
 		int length = arr.length;

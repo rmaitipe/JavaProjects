@@ -27,7 +27,7 @@ public class Median_of_Two_Sorted_Arrays_004 {
     public static void main(String args[])    {
         int[] arr1 ={3, 10, 11, 13, 17, 19, 21};
         int[] arr2 = {12, 14, 15, 22, 25, 27};
-        int[] arr3 ={3, 10, 11, 12, 14, 16};
+        int[] arr3 ={1, 10, 11, 12, 14, 16};
         Median_of_Two_Sorted_Arrays_004 ob = new Median_of_Two_Sorted_Arrays_004();
         System.out.println(ob.findMedianBasic(arr1, arr2));
         System.out.println(ob.findMedianAdvanced(arr1, arr2));

@@ -5,10 +5,9 @@ import java.util.*;
 
 public class Binary_Tree_Level_Order_Traversal_102 {
     /*
-    Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
-    Input: root = [3,9,20,null,null,15,7]   Output: [[3],[9,20],[15,7]]
+     * Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+     * Input: root = [3,9,20,null,null,15,7]   Output: [[3],[9,20],[15,7]]
      */
-
     public static void main(String args[]) {
         Binary_Tree_Level_Order_Traversal_102 c4 = new Binary_Tree_Level_Order_Traversal_102();
         Node l2Head = new Node(3);
@@ -22,7 +21,8 @@ public class Binary_Tree_Level_Order_Traversal_102 {
     }
 
     public void levelTraverse(Node node) {
-        Queue<Node> queue = new PriorityQueue<>();
+        Queue<Node> queue = new PriorityQueue<>();//wrong structure
+        queue=new LinkedList<>();
         queue.add(node);
         while (!queue.isEmpty()) {
             node = queue.poll();

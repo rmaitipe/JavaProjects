@@ -28,12 +28,12 @@ public class Min_Stack_155 {
     }
 
 	Stack<Integer> s= new Stack<>();
-	Stack<Integer> minEle=new Stack<>();
+	Stack<Integer> minElemStack =new Stack<>();
 
 	Min_Stack_155() {
 	}
 	int getMin() throws EmptyStackException {
-		return minEle.peek();
+		return minElemStack.peek();
 	}
 
 	int peek() throws EmptyStackException{
@@ -47,18 +47,18 @@ public class Min_Stack_155 {
 		}
 		System.out.print("Top Most Element Removed: ");
 		Integer t = s.pop();
-		if (t == minEle.peek()) {
+		if (t == minElemStack.peek()) {
 			System.out.println("minElement removed");
-			minEle.pop();
+			minElemStack.pop();
 		} else {
 			System.out.println(t);
 		}
 	}
 
 	void push(Integer x) throws Exception {
-		if (minEle.isEmpty() || x <= minEle.peek()) {
+		if (minElemStack.isEmpty() || x <= minElemStack.peek()) {
 			s.push(x);
-			minEle.push(x);
+			minElemStack.push(x);
 		} else {
 			s.push(x);
 		}

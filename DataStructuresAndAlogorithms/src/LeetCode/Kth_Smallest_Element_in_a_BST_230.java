@@ -5,9 +5,10 @@ import java.util.*;
 
 public class Kth_Smallest_Element_in_a_BST_230 {
     /*
-    Given the root of a binary search tree, and an integer k, return the kth smallest value
-    of all the values of the nodes in the tree.
-    */
+     * Given the root of a binary search tree, and an integer k, return the kth smallest value
+     * of all the values of the nodes in the tree.
+     * Input: root = [5,3,6,2,4,null,null,1], k = 3     Output: 3
+     */
 
     public static void main(String args[]) {
         Kth_Smallest_Element_in_a_BST_230 c4 = new Kth_Smallest_Element_in_a_BST_230();
@@ -19,7 +20,6 @@ public class Kth_Smallest_Element_in_a_BST_230 {
         int k=3;
         System.out.println(c4.findKthSmall(l2Head,k));
         System.out.println(c4.kthSmallestAccepted(l2Head,k));
-
     }
 
     public int findKthSmall(TreeNode node,int k) {//heap not needed - see Accepted

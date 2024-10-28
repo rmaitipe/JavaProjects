@@ -3,6 +3,9 @@ package sorting;
 /*
  * Find minimum of unsorted array and move to sorted section - repeat O(n^2)
  * Similar to bubble sort
+ * Selection sort finds the smallest element in the unsorted portion of the array and swaps it to the front,
+ * while insertion sort iteratively takes an element from the unsorted portion and places it in its correct position
+ * within the already sorted part of the array
  */
 public class SelectionSort {
 	

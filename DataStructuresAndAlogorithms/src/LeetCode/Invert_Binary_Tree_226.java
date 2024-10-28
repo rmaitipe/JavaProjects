@@ -5,9 +5,10 @@ import java.util.*;
 
 public class Invert_Binary_Tree_226 {
     /*
-     Given the root of a binary tree, invert the tree, and return its root.
+     * Given the root of a binary tree, invert the tree, and return its root.   4                 4
+     * Input: root = [4,2,7,1,3,6,9]    Output: [4,7,2,9,6,3,1]               2   7             7   2
+     *                                                                       1 3  6 9          9 6 3 1
      */
-
     public static void main(String args[]) {
         Invert_Binary_Tree_226 c4 = new Invert_Binary_Tree_226();
         Node l2Head = new Node(3);
@@ -22,8 +23,7 @@ public class Invert_Binary_Tree_226 {
     public Node invertTree(Node node) {
         if (node==null){
             return node;
-        }
-        else{
+        } else{
             Node temp= node.left;
             node.left=invertTree(node.right);
             node.right=invertTree(temp);

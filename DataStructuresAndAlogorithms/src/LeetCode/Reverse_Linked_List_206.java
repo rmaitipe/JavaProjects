@@ -57,7 +57,7 @@ public class Reverse_Linked_List_206 {
         ListNode prev = null;
         ListNode current = head;
         while(current != null) {
-            ListNode temp = current.next;//tcnp pccn
+            ListNode temp = current.next;//tcnp pcct
             current.next = prev;
             prev = current;
             current = temp;

@@ -7,9 +7,9 @@ public class Flatten_Binary_Tree_to_Linked_List_114 {
     /*
     Given the root of a binary tree, flatten the tree into a "linked list":
     The "linked list" should use the same TreeNode class where the right child pointer points to the next node in the
-    list and the left child pointer is always null.
-    The "linked list" should be in the same order as a pre-order traversal of the binary tree.
-    Input: root = [3,9,20,null,null,15,7]   Output: [[3],[9,20],[15,7]]
+    list and the left child pointer is always null.                                                        3
+    The "linked list" should be in the same order as a pre-order traversal of the binary tree.          9     20
+    Input: root = [3,9,20,null,null,15,7]   Output: [[3],[9,20],[15,7]]                                     15   7
      */
 
     public static void main(String args[]) {
@@ -19,31 +19,38 @@ public class Flatten_Binary_Tree_to_Linked_List_114 {
         l2Head.right = new Node(20);
         l2Head.right.left = new Node(15);
         l2Head.right.right = new Node(7);
-        LinkedList<Integer>  list= new LinkedList<>();
-        list = c4.preOrderTraverse(list,l2Head);
-        System.out.println(list);
+        c4.preOrderTraverse(l2Head);
+        c4.flatten(list);
+        System.out.println(l2Head);
         Node l1Head = new Node(1);
         l1Head.left = new Node(2);
-        l1Head.right = new Node(5);
-        l1Head.left.left = new Node(3);
-        l1Head.left.right = new Node(4);
-        l1Head.right.right = new Node(6);            //         1
-        LinkedList<Integer>  list2= new LinkedList<>();//      2     5
-        list2 = c4.preOrderTraverse(list2,l1Head);     //     3 4     6
-        System.out.println(list2);
+        l1Head.right = new Node(5);     //         1
+        l1Head.left.left = new Node(3); //      2     5
+        l1Head.left.right = new Node(4);//     3 4     6
+        l1Head.right.right = new Node(6);
+        c4.flattenAccepted(l1Head);
+        System.out.println(l1Head);
     }
 
-    public LinkedList<Integer> preOrderTraverse(LinkedList<Integer>  list, Node node) {
+    static LinkedList<Node> list= new LinkedList<>();
+    public void preOrderTraverse(Node node) {
         if (node!=null) {
-            list.add(node.val);
+            list.add(node);
             if (node.left != null) {
-                preOrderTraverse(list,node.left);
+                preOrderTraverse(node.left);
             }
             if (node.right != null) {
-                preOrderTraverse(list,node.right);
+                preOrderTraverse(node.right);
             }
         }
-        return list;
+    }
+
+    public void flatten(LinkedList<Node> list) {
+        while(!list.isEmpty()){
+            Node temp = list.removeFirst();
+            temp.right = list.peek();
+            temp.left = null;
+        }
     }
 
     static class Node implements Comparable<Node> {
@@ -75,35 +82,23 @@ public class Flatten_Binary_Tree_to_Linked_List_114 {
         }
     }
 
-    public List<List<Integer>> levelOrderAccepted(Node root) {
-        // Check if the root is null
-        if (root == null) {
-            return new ArrayList<>();  // Return an empty list if the tree is empty
-        }
-        Queue<Node> queue = new ArrayDeque<Node>();
-        List<List<Integer>> traversal = new ArrayList<>();
-        queue.add(root);  // Add the root node to the queue
-        // Start level-order traversal
+    Queue<Node> queue = new LinkedList<>(); //Global Declaration of Queue
+    public void addToQueue(Node root) {   //pre-order Traversal Of Queue
+        if(root == null)
+            return;
+        //Storing the nodes in Queue according to pre-order
+        queue.add(root);
+        addToQueue(root.left);
+        addToQueue(root.right);
+    }
+    public void flattenAccepted(Node root) {
+        addToQueue(root); //call the addToQueue function
+        //Arrange the nodes in the queue in form of a linkedList or Right-Skewed Tree
         while (!queue.isEmpty()) {
-            List<Integer> currLevel = new ArrayList<>();
-            int currSize = queue.size();  // Get the number of nodes at the current level
-            // Process all nodes at the current level
-            for (int i = 0; i < currSize; i++) {
-                Node currNode = queue.poll();  // Get the next node
-                // Add its value to the current level's list
-                currLevel.add(currNode.val);
-                // Add the children to the queue if they are not null
-                if (currNode.left != null) {
-                    queue.add(currNode.left);
-                }
-                if (currNode.right != null) {
-                    queue.add(currNode.right);
-                }
-            }
-            // Add the current level's list to the result
-            traversal.add(currLevel);
+            Node temp = queue.poll();
+            temp.right = queue.peek();
+            temp.left = null;
         }
-        return traversal;
     }
 
 }

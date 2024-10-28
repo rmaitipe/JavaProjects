@@ -6,9 +6,10 @@ public class Longest_Palindrome_Substring_005 {
      * Input: s = "babad"    Output: "bab" "aba" is also a valid answer.
      *
      * Find O(n2) solution
+     * Manacher's Algorithm O(n)-not expected
      */
 
-    private String longestPalindromeBasic(String input) {
+    private String longestPalindromeBasic(String input) { //O(n^3)
         String output="";
         for (int i=0;i<input.length();i++){
             for (int j=i;j<input.length();j++){
@@ -39,6 +40,7 @@ public class Longest_Palindrome_Substring_005 {
         String input = "babbad";//babad
         System.out.println(ob.longestPalindromeBasic(input));
         System.out.println(ob.longestPalindromeAccepted(input));
+        System.out.println(ob.longestPalindromeAcceptedDP(input));
     }
 
     /*
@@ -58,15 +60,14 @@ public class Longest_Palindrome_Substring_005 {
 
     public String longestPalindromeAccepted(String s) {
         if (s == null || s.length() < 1) return ""; // edge case
-        int start = 0, end = 0;
+        int start = 0, end = 0;//keeps track of current subString
         for (int i = 0; i < s.length(); i++) {
             int len1 = expandAroundCenter(s, i, i);   // Check for odd length palindrome
             int len2 = expandAroundCenter(s, i, i + 1);   // Check for even length palindrome
             int len = Math.max(len1, len2);   // Get the max length
-
-            if (len > end - start) {    // If we found a longer palindrome
-                start = i - (len - 1) / 2;    // Update the start index
-                end = i + len / 2;    // Update the end index
+            if (len > end - start) {            // If we found a longer palindrome
+                start = i - len / 2;      // Update the start index   i - (len - 1) / 2;
+                end = i + len / 2;              // Update the end index
             }
         }
         return s.substring(start, end + 1);  // Return the longest palindrome substring
@@ -81,17 +82,40 @@ public class Longest_Palindrome_Substring_005 {
         return right - left - 1;  // Return the length of the palindrome
     }
 
-    private String isPalindromeCentricIncorrect(int i,String input){
-        int leftMax=0;
-        int rightMax=input.length()-1;
-        int shift=1;
-        StringBuilder sb= new StringBuilder();
-        sb.append(input.charAt(i));
-        while (i+shift<=rightMax && i-shift>=leftMax && input.charAt(i+shift)==input.charAt(i-shift)){
-            sb.append(input.charAt(i+shift)) ;
-            sb.insert(0,input.charAt(i-shift));
-            shift++;
+/*
+To improve over the brute force solution, we first observe how we can avoid unnecessary re-computation while validating palindromes.
+Consider the case "ababa". If we already knew that "bab" is a palindrome, it is obvious that "ababa" must be a palindrome
+since the two left and right end letters are the same.
+Algorithm :
+    We initialize a boolean table dp and mark all the values as false.
+    We will use a variable max_len to keep track of the maximum length of the palindrome.
+    We will iterate over the string and mark the diagonal elements as true as every single character is a palindrome.
+    Now, we will iterate over the string and for every character we will expand around its center.
+    For odd length palindrome, we will consider the current character as the center and expand around it.
+    For even length palindrome, we will consider the current character and the next character as the center and expand around it.
+    We will keep track of the maximum length and the maximum substring.
+ */
+    public String longestPalindromeAcceptedDP(String s) {
+        if (s.length() <= 1) {
+            return s;
         }
-        return sb.toString();
+        int maxLen = 1;
+        int start = 0;
+        int end = 0;
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        for (int i = 0; i < s.length(); ++i) {
+            dp[i][i] = true;
+            for (int j = 0; j < i; ++j) {
+                if (s.charAt(j) == s.charAt(i) && (i - j <= 2 || dp[j + 1][i - 1])) {
+                    dp[j][i] = true;
+                    if (i - j + 1 > maxLen) {
+                        maxLen = i - j + 1;
+                        start = j;
+                        end = i;
+                    }
+                }
+            }
+        }
+        return s.substring(start, end + 1);
     }
 }

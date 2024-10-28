@@ -5,8 +5,9 @@ import java.util.*;
 public class Sliding_Window_Maximum_239 {
     /* You are given an array of integers nums, there is a sliding window of size k which is moving from the
      * very left of the array to the very right. You can only see the k numbers in the window.
-     * Each time the sliding window moves right by one position. Return the max sliding window??.
+     * Each time the sliding window moves right by one position. Return the max sliding window.
      * Input: nums = [1,3,-1,-3,5,3,6,7], k = 3     Output: [3,3,5,5,6,7]
+     * Explain [1,3,-1]=3 [3,-1,-3]=3 [-1,-3,5]=5 etc...
      *
      * https://stackoverflow.com/questions/55694015/java-8-stream-max-function-argument-type-comparator-vs-comparable
      */
@@ -39,7 +40,8 @@ public class Sliding_Window_Maximum_239 {
     }
 
     /*
-     Track in such a way that First element of this deque is always max element of current window.
+     * Track in such a way that First element of this deque is always max element of current window.
+     * Alternatively, use a PriorityQueue as it supports duplicates.
      */
     public int[] maxSlidingWindowAccepted(int[] nums, int k) {
         //Use TreeMap to get largest element from sorted map.

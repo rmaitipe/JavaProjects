@@ -5,23 +5,20 @@ import java.util.stream.Collectors;
 
 public class Top_K_Frequent_Elements_347 {
 	/*
-	 * Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+	 * Given an integer array nums and an integer k, return the k most frequent elements.
+	 * You may return the answer in any order. It is guaranteed k is valid and that the answer is unique.
 	 * Input: nums = [1,1,1,2,2,3], k = 2	Output: [1,2]
 	 *
-	 * List to Array primitives
-	 * int[] example1 = list.stream().mapToInt(i->i).toArray();
-	 * // OR
-	 * int[] example2 = list.stream().mapToInt(Integer::intValue).toArray();
-	 *
-	 * 	map.put(n, counter.getOrDefault(n, 0) + 1);*
+	 * List to Array primitives: int[]arr=list.stream().mapToInt(i->i).toArray() or list.stream().mapToInt(Integer::intValue).toArray();
+	 * map.put(k, map.getOrDefault(k, 0) + 1);*
 	 */
 	public int[] searchMethod(int[] arr,int k) {
 		Map<Integer,Integer> map =new HashMap<>();
 		for (int a: arr){
 			map.put(a,map.getOrDefault(a,0)+1);
 		}
-		Map<Integer,Integer> sortedMap = map.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-				(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+		Map<Integer,Integer> sortedMap = map.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect
+			(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(oldValue,newValue)->oldValue, LinkedHashMap::new));
 		List<Integer> value = new ArrayList<>();
 		int i=1;
 		for( Map.Entry<Integer,Integer> entry : sortedMap.entrySet()){
@@ -35,7 +32,7 @@ public class Top_K_Frequent_Elements_347 {
 
 	public static void main(String args[]) {
 		Top_K_Frequent_Elements_347 ob = new Top_K_Frequent_Elements_347();
-		int [] arr={5,8,12,78,123,145,60,-45,4,8,5};
+		int [] arr={5,8,12,8,123,145,60,-45,4,8,5,12};
 		int k=3;
 		int[] finalNode = ob.searchMethod(arr,k);
 		System.out.println("Result: "+ Arrays.toString(finalNode));
@@ -43,6 +40,8 @@ public class Top_K_Frequent_Elements_347 {
 		int k2=2;
 		int[] finalNode2 = ob.searchMethod(arr2,k2);
 		System.out.println("Result: "+ Arrays.toString(finalNode2));
+		System.out.println("Accepted: "+ Arrays.toString(ob.topKFrequentAccepted(arr,k)));
+		System.out.println("Accepted: "+ Arrays.toString(ob.topKFrequentAccepted(arr2,k2)));
     }
 
 	public int[] topKFrequentAccepted(int[] nums, int k) {

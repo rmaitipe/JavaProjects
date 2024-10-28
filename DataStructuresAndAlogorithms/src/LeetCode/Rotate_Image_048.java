@@ -33,7 +33,7 @@ public class Rotate_Image_048 {
 		int colR = side - 1;
 		int count = 0;
 		while (count < matrix.length * matrix[0].length) {
-			int[] temp= Arrays.copyOf(matrix[rowD],side);
+			int[] temp= Arrays.copyOfRange(matrix[rowD],colL,colR);
 			for (int i = rowU; i >= rowD + 1; i--) {
 				System.out.print(matrix[i][colL]);
 				matrix[rowD][rowU-i]=matrix[i][colL];

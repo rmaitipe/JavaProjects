@@ -1,10 +1,10 @@
 package heapsort;
 
 /*A Binary heapArr is a Binary Tree with following properties.
- * 1. It�fs a complete tree 
+ * 1. It's a complete tree
  * 2. A Binary heapArr is either Min heapArr or Max heapArr
  * 
- * For an array backed implementation the pseudo code can be thought of as 
+ * For an array backed implementation the pseudocode can be thought of as
  * while not end of array, 
 	if heapArr is empty, 
 		place item at root; 

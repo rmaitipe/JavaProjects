@@ -48,12 +48,15 @@ public class Spiral_Matrix_054 {
 		scores[1] = new int[]{4,5,6};
 		scores[2] = new int[]{7,8,9};
 		ob.spiralOrder(scores);
+		System.out.println(" ");
+		System.out.println(ob.spiralOrderAccepted(scores));
 		int[][] scores2 = new int[3][4];
 		scores2[0] = new int[]{1,2,3,4};
 		scores2[1] = new int[]{5,6,7,8};
 		scores2[2] = new int[]{9,10,11,12};
-		System.out.println("2nd set of data");
 		ob.spiralOrder(scores2);
+		System.out.println(" ");
+		System.out.println(ob.spiralOrderAccepted(scores2));
 	}
 
 	public List<Integer> spiralOrderAccepted(int[][] mat) {

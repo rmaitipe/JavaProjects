@@ -1,10 +1,11 @@
 package operations;
 
 public class StringOperations {
-    //indexOf, toCharArray, split, charAt, subString, length
-    //copyValueOf(char[] data)/ valueOf (char c)
+    //length, indexOf, valueOf (char c), toCharArray, charAt, subString, split
+    //copyValueOf(char[] data)/
     public static void main(String [] args){
-        String str1 = String.valueOf(5); System.out.println(str1);
+        String str1 = String.valueOf(5);
+        System.out.println(str1);
         String str2 = String.valueOf(true);
         char[] data = str2.toCharArray();
         str1= String.copyValueOf(data);

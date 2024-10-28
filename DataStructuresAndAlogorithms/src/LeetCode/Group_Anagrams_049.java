@@ -3,12 +3,10 @@ package LeetCode;
 import java.util.*;
 
 public class Group_Anagrams_049 {
-
     /*
      * Given an array of strings strs, group the anagrams together. You can return the answer in any order.
      * Input: strs = ["eat","tea","tan","ate","nat","bat"] Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
      */
-
     public static void main(String args[]) {
         Group_Anagrams_049 ob = new Group_Anagrams_049();
         String[] input = new String[] {"eat","tea","tan","ate","nat","bat"};
@@ -35,7 +33,5 @@ public class Group_Anagrams_049 {
         }
         return retVal;
     }
-
-
 
 }

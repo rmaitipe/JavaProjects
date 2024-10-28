@@ -9,6 +9,8 @@ public class Linked_List_Cycle_141 {
 	 * following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is
 	 *  connected to. Note that pos is not passed as a parameter.
 	 * Return true if there is a cycle in the linked list. Otherwise, return false.
+	 *
+	 * Optimal Solution: O(n) time & O(1) space 	Floyd’s Cycle Detection Algorithm
 	 */
 	private boolean isLoop(ListNode sl1) {
 		ListNode a = sl1;
@@ -34,6 +36,7 @@ public class Linked_List_Cycle_141 {
 		l2Head.next.next.next.next.next=loop;
 	    Linked_List_Cycle_141 ob = new Linked_List_Cycle_141();
 		System.out.println(ob.isLoop(l2Head));
+		System.out.println(ob.isLoopAccepted(l2Head));
     }
 
 	public static class ListNode {
@@ -42,6 +45,20 @@ public class Linked_List_Cycle_141 {
      	ListNode() {}
     	ListNode(int val) { this.val = val; }
      	ListNode(int val, ListNode next) { this.val = val; this.next = next;}
+	}
+
+	public boolean isLoopAccepted(ListNode head) {
+		if(head == null) return false;
+		ListNode slow = head;
+		ListNode fast = head;
+		while(fast!=null && fast.next!=null){
+			fast= fast.next.next;
+			slow= slow.next;
+			if(fast==slow){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
