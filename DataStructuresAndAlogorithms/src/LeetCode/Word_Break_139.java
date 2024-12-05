@@ -1,8 +1,9 @@
 package LeetCode;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Word_Break_139 {
     /*
@@ -10,40 +11,71 @@ public class Word_Break_139 {
      * sequence of one or more dictionary words. Note that the same word in the dictionary may be reused multiple
      * times in the segmentation.
      */
-
     public static void main(String args[]) {
         Word_Break_139 ob = new Word_Break_139();
-        //Implement_Trie_208_Modified dict=new Implement_Trie_208_Modified();
-        //dict.insert("apple");
-        //dict.insert("pen");
         List<String> wordDict = Arrays.asList("apple", "pen");
         String input="applepenapple";
-        System.out.println(ob.evalWord(wordDict,input));
+        System.out.println(ob.evalWord(input,wordDict));
         System.out.println(ob.wordBreakAcceptedDP(input,wordDict));
     }
 
-    private boolean evalWord(List<String> wordDict,String s) {
+    private boolean evalWord(String input,List<String> wordDict) {
         boolean retVal=false;
-        for (int i=1;i<=s.length();i++){
-            String inner=s.substring(0,i);
-            /*boolean isStart=wordDict.startsWith(inner);
-            if (isStart) {
-                boolean isWord = wordDict.search(inner);
-                if (isWord) {
-                    if (wordDict.search(s)) {
+        for( int j=0; j<wordDict.size();j++){
+            for (int i=0;i<input.length();i++){
+                if (wordDict.get(j).charAt(i)!=input.charAt(i)){
+                    break;
+                }
+                else{
+                    if (i== input.length()-1 && i==wordDict.get(j).length()-1){
                         return true;
-                    } else {
-                        retVal = evalWord(wordDict, s.substring(i, s.length()));
+                    }
+                    if (i==wordDict.get(j).length()-1){
+                        //end of word found
+                        return evalWord(input.substring(i+1), wordDict);
                     }
                 }
-            }else{
-                break;
-            }*/
+            }
         }
         return retVal;
     }
+/*
+Non DP solution, same as above both are inefficient
+    public boolean wordBreak(String s, List<String> wordDict) {
+        // if we found word break for whole string, return true
+        if(s.isEmpty()) return true;
+        for(String word: wordDict){
+            int n = word.length();
+            if(s.length() >= n){
+                // if word is prefix of s, then break s and look for word break in remaining string
+                if (s.startsWith(word)) {
+                    boolean b = wordBreak(s.substring(n), wordDict);
+                    if(b) return b;
+                }
+            }
+        }
+        return false;
+    }
 
-    public boolean wordBreakAcceptedDP(String s,List<String> wordDict) {
+    The DP solution does not have the recursive call
+ */
+    public boolean wordBreakAcceptedDP(String s, List<String> wordDict) {
+        Set<String> wordSet = new HashSet<>(wordDict);
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && wordSet.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[n];
+    }
+
+    public boolean wordBreakAcceptedDP2(String s,List<String> wordDict) {
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {
@@ -56,73 +88,5 @@ public class Word_Break_139 {
             }
         }
         return dp[s.length()];
-    }
-}
-
-class Implement_Trie_208_Modified {
-
-    HashMap<Character, Nodes<Character>> headMap;
-
-    public Implement_Trie_208_Modified() {
-        headMap = new HashMap<>();
-    }
-
-    public void insert(String input) {
-        HashMap<Character, Nodes<Character>> map = headMap;
-        for (int i=0;i<input.length();i++) {
-            char ch= input.charAt(i);
-            if (!map.containsKey(ch)) {
-                Nodes<Character> node=new Nodes<>(ch);
-                //if (i==input.length()-1) {
-                //    node.isWord = true;
-                //}
-                map.put(ch, node);
-            }
-            map = map.get(ch).getMap();
-        }
-    }
-
-    public boolean search(String input) {
-        boolean retVal=false;
-        HashMap<Character, Nodes<Character>> map = headMap;
-        for (int i=0;i<input.length();i++) {
-            char ch= input.charAt(i);
-            if (map.containsKey(ch)) {
-                map = map.get(ch).getMap();
-                if (i==input.length()-1 && map.isEmpty()) {
-                    retVal= true;
-                }
-            } else {
-                return false;
-            }
-        }
-        return retVal;
-    }
-
-    public boolean startsWith(String input) {
-        HashMap<Character, Nodes<Character>> map = headMap;
-        for (char c : input.toCharArray()) {
-            if (map.containsKey(c)) {
-                map = map.get(c).getMap();
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    static class Nodes<Character> {
-        HashMap<Character, Nodes<Character>> map;
-        Character val;
-        //boolean isWord;
-
-        public Nodes(Character c) {
-            this.val = c;
-            this.map = new HashMap<>();
-        }
-
-        private HashMap<Character, Nodes<Character>> getMap() {
-            return map;
-        }
     }
 }

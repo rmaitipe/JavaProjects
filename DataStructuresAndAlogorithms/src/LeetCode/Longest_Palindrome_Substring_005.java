@@ -59,27 +59,29 @@ public class Longest_Palindrome_Substring_005 {
     }
 
     public String longestPalindromeAccepted(String s) {
-        if (s == null || s.length() < 1) return ""; // edge case
-        int start = 0, end = 0;//keeps track of current subString
-        for (int i = 0; i < s.length(); i++) {
-            int len1 = expandAroundCenter(s, i, i);   // Check for odd length palindrome
-            int len2 = expandAroundCenter(s, i, i + 1);   // Check for even length palindrome
-            int len = Math.max(len1, len2);   // Get the max length
-            if (len > end - start) {            // If we found a longer palindrome
-                start = i - len / 2;      // Update the start index   i - (len - 1) / 2;
-                end = i + len / 2;              // Update the end index
+        if (s.length() <= 1) {
+            return s;
+        }
+        String maxStr = s.substring(0, 1);
+        for (int i = 0; i < s.length() - 1; i++) {
+            String odd = expandFromCenter(s, i, i);
+            String even = expandFromCenter(s, i, i + 1);
+            if (odd.length() > maxStr.length()) {
+                maxStr = odd;
+            }
+            if (even.length() > maxStr.length()) {
+                maxStr = even;
             }
         }
-        return s.substring(start, end + 1);  // Return the longest palindrome substring
+        return maxStr;
     }
 
-    // Expands around the center and returns the length of the palindrome
-    private int expandAroundCenter(String s, int left, int right) {
+    private String expandFromCenter(String s, int left, int right) {
         while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             left--;
             right++;
         }
-        return right - left - 1;  // Return the length of the palindrome
+        return s.substring(left + 1, right);
     }
 
 /*

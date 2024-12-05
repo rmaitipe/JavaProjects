@@ -5,7 +5,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static java.util.Comparator.comparingInt;
 import static java.util.Map.entry;
 
 public class CollectionsOperationsMapList {
@@ -41,7 +40,12 @@ public class CollectionsOperationsMapList {
 
         Map<String,Long> sortedKVMap = resultKVMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
             .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(oldValue,newValue)->oldValue,LinkedHashMap::new));
+
+        PriorityQueue<Map.Entry<String,Integer>> pq=new PriorityQueue<>((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+        map2.entrySet().forEach(a->pq.add(a));
+
 //====================================================================================================================//
+        //Use a TreeMap for out of box solution for sorted by Key
         Map<Long,List<String>> sortedVKMap = sortedKVMap.entrySet().stream().collect(Collectors.groupingBy(
                 Map.Entry::getValue, Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
 
@@ -49,7 +53,7 @@ public class CollectionsOperationsMapList {
 
         // Accumulate names into a TreeSet
         Set<String> set = empList2.stream().map(Employee::getName).collect(Collectors.toCollection(TreeSet::new));
-//====================================================================================================================//
+        //====================================================================================================================//
         String str ="SALES:0,SALE_PRODUCTS:1,EXPENSES:2,EXPENSES_ITEMS:3";
         HashMap<String,Integer>map=(HashMap<String,Integer>) Arrays.asList(str.split(",")).stream()
                 .map(s->s.split(":")).collect(Collectors.toMap(e -> e[0], e -> Integer.parseInt(e[1])));

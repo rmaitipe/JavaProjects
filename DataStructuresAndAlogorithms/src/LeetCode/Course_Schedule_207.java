@@ -80,20 +80,22 @@ public class Course_Schedule_207 {
 		scores[5] = new int[]{3,2};
 		int[][] score2=Arrays.copyOf(scores,scores.length);
 		System.out.println(ob.canFinish(2,scores));
-		System.out.println(ob.canFinishAccepted(5,score2));
+		System.out.println(ob.canFinishDFSAccepted(6,score2));
+		System.out.println(ob.canFinishBFSAccepted(6,score2));
 	}
 
 	/*
-	 * The code begins by creating a count array to store the in-degree of each course and an adjacency list to store
-	 * the courses that depend on each course. The code then fills the count array and adjacency list using the prerequisites array.
+	 * Create a directed graph:The code begins by creating a count array to store the in-degree of each course and an
+	 * adjacency list to store the courses that depend on each course.
+	 * The code then fills the count array and adjacency list using the prerequisites array.
 	 * Check for cycles:Next, the code uses a depth-first search (DFS) to traverse the graph and detect any cycles.
 	 * The DFS starts from courses with in-degree 0, meaning courses without any prerequisites. If a course has already
 	 * been visited, the DFS returns without visiting its neighbors to prevent an infinite loop.
 	 * If a course has no neighbors, the number of courses that need to be taken is decremented by one.
 	 */
 	Set<Integer> set = new HashSet();
-	public boolean canFinishAccepted(int n, int[][] prerequisites) {
-		int [] count = new int[n];
+	public boolean canFinishDFSAccepted(int n, int[][] prerequisites) {
+		int[] count = new int[n];
 		ArrayList<Integer> [] prereqs = new ArrayList[n];
 		for(int k = 0; k < n; k++)		{
 			prereqs[k] = new ArrayList();
@@ -104,6 +106,7 @@ public class Course_Schedule_207 {
 			count[a]++;
 			prereqs[b].add(a);
 		}
+
 		for(int k = 0; k < count.length; k++){
 			if(!set.contains(k)){
 				if(count[k] == 0){
@@ -129,5 +132,46 @@ public class Course_Schedule_207 {
 			}
 		}
 		return n;
+	}
+
+	public boolean canFinishBFSAccepted(int numCourses, int[][] prerequisites) {
+		int[] inDegree = new int[numCourses];
+		List<List<Integer>> adjList = new ArrayList<>();
+		for(int i=0;i<numCourses;i++) {
+			adjList.add(new ArrayList<>());
+		}
+		for(int[] prerequisite : prerequisites) {
+			int course = prerequisite[0];
+			int pre = prerequisite[1];
+			adjList.get(pre).add(course);
+			inDegree[course]++;
+		}
+		//Step 2 : Initialize and process queue
+		Queue<Integer> queue = new LinkedList<>();
+		for(int i=0;i<numCourses;i++){
+			if(inDegree[i]==0){
+				queue.offer(i);
+			}
+		}
+		int count=0;
+		/*
+		then while the queue still has elements to process, we pop the front one and increase the count by 1 ,
+		because all the elements that have 0 indegree i.e.  there are no prerequisites for those courses.
+After that , we have to check for the adjacent or the neighboring nodes by retrieving the adjacency list for the current
+element that we popped out from the queue.
+we reduce the indegree for that retrieved dependent course . Why? : because we have already removed 0 from the queue ,
+so that means the dependent of that course 0 which was 1 , has now no prerequisites.
+		 */
+		while(!queue.isEmpty()){
+			int current = queue.poll();
+			count++;
+			for(int neighbor:adjList.get(current)){
+				inDegree[neighbor]--;
+				if(inDegree[neighbor]==0){
+					queue.offer(neighbor);
+				}
+			}
+		}
+		return count==numCourses;
 	}
 }

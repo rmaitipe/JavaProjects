@@ -1,5 +1,7 @@
 package sorting;
 
+import java.util.Arrays;
+
 public class MergeSort {
 
 	/*
@@ -7,8 +9,7 @@ public class MergeSort {
 	 * uses sub arrays O(n log n)
 	 */
 	public void mergeSort(int[] array, int left, int right) {
-	    if (left <= right) return;
-
+	    if (left >= right) return;
 	    int mid = (left+right)/2;
 	    mergeSort(array, left, mid);
 	    mergeSort(array, mid+1, right);
@@ -19,22 +20,13 @@ public class MergeSort {
 		MergeSort ob = new MergeSort();
         int arr[] = {23, 34, 15, 12, 22, 10, 0};
         ob.mergeSort(arr,0,arr.length-1);
-        System.out.println("Sorted array");
-        ob.printArray(arr);
+        System.out.println("Sorted array"+ Arrays.toString(arr));
     }
-	
-    void printArray(int arr[]) {
-        int n = arr.length;
-        for (int i=0; i<n; ++i) {
-        	System.out.print(arr[i] + " ");
-        }
-    }
-    
     
     public void merge(int[] array, int left, int mid, int right) {
         // Creating temporary subarrays
-        int leftArray[] = new int[mid - left + 1];
-        int rightArray[] = new int[right - mid];
+        int[] leftArray = new int[mid - left + 1];
+        int[] rightArray = new int[right - mid];
 
         // Copying our subarrays into temporaries
         for (int i = 0; i < leftArray.length; i++)

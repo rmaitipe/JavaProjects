@@ -41,7 +41,6 @@ public class Sliding_Window_Maximum_239 {
 
     /*
      * Track in such a way that First element of this deque is always max element of current window.
-     * Alternatively, use a PriorityQueue as it supports duplicates.
      */
     public int[] maxSlidingWindowAccepted(int[] nums, int k) {
         //Use TreeMap to get largest element from sorted map.
@@ -58,12 +57,13 @@ public class Sliding_Window_Maximum_239 {
         // similarly for all window do the same. That is remove the last element and add new element in TreeMap and add largest element to the list
         for (int i = k; i < nums.length; i++) {
             int temp = nums[i - k];
+            //subtract or remove
             map.put(temp, map.get(temp) - 1);
             if (map.get(temp) <= 0) {
                 map.remove(temp);
             }
             map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-            val = map.keySet().iterator().next();
+            val = map.keySet().iterator().next();//map.firstEntry().getKey();
             list.add(val);
         }
         // Convert list to int array and return it

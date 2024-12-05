@@ -9,7 +9,7 @@ Array
     053 Maximum Subarray
     152 Maximum Product Subarray
     153 Find Minimum in Rotated Sorted Array
-Search in Rotated Sorted Array
+    033 Search in Rotated Sorted Array
     015 3 Sum
     011 Container With Most Water
 
@@ -35,7 +35,7 @@ Decode Ways
 
 Graph
 Clone Graph
-    * Course Schedule
+    207* Course Schedule
 Pacific Atlantic Water Flow
     200 Number of Islands
     128 Longest Consecutive Sequence
@@ -44,8 +44,8 @@ Graph Valid Tree (Leetcode Premium)
 Number of Connected Components in an Undirected Graph (Leetcode Premium)
 
 Interval
-Insert Interval
-    Merge Intervals
+    057 Insert Interval
+    056 Merge Intervals
 Non-overlapping Intervals
 Meeting Rooms (Leetcode Premium)
 Meeting Rooms II (Leetcode Premium)

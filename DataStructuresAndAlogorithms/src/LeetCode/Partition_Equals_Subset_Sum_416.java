@@ -12,16 +12,18 @@ public class Partition_Equals_Subset_Sum_416 {
 	 */
 	public static void main(String args[]) {
 		Partition_Equals_Subset_Sum_416 ob = new Partition_Equals_Subset_Sum_416();
-		int[] nums = {1, 5, 11, 5};
-		Integer[] what = Arrays.stream(nums).boxed().toArray( Integer[]::new);
-		System.out.println(ob.canPartition(what));
+		int[] nums1 = {1, 5, 11, 5,2,8,6}; // 11,8 || 5,5,1,2,6 [19]
+		int[] nums2 = {1, 5, 11, 5,2,4,6};// 11,6 || 5,5,4,2,1 [17]
+		Integer[] what = Arrays.stream(nums1).boxed().toArray( Integer[]::new);
+		//System.out.println(ob.canPartition(what));
+		System.out.println(ob.equalPartitionDPAccepted(nums2));
 	}
 /*
 	if sum is odd return false;
 	sort
 	pick largest element see if can be made from rest of elements
 		Subarray_Sum_Equals_K_560
-	repeat untill list is empty
+	repeat until list is empty
  */
 	public boolean canPartition(Integer[] nums) {
 		Arrays.sort(nums, Collections.reverseOrder());
@@ -58,4 +60,26 @@ public class Partition_Equals_Subset_Sum_416 {
 		}
 	}
 
+	/*
+	 We have to take care about only one subset because if one subset with weight sum/2 is possible then other
+	 subset will surely have the weight sum/2. So now using subset sum problem code we have to just check if its
+	 possible to have a subset having sum = totalSum/2;
+	 */
+	boolean equalPartitionDPAccepted(int[] nums) {
+		int sum = 0;
+		int n = nums.length;
+		for (int i : nums) sum += i;
+		if (sum % 2 != 0) return false;
+		sum /= 2;
+		boolean[] dp = new boolean[sum + 1];
+		dp[0] = true;
+		for (int j : nums) {
+			for (int i = sum; i > 0; i--) {
+				if (i >= j) {
+					dp[i] = dp[i] || dp[i - j];
+				}
+			}
+		}
+		return dp[sum];
+	}
 }

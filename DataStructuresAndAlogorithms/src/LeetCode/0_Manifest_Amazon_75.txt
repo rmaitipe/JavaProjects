@@ -1,0 +1,75 @@
+2272    Substring With Largest Variance 47.0% Hard
+2355    Maximum Number of Books You Can Take 42.2% Hard
+2519    Count the Number of K-Big Indices 59.2% Hard
+2281    Sum of Total Strength of Wizards 27.5% Hard
+2340    Minimum Adjacent Swaps to Make a Valid Array 73.6% Medium
+2055    Plates Between Candles 44.5% Medium
+42      Trapping Rain Water 59.7% Hard
+2405    Optimal Partition of String 79.2% Medium
+1125    Smallest Sufficient Team 56.6% Hard
+1569    Number of Ways to Reorder Array to Get Same BST 53.7% Hard
+    1       Two Sum 50.5% Easy
+2262    Total Appeal of A String 55.7% Hard
+13      Roman to Integer 59.1% Easy
+2781    Length of the Longest Valid Substring 33.4% Hard
+2742    Painting the Walls 29.5% Hard
+200     Number of Islands 57.6% Medium
+2223    Sum of Scores of Built Strings 37.4% Hard
+828     Count Unique Characters of All Substrings of a Given String 51.8% Hard
+2684    Maximum Number of Moves in a Grid 45.2% Medium
+146     LRU Cache 41.5% Medium
+1232    Check If It Is a Straight Line 40.0% Easy
+2735    Collecting Chocolates 32.2% Medium
+560     Subarray Sum Equals K 43.3% Medium
+1884    Egg Drop With 2 Eggs and N Floors 71.8% Medium
+517     Super Washing Machines 40.7% Hard
+2719    Count of Integers 34.0% Hard
+1751    Maximum Number of Events That Can Be Attended II 63.4% Hard
+5       Longest Palindromic Substring 32.6% Medium
+54      Spiral Matrix 47.2% Medium
+2183    Count Array Pairs Divisible by K 28.5% Hard
+/1060    Missing Element in Sorted Array 55.4% Medium [Given a list of n-1 integers and these integers are in the range of 1 to n. There are no duplicates in list. One of the integers is missing in the list. Write an efficient code to find the missing integer. ]
+493     Reverse Pairs 30.5% Hard
+    2       Add Two Numbers 41.0% Medium
+2616    Minimize the Maximum Difference of Pairs 44.9% Medium
+2551    Put Marbles in Bags 68.3% Hard
+    118     Pascal's Triangle 71.9% Easy
+327     Count of Range Sum 35.8% Hard
+1254    Number of Closed Islands 66.7% Medium
+2305    Fair Distribution of Cookies 69.9% Medium
+2357    Make Array Zero by Subtracting Equal Amounts 71.9% Easy
+910     Smallest Range II 35.6% Medium
+934     Shortest Bridge 57.8% Medium
+852     Peak Index in a Mountain Array 69.0% Medium
+1838    Frequency of the Most Frequent Element 39.8% Medium [You are given an integer array nums and an integer k. In one operation, you can choose an index of nums and increment the element at that index by 1. Return the maximum possible frequency of an element after performing at most k operations.]
+2385    Amount of Time for Binary Tree to Be Infected 58.2% Medium
+1491    Average Salary Excluding the Minimum and Maximum Salary 63.5% Easy
+2244    Minimum Rounds to Complete All Tasks 62.8% Medium
+214     Shortest Palindrome 32.6% Hard
+41      First Missing Positive 37.0% Hard
+14      Longest Common Prefix 41.3% Easy
+    121     Best Time to Buy and Sell Stock 53.7% Easy
+56      Merge Intervals 46.4% Medium
+138     Copy List with Random Pointer 52.5% Medium
+2090    K Radius Subarray Averages 47.9% Medium
+1492    The kth Factor of n 65.1% Medium
+3       Longest Substring Without Repeating Characters 33.9% Medium
+735     Asteroid Collision 45.5% Medium
+31      Next Permutation 38.3% Medium
+135     Candy 41.2% Hard
+808     Soup Servings 55.4% Medium
+2448    Minimum Cost to Make Array Equal 45.9% Hard
+17      Letter Combinations of a Phone Number 58.3% Medium
+754     Reach a Number 42.8% Medium
+2328    Number of Increasing Paths in a Grid 59.5% Hard
+2398    Maximum Number of Robots Within Budget 33.4% Hard
+992     Subarrays with K Different Integers 55.5% Hard
+1312    Minimum Insertion Steps to Make a String Palindrome 69.7% Hard
+15      3Sum 33.1% Medium
+84      Largest Rectangle in Histogram 43.2% Hard
+//1752    Check if Array Is Sorted and Rotated 50.5% Easy
+2660    Determine the Winner of a Bowling Game 34.1% Easy
+//1207    Unique Number of Occurrences 74.0% Easy [Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.]
+946     Validate Stack Sequences 69.4% Medium
+    20      Valid Parentheses 40.2% Easy
+937     clockington

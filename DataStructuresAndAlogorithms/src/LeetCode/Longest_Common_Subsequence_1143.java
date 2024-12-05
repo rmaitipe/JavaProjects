@@ -1,6 +1,7 @@
 package LeetCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Longest_Common_Subsequence_1143 {
@@ -19,7 +20,7 @@ public class Longest_Common_Subsequence_1143 {
         System.out.println(ob.longestCommonSubsequenceBasic("kabcde","ace"));
         System.out.println(ob.longestCommonSubsequenceDPAccepted("kabcde","ace"));
         System.out.println(ob.longestCommonSubsequenceBasic("kabcde","dace"));
-        System.out.println(ob.longestCommonSubsequenceDPAccepted("kabcde","dace"));
+        System.out.println(ob.longestCommonSubsequenceDPTry("kabcde","dace"));
     }
 
     public int longestCommonSubsequenceBasic(String text1, String text2) {
@@ -95,6 +96,37 @@ public class Longest_Common_Subsequence_1143 {
         // The bottom-right cell contains the length of the longest
         // common subsequence of text1 and text2
         return dp[length1][length2];
+    }
+
+    public int longestCommonSubsequenceDPTry(String text1, String text2) {
+        // Lengths of the input strings
+        int length1 = text1.length();
+        int length2 = text2.length();
+        if(length2>length1) {
+            String temp=text1;
+            text1 = text2;
+            text2 = temp;
+        }
+        int[] dp = new int[length1];
+        for (int i = 0; i < length2; i++) {
+            String str= text2.substring(i,i+1);
+            int idxOf=text1.lastIndexOf(str);
+            while (idxOf!=-1){
+                int max=0;
+                for (int k=idxOf-1;k>0;k--){//scan left -can this be improved?
+                    max=Math.max(max,dp[k]);
+                }
+                if (max==0){
+                    dp[i]=1;
+                } else{
+                    dp[i]=max+1;
+                }
+                idxOf=text1.substring(0,idxOf-1).lastIndexOf(str);
+            }
+        }
+        // The bottom-right cell contains the length of the longest
+        // common subsequence of text1 and text2
+        return Arrays.stream(dp).max().getAsInt();
     }
 
 }

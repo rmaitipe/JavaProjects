@@ -17,6 +17,8 @@ public class Move_Zeroes_268 {
         int [] nums = {0};
         ob.moveZeroMethod(nums);
         for (int a:arr){System.out.println(a);};
+        int [] arr2={8,0,7,0,5};
+        ob.moveZeroesAccepted(arr2);
     }
 
     private int[] moveZeroMethod(int[] arr) {
@@ -48,7 +50,12 @@ public class Move_Zeroes_268 {
     Iterate through the array with the pointer j.
     If nums[j] is not zero, swap nums[i] and nums[j] and increment both i and j.
     At the end of the iteration, all non-zero elements will be moved to the front of the array, and the remaining elements from i to the end will be zeros.
-    [0,0]80705/[1,1]80705^/[1,2]87705/[2,3]87705^/[2,4]87505
+    [i=0,j=0]80705
+    [i=1,j=1]80705*
+    [i=1,j=2]87705
+    [i=2,j=3]87705*
+    [i=2,j=4]87505
+    k=3 ->4
      */
     public void moveZeroesAccepted(int[] nums) {
         int i =0;

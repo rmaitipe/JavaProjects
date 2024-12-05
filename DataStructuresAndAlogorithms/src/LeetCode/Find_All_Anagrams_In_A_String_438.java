@@ -19,7 +19,7 @@ public class Find_All_Anagrams_In_A_String_438 {
     }
 
     private List<Integer> findAnagrams(String str1, String str2) {
-        //1st try: backtrack to find all anagrams, then use indexOf
+        //O(n) scan - if char present, scan ahead
         List<Integer> list= new ArrayList<>();
         int left=0;
         while (left < str1.length()-str2.length()) {
@@ -46,8 +46,8 @@ public class Find_All_Anagrams_In_A_String_438 {
     }
 
     public List<Integer> findAnagramsAccepted(String s, String p) {
-        Map<Character,Integer>keyMap=new TreeMap<>();
-        Map<Character,Integer>temp=new TreeMap<>();
+        Map<Character,Integer>keyMap=new HashMap<>();// This can be HashMaps
+        Map<Character,Integer>temp=new HashMap<>();
         List<Integer>ans=new ArrayList<>();
         for(int i=0;i<p.length();i++){
             keyMap.put(p.charAt(i),keyMap.getOrDefault(p.charAt(i),0)+1);

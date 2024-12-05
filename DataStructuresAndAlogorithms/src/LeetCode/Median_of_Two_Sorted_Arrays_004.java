@@ -7,7 +7,8 @@ public class Median_of_Two_Sorted_Arrays_004 {
      * Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
      * The overall run time complexity should be O(log (m+n)).
      *
-     * See Advanced
+     * nums1 = [1,2], nums2=[3,4]  Output: 2.5 Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+     * See Advanced, or use 295 minHeap, maxHeap
      */
 
     private int findMedianBasic(int[] arr1, int[] arr2) {

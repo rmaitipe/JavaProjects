@@ -11,12 +11,12 @@ N-Queens (H)
 
     Binary Search (5/7)
     004* Median of Two Sorted Arrays (H)
-Search in Rotated Sorted Array
+    033* Search in Rotated Sorted Array
     034 Find First and Last Position of Element in Sorted Array
     035 Search Insert Position (E)
     074 Search a 2D Matrix
     124 Binary Tree Maximum Path Sum (H)
-Find Minimum in Rotated Sorted Array
+    153* Find Minimum in Rotated Sorted Array
 
     Binary Tree (13/14)
     094 Binary Tree Inorder Traversal (E)
@@ -128,3 +128,13 @@ First Missing Positive (H)
     189* Rotate Array
     238* Product of Array Except Self
     287 Find the Duplicate Number
+
+//Revise Priority
+String: Valid Anagram (easy*), Valid Palindrome (easy*), Longest Substring Without Repeating Characters (medium*)
+    |Longest Repeating Character Replacement (medium)|Find All Anagrams in a String (medium*)|Minimum Window Substring (Hard)
+    |Group Anagrams (medium*)|Longest Palindromic Substring|Encode and Decode String
+Array: Two Sum (easy*), Best Time to Buy and Sell Stock (easy*), Product of Array Except Self (medium*), Maximum Subarray (medium*)
+    |Contains Duplicate (easy*)|Maximum Product Subarray (medium*)|Search in Rotated Sorted Array
+    |3Sum|Container With Most Water|Sliding Window Maximum
+HashTable: Two Sum, Ransom Note
+    |Group Anagrams|Insert Delete GetRandom O(1)|First Missing Positive|LRU Cache 146|All O one Data Structure

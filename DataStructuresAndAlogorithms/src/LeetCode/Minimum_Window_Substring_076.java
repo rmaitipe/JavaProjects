@@ -64,14 +64,13 @@ public class Minimum_Window_Substring_076 {
 	}
 
 	/*
-	If the length of s is smaller than the length of t, it's impossible for s to contain t. Therefore, return an empty string
-Approach:
-
+	If the length of s is smaller than the length of t, it's impossible for s to contain t, return an empty string
+	Approach:
     Using HashMap: A HashMap is used to keep track of the frequency of each character, allowing efficient management of character counts.
     Target Character Management: Track the frequency of characters in T and calculate the minimum window size when all target characters are included in the window.
     Window Minimization: Expand the window to include more characters and contract it to find the smallest valid window.
 
-Algorithm Details:
+	Algorithm Details:
     Remaining Target Characters: Track the remaining count of characters from T. When all are zero, calculate the window size.
     Expanding and Contracting the Window: Expand the window by adding characters and contract it by removing unnecessary characters.
     Updating Minimum Window: Compute and update the smallest window size as needed.

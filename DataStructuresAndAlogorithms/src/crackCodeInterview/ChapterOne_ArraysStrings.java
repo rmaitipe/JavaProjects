@@ -212,8 +212,13 @@ public class ChapterOne_ArraysStrings {
                 oddCount--;
             }
         }
-        if (oddCount>1){	System.out.println("isPermPalindrome test failed: " +test1);	}
-        else{ System.out.println("isPermPalindrome test passed: " +test1); ret=true; }
+        if (oddCount>1){
+            System.out.println("isPermPalindrome test failed: " +test1);
+        }
+        else{
+            System.out.println("isPermPalindrome test passed: " +test1);
+            ret=true;
+        }
         return ret;
         /*
         Arrays.sort(charArray);
@@ -263,9 +268,9 @@ public class ChapterOne_ArraysStrings {
         return str;
     }
 
-    private void modifyMatrix(int mat [][]){
-        int row[]= new int [mat.length];
-        int col[]= new int [mat[0].length];
+    private void modifyMatrix(int[][] mat){
+        int[] row = new int [mat.length];
+        int[] col = new int [mat[0].length];
         Arrays.fill(row,1);
         Arrays.fill(col,1);
         /*

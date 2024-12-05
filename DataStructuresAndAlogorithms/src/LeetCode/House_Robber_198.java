@@ -16,6 +16,7 @@ public class House_Robber_198 {
         House_Robber_198 ob = new House_Robber_198();
         int[] num = {2,7,9,3,1};
         System.out.println(ob.robberPath(num));
+        System.out.println(ob.robAccepted(num));
     }
 
     private int robberPath(int[] num) {

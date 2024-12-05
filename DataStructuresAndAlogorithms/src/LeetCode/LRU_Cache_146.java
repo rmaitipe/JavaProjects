@@ -6,9 +6,8 @@ import java.util.LinkedHashMap;
      * Implement the LRUCache class:
      * LRUCache(int capacity) Initialize the LRU cache with positive size capacity.
      * int get(int key) Return the value of the key if the key exists, otherwise return -1.
-     * void put(int key, int value) Update the value of the key if the key exists. Otherwise,
-     * add the key-value pair to the cache. If the number of keys exceeds the capacity from this operation,
-     * evict the least recently used key.
+     * void put(int key,int value) Update the value of the key if it exists. Otherwise, add the key-value pair to the cache.
+     * If the number of keys exceeds the capacity from this operation, evict the least recently used key.
      * The functions get and put must each run in O(1) average time complexity.
      */
 public class LRU_Cache_146 {
@@ -45,7 +44,7 @@ public class LRU_Cache_146 {
         }else return -1;
     }
 
-    public static void main(String args[])    {
+    public static void main(String args[]) {
         LRU_Cache_146 lRUCache = new LRU_Cache_146(2);
         lRUCache.put(1, 1); // cache is {1=1}
         lRUCache.put(2, 2); // cache is {1=1, 2=2}
@@ -58,4 +57,9 @@ public class LRU_Cache_146 {
         lRUCache.get(4);    // return 4
         System.out.println(lRUCache);
     }
+
+    /*
+    Accepted solution
+    Map + DoubleLinkedList
+     */
 }

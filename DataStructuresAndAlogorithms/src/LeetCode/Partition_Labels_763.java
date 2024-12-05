@@ -47,8 +47,8 @@ public class Partition_Labels_763 {
         for (int i = 0; i < str.length; i++) {
             hmap.put(str[i], i);
         }
-        int temp = hmap.get(str[0]),
-                prev = 0;
+        int temp = hmap.get(str[0]);
+        int prev = 0;
         for (int i = 0; i < str.length; i++) {
             if (hmap.get(str[i]) > temp) {
                 temp = hmap.get(str[i]);

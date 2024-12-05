@@ -9,10 +9,10 @@ public class Remove_Element_027 {
      */
     public static void main(String args[])    {
         int[] prices ={0,1,2,2,3,0,4,2};
-
+        int[] prices2 ={0,1,2,2,3,0,4,2};
         Remove_Element_027 ob = new Remove_Element_027();
         System.out.println(ob.removeDuplicates(prices,2));
-        System.out.println(ob.removeElement(prices,2));
+        System.out.println(ob.removeElementAccepted(prices2,2));
     }
 
     private int removeDuplicates(int[] prices, int val) {
@@ -20,21 +20,23 @@ public class Remove_Element_027 {
         int count=0;
         for (int i=0;i<=right;i++){
             if (prices[i]==val){
-                if (prices[right]==val){
-                    while (prices[right]==val) {
-                        prices[right]=0;
-                        right--;
-                        count++;
-                    }
+                while (prices[right]==val && right>i) {
+                    prices[right]=0;
+                    right--;
                 }
-                prices[i]=prices[right];
-                prices[right]=0;
+                if (prices[right]!=val) {
+                    prices[i] = prices[right];
+                    prices[right] = val;
+                    count++;
+                }
+            } else{
+                count++;
             }
         }
-        return prices.length-count;
+        return count;
     }
 
-    public int removeElement(int[] nums, int val) {
+    public int removeElementAccepted(int[] nums, int val) {
         int index = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != val) {

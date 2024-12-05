@@ -4,10 +4,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ArraysOperations {
-    //asList/copyOf/equals/sort (ACES)
+    /* asList/copyOf/equals/sort (ACES)
+    Essential questions:
+    Two Sum
+    Best Time to Buy and Sell Stock
+    Product of Array Except Self
+    Maximum Subarray
+     */
     public static void main(String [] args){
         int[] strArr = {5,6,7,8,1,2,3,4,9};
         List<String> list= Arrays.asList("dog", "over", "good");//initialize a List
+        List<Integer> intList= Arrays.asList(5,6,7,8,1,2,3,4,9);//initialize a List
         List<Integer> list2= Arrays.stream(strArr).boxed().toList();//primitives to object
         int[] strArr2 = Arrays.copyOf(strArr,strArr.length);
         int[] strArr3 = Arrays.copyOfRange(strArr,0,strArr.length);

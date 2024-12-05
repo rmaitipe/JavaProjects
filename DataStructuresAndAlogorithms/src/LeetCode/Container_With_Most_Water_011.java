@@ -20,7 +20,7 @@ public class Container_With_Most_Water_011 {
            }else{
                leftIndexArr[i]=leftIndexArr[i-1];
            }
-           int area= (i - leftIndexArr[i - 1] -1) * (Math.min(input[leftIndexArr[i-1]],input[i]));
+           int area= (i - leftIndexArr[i - 1] ) * (Math.min(input[leftIndexArr[i-1]],input[i]));
            areaMax=Math.max(area,areaMax);
        }
        return areaMax;
@@ -32,6 +32,7 @@ public class Container_With_Most_Water_011 {
         System.out.println(ob.maxAreaIncorrect(heights));
         System.out.println(ob.maxAreaAccepted(heights));
         int[] heights2 = {1,8,6,2,5,4,10,3,7};
+        System.out.println(ob.maxAreaIncorrect(heights2));
         System.out.println(ob.maxAreaAccepted(heights2));
     }
 

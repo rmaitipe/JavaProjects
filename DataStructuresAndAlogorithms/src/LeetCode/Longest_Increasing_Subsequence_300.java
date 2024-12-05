@@ -15,8 +15,10 @@ public class Longest_Increasing_Subsequence_300 {
     public static void main(String args[]) {
         Longest_Increasing_Subsequence_300 ob = new Longest_Increasing_Subsequence_300();
         int[] nums = {10,9,2,5,3,7,101,18};
+        int[] nums2 = {10,9,2,5,3,4,101,18};
         System.out.println(ob.longestIncreasingSubSeq(nums));
-        System.out.println(ob.lengthOfLIS(nums));
+        System.out.println("Accepted: "+ob.lengthOfLISDPAccepted(nums));
+        System.out.println("Accepted: "+ob.lengthOfLISDPAccepted(nums2));
     }
 
     public List<List<Integer>> longestIncreasingSubSeq(int[] nums) {
@@ -74,7 +76,7 @@ public class Longest_Increasing_Subsequence_300 {
     //i=4(3),j=4->0(3-5-2-9-10)     dp[4]=2
     //i=5(3),j=5->0(7-3-5-2-9-10)   dp[5]=3
  */
-    public int lengthOfLIS(int[] nums) { //O(n2) 2,6,4,5  [1,2,1,1]i=1 [1,2,2,1]i=2
+    public int lengthOfLISDPAccepted(int[] nums) { //O(n2) 2,6,4,5  [1,2,1,1]i=1 [1,2,2,1]i=2
         int[] dp = new int[nums.length];
         int ans = 1;
         for(int i=0; i<nums.length; i++){

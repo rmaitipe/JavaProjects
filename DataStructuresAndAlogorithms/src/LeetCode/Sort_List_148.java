@@ -59,7 +59,12 @@ public class Sort_List_148 {
 			 System.out.println(finalNode.val);
 			 finalNode=finalNode.next;
 		}
-		ListNode finalNode2 = ob.sortListAccepted(l1Head);
+		ListNode l2Head =new ListNode(-1);
+		l2Head.next=new ListNode(5);
+		l2Head.next.next =new ListNode(3);
+		l2Head.next.next.next =new ListNode(4);
+		l2Head.next.next.next.next =new ListNode(0);
+		ListNode finalNode2 = ob.sortListAccepted(l2Head);
 		while (finalNode2!=null){
 			System.out.println("Accepted: "+finalNode2.val);
 			finalNode2=finalNode2.next;

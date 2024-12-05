@@ -2,7 +2,7 @@ package LeetCode;
 
 import java.util.Arrays;
 
-public class Validate_Anagram_242 {
+public class Valid_Anagram_242 {
     /*
      * Given two strings s and t, return true if t is an anagram of s, and false otherwise
      */
@@ -15,7 +15,7 @@ public class Validate_Anagram_242 {
     }
 
     public static void main(String args[]) {
-        Validate_Anagram_242 ob = new Validate_Anagram_242();
+        Valid_Anagram_242 ob = new Valid_Anagram_242();
         String input1 ="anagram";
         String input2 ="nagaram";
         System.out.print(ob.validate(input1,input2));

@@ -8,40 +8,41 @@ public class Longest_Consecutive_Sequence_128 {
     /*
      * Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
      * You must write an algorithm that runs in O(n) time.
-     * Input: nums = [100,4,200,1,3,2] Output: 4 (1,2,3,4 elements)
-     * Input: nums = [100,4,101,1,3,2,6,103] Output: 4 (1,2,3,4 elements)
+     * Input: nums = [100,4,200,1,3,2]      Output: 4 (1,2,3,4 elements)
+     * Input: nums = [100,4,101,1,3,2,6,103]    Output: 4 (1,2,3,4 elements)
+     * Input: nums = [0,3,7,2,5,8,4,6,0,1]      Output: 9
      */
     private int longestConsecutiveSequence(int [] nums){
         int max=-1;
-        Map<Integer,Integer> map=new HashMap<>();
+        Map<Integer, Integer> map=new HashMap<>();
         for (int val: nums){
             if (!map.containsKey(val)) {
-                if (map.containsKey(val-1) && map.containsKey(val+1)){
-                    int a = map.get(val-1);
-                    int b = map.get(val+1);
-                    int idx=a+b+1;
-                    max=Math.max(max,idx);
-                    for (int i=1;i<=a;i++){
-                        map.put(val-i,idx);
+                if (map.containsKey(val - 1) && map.containsKey(val + 1)) {
+                    int a = map.get(val - 1);
+                    int b = map.get(val + 1);
+                    int idx = a + b + 1;
+                    max = Math.max(max, idx);
+                    for (int i = 1; i <= a; i++) {
+                        map.put(val - i, idx);
                     }
-                    map.put(val,idx);
-                    for (int i=1;i<=b;i++){
-                        map.put(val+i,idx);
+                    map.put(val, idx);
+                    for (int i = 1; i <= b; i++) {
+                        map.put(val + i, idx);
                     }
-                } else if (map.containsKey(val-1)){
-                    int idx=map.get(val-1)+1;
-                    max=Math.max(max,idx);
-                    for (int i=0;i<idx;i++){
-                        map.put(val-i,idx);
+                } else if (map.containsKey(val - 1)) {
+                    int idx = map.get(val - 1) + 1;
+                    max = Math.max(max, idx);
+                    for (int i = 0; i < idx; i++) {
+                        map.put(val - i, idx);
                     }
-                } else if (map.containsKey(val+1)){
-                    int idx=map.get(val+1)+1;
-                    max=Math.max(max,idx);
-                    for (int i=0;i<idx;i++){
-                        map.put(val+i,idx);
+                } else if (map.containsKey(val + 1)) {
+                    int idx = map.get(val + 1) + 1;
+                    max = Math.max(max, idx);
+                    for (int i = 0; i < idx; i++) {
+                        map.put(val + i, idx);
                     }
                 } else {
-                    map.put(val,1);
+                    map.put(val, 1);
                 }
             }
         }
@@ -51,8 +52,11 @@ public class Longest_Consecutive_Sequence_128 {
     public static void main(String args[]) {
         Longest_Consecutive_Sequence_128 ob = new Longest_Consecutive_Sequence_128();
         int[] input = new int[] {100,4,101,1,3,2,6,103};
+        int[] input2 = new int[] {0,3,7,2,5,8,4,6,0,1};
         System.out.println(ob.longestConsecutiveSequence(input));
         System.out.println("Accepted: "+ob.longestConsecutiveAccepted(input));
+        System.out.println(ob.longestConsecutiveSequence(input2));
+        System.out.println("Accepted: "+ob.longestConsecutiveAccepted(input2));
     }
 
     public int longestConsecutiveAccepted(int[] nums) {

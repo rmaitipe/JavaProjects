@@ -56,7 +56,7 @@ public class Three_Sum_015 {
 	If the sum is zero, the triplet is added to a HashSet to ensure uniqueness.
 	If the sum is less than zero, the left pointer (j) is moved to the right.
 	If the sum is greater than zero, the right pointer (k) is moved to the left.
-    Time complexity: nlogn->Sorting  O(n log n + n^2) ≈ O(n^2)	Space complexity: O(n) due to HashMap
+    Time complexity: n*log(n)->Sorting  O(n log n + n^2) ≈ O(n^2)	Space complexity: O(n) due to HashMap
 	*/
 	public List<List<Integer>> threeSumAccepted(int[] nums) {
 		int target = 0;
