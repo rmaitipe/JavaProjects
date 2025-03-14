@@ -1,16 +1,14 @@
 package LeetCode;
 
-
 import java.util.*;
 
 public class Sub_Tree_of_Another_Tree_572 {
     /*
      * Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same
      * structure and node values of subRoot and false otherwise.
-     * A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants.
-     * The tree tree could also be considered as a subtree of itself.
+     * A subtree of a binary tree is a tree that consists of a node in tree and all of this node's descendants.
+     * The tree could also be considered as a subtree of itself.
      */
-
     public static void main(String args[]) {
         Sub_Tree_of_Another_Tree_572 c4 = new Sub_Tree_of_Another_Tree_572();
         Node l1Head = new Node(13);
@@ -40,7 +38,7 @@ public class Sub_Tree_of_Another_Tree_572 {
         while (node1!=null){
             if (node1.val==node2.val) {
                 retVal= node1;
-            }else {
+            } else {
                 retVal=findIntersect(node1.left, node2)==null? findIntersect(node1.right, node2): findIntersect( node1.left, node2);
             }
         }

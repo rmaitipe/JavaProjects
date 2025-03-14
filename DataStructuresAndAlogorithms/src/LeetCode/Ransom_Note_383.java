@@ -8,9 +8,9 @@ public class Ransom_Note_383 {
 	 */
 	public boolean canConstruct(String ransomNote, String magazine) {
 		// map1, map2,
-		// int[] charMag iterate rans & decrement if 0 break;
+		// int[] charMag iterate ransom note & decrement if 0 break;
 		boolean retVal=true;
-		int[] charCount= new int[256];
+		int[] charCount = new int[256];
 		for (char m:magazine.toCharArray()){
 			charCount[m]++;
 		}

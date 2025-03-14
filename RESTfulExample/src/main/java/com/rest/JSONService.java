@@ -1,5 +1,7 @@
 package com.rest;
 
+import com.sun.xml.ws.util.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,7 +15,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import com.sun.xml.internal.ws.util.StringUtils;
 /*
  * Simple REST webservice
  * returns anagrams of the given word
@@ -28,7 +29,6 @@ public class JSONService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAnagramInJSON(@PathParam("word") String target) throws Exception {
-
     	String line;
 		BufferedReader br = null;
 		ArrayList<String> anagramList = new ArrayList<String>();

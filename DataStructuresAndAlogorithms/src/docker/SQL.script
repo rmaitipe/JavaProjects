@@ -1,0 +1,12 @@
+create table bpm (
+ id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+ first_name text,
+ last_name text,
+ email text,
+ gender text,
+ ip_address VARCHAR(20),
+ age INT
+);
+
+ALTER TABLE bpm REPLICA IDENTITY USING INDEX id;
+insert into bpm (first_name, last_name, email, gender, ip_address, age) values ('Charin', 'Gilbey', 'cgilbey0@kickstarter.com', 'Male', '25.76.244.22', 21);

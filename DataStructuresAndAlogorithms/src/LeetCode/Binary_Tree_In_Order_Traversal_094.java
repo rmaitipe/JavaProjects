@@ -1,6 +1,5 @@
 package LeetCode;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,10 +8,9 @@ import java.util.Stack;
 public class Binary_Tree_In_Order_Traversal_094 {
     /*
      * Given the root of a binary tree, return the inorder traversal of its nodes' values.    1
-     * Input: root = [1,2,3,4,5,null,8,null,null,6,7,9] Output: [4,2,6,5,7,1,3,9,8]      2        3
-     *                                                                                4   5    8
-     * A stack is not actively needed,
-     * inOrderTraverse doesn't need to return the stack                                                     6 7  9
+     * Input: root = [1,2,3,4,5,null,8,null,null,6,7,9] Output: [4,2,6,5,7,1,3,9,8]        2     3
+     *                                                                                   4   5     8
+     * inOrderTraverse doesn't need to return the stack                                     6 7   9
      */
     public static void main(String args[]) {
         Binary_Tree_In_Order_Traversal_094 c4 = new Binary_Tree_In_Order_Traversal_094();

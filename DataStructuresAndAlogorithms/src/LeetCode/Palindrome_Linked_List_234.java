@@ -76,6 +76,15 @@ public class Palindrome_Linked_List_234 {
 		return prev;
 	}
 
+	/*
+	 * Fast and Slow Pointer
+	 * First, in edge cases where the list is either empty or has only one element then it is a palindrome by default.
+	 * We use two pointers, slow and fast, to find the middle of the linked list. When the fast pointer reaches
+	 * the end of the list, the slow pointer will be at the middle node (odd) or the start of the second half of the list.
+	 * We reverse the second half of the linked list from the middle node using a standard linked list reversal algorithm.
+	 * We compare the values of nodes from both halves of the list. If any pair of corresponding nodes has different
+	 * values, the list is not a palindrome, Otherwise, if all values match, we return true.
+	 */
 	public boolean isPalindromeAccepted(ListNode head) {
 		ListNode slow = head;
 		ListNode fast = head;
@@ -83,7 +92,10 @@ public class Palindrome_Linked_List_234 {
 			slow = slow.next;
 			fast = fast.next.next;
 		}
-		ListNode temp = reverse(slow.next); //12321   12123
+		if (fast != null) {
+			slow = slow.next;
+		}
+		ListNode temp = reverse(slow); //12321  slow at 3 ->  12123   123321 slow at 3 ->  123123
 		//slow.next = temp;
 		ListNode p1 = head;
 		ListNode p2 = temp;

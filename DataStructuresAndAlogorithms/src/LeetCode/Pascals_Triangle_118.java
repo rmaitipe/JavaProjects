@@ -16,7 +16,6 @@ public class Pascals_Triangle_118 {
         Pascals_Triangle_118 ob = new Pascals_Triangle_118();
         List<List<Integer>> list = ob.searchPascal(5);
         System.out.println(list);
-
     }
 
     private List<List<Integer>> searchPascal(int k) {
@@ -29,13 +28,13 @@ public class Pascals_Triangle_118 {
                     break;
                 }
             }
-            else if(i==2){
+            else if (i==2) {
                 List<Integer> list2= Arrays.asList(1,1);
                 list.add(list2);
                 if (k==2) {
                     break;
                 }
-            }else{
+            }else {
                 int left=0;
                 List<Integer> list3= new ArrayList<>();
                 list3.add(1);
@@ -50,6 +49,5 @@ public class Pascals_Triangle_118 {
         }
         return list;
     }
-
 
 }

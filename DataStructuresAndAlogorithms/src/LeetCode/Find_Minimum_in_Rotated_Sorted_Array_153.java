@@ -21,8 +21,7 @@ public class Find_Minimum_in_Rotated_Sorted_Array_153 {
             System.out.println("mid idx: "+mid);
             if (mid > 0 && nums[mid-1]>nums[mid] ) {
                 return nums[mid];//edge case in else
-            }
-            else {
+            } else {
                 if (nums[left] <= nums[mid] && nums[mid] < nums[right]) {//normal bst min on left
                     right = mid-1;
                 }
@@ -46,10 +45,11 @@ public class Find_Minimum_in_Rotated_Sorted_Array_153 {
         System.out.println("Accepted: "+ob.findMinAccepted(input0));
         System.out.println("Accepted: "+ob.findMinAccepted(input));
     }
+
     /*
-     * a[mid] > a[0]: This means mid lies in the first part of the graph. Implies pivot should be between mid + 1 to r
+     * a[mid] > a[0]: This means mid is  in the first part of the graph. Implies pivot should be between mid + 1 to r
      * a[mid] < a[0]: This means mid is in the right part of the graph. Implies pivot should be between l and mid
-     * Terminating conditions mid = 0   or a[mid] < a[mid - 1]
+     * Terminating conditions mid = 0 or a[mid] < a[mid - 1]
      * Special cases:  a[0] < a[a.length - 1]: Array is already sorted & a[0] is pivot
      * Array is of size two: Simply return min of two elements
      */

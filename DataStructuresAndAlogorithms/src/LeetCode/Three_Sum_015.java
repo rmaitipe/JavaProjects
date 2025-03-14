@@ -11,7 +11,7 @@ public class Three_Sum_015 {
 	 * [1],[2],[4] = 0 + 1 + (-1) = 0.	[0],[3],[4] = (-1) + 2 + (-1) = 0. The distinct triplets are [-1,0,1] & [-1,-1,2].
 	 *
 	 * Can be reduced to -a= b + c,
-	 * Incomplete - Sort Array first for better performing algorithms
+	 * Incomplete - Sort Array first for better performing algorithms & use 2 pointers
 	 */
 	private void sumMethod(int[] arr) {//O(n2)
 		for (int i=0;i< arr.length-2;i++){
@@ -70,7 +70,6 @@ public class Three_Sum_015 {
 				int sum = nums[i]+nums[j]+nums[k];
 				if(sum == target){
 					set.add(Arrays.asList(nums[i],nums[j],nums[k]));
-					/*
 					// Skip duplicate elements for j
 					while (j < k && nums[j] == nums[j + 1]) {
 						j++;
@@ -79,7 +78,7 @@ public class Three_Sum_015 {
 					while (j < k && nums[k] == nums[k - 1]) {
 						k--;
 					}
-					*/
+
 					j++;
 					k--;
 				}else if(sum < target){

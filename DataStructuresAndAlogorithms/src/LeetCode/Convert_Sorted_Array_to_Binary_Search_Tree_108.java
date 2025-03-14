@@ -3,7 +3,6 @@ package LeetCode;
 import java.util.Objects;
 
 public class Convert_Sorted_Array_to_Binary_Search_Tree_108 {
-
 	/*
 	 * Given an integer array nums where the elements are sorted in ascending order, convert it to a
 	 * height-balanced binary search tree.

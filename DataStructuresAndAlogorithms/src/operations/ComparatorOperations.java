@@ -19,6 +19,13 @@ public class ComparatorOperations {
          * Behind the scenes compareTo will call a compare method or a similar method with same signature.
          * Integer.compare(x, y) returns -1 if x is less than y, 0 if they’re equal, and 1 otherwise.
          */
+        Comparator<Employee> compareByLastNameOldFormat = new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                //return Integer.compare(o1.salary,o2.salary);
+                return o1.firstName.compareTo(o2.firstName);
+            }
+        };
         Comparator<Employee> compareByLastName = Comparator.comparing(Employee::getLastName);
         Comparator<Employee> compareById = Comparator.comparingInt(Employee::getId);
         Comparator<Employee> compareByFirstName= (h1,h2)->h1.getFirstName().compareTo(h2.getFirstName());

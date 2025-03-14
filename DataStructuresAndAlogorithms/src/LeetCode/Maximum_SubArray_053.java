@@ -4,7 +4,7 @@ public class Maximum_SubArray_053 {
     /* Given an integer array, find the subarray with the largest sum, and return its sum.
      * Input: nums = [-2,1,-3,4,-1,2,1,-5,4] Output:The subarray [4,-1,2,1] has the largest sum- 6.
      *
-     * If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach.
+     * If you have figured out the O(n) solution, try coding another solution using the divide & conquer approach.
      */
     public int findMaxSubArr(int[] nums) {
         int[] dpSum = new int [nums.length];
@@ -33,10 +33,10 @@ public class Maximum_SubArray_053 {
     }
 
 /*
-    Approach 1 : Divide and Conquer (Non-intuitive Approach -ignore)
-    1. calculate maxSum (maximum positive sum) from mid to left
-    2. calculate maxSum(maximum positive sum ) from mid+1 to right side
-    3. int midSum = leftMaxSUM+rightMaxSUM
+Approach 1 : Divide and Conquer (Non-intuitive Approach -ignore)
+1. calculate maxSum (maximum positive sum) from mid to left
+2. calculate maxSum(maximum positive sum ) from mid+1 to right side
+3. int midSum = leftMaxSUM+rightMaxSUM
  */
     public int maxSubArrayDivideConquer(int[] nums) {
         return helper(nums,0,nums.length-1);
@@ -67,9 +67,9 @@ public class Maximum_SubArray_053 {
         return Math.max(maxLeftRight, leftMaxSUM + rightMaxSUM );
     }
 /*
-    Approach 2 : Dynamic Programming
-    Take one variable as a global maximum, say max (To keep track maximum value). dp[i] means max sum subarray ending
-    at index i If sum till i-1 is usefull, then take it otherwise take current cell as sum till i
+Approach 2 : Dynamic Programming
+Take one variable as a global maximum, say max (To keep track maximum value). dp[i] means max sum subarray ending
+at index i If sum till i-1 is usefull, then take it, otherwise take current cell as sum till i
  */
     private int dynamicProgrammingMaxSubArrAccepted(int[] nums){
         int[] sum = new int[nums.length];
@@ -83,18 +83,17 @@ public class Maximum_SubArray_053 {
     }
 
 /*
-    Approach 3 : Kadane Algorithm (Best Approach) - O(n) time Complexity
-    if overall sum become negative then it is better to take reinitialize sum to zero, because may be possible later we
-    have positive sum , but if we move with negative sum then it only decrease our positive sum , so it better to
-    reinitialize sum to 0 means start new subarray from next index
+Approach 3 : Kadane Algorithm (Best Approach) - O(n) time Complexity
+if overall sum become negative then it is better to reinitialize sum to zero, because a positive sum can increase later,
+but if we move with negative sum then it can only decrease our positive sum.
  */
     public int maxSubArray(int[] nums) {
         int sum = 0;
         int maxSum = Integer.MIN_VALUE;
-        for(int  i =0;i<nums.length;i++){
-            sum+=nums[i];
-            maxSum =  Math.max(maxSum,sum);
-            if(sum<0){
+        for (int num : nums) {
+            sum += num;
+            maxSum = Math.max(maxSum, sum);
+            if (sum < 0) {
                 sum = 0;
             }
         }

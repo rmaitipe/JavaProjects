@@ -1,6 +1,5 @@
 package LeetCode;
 
-
 import java.util.*;
 
 public class Kth_Smallest_Element_in_a_BST_230 {
@@ -9,7 +8,6 @@ public class Kth_Smallest_Element_in_a_BST_230 {
      * of all the values of the nodes in the tree.
      * Input: root = [5,3,6,2,4,null,null,1], k = 3     Output: 3
      */
-
     public static void main(String args[]) {
         Kth_Smallest_Element_in_a_BST_230 c4 = new Kth_Smallest_Element_in_a_BST_230();
         TreeNode l2Head = new TreeNode(3);
@@ -93,6 +91,7 @@ public class Kth_Smallest_Element_in_a_BST_230 {
         }
         inorder(node.right, k);
     }
+
 }
 
 

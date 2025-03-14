@@ -1,6 +1,5 @@
-LeetCode
-https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
-
+LeetCode: https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
++TechInterviewHandBook
 Array
     001 Two Sum
     121 Best Time to Buy and Sell Stock

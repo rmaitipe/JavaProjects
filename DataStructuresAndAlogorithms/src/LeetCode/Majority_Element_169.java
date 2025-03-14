@@ -7,6 +7,7 @@ public class Majority_Element_169 {
     /*
      * Given an array nums of size n, return the majority element. The majority element is the element that appears
      * more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+     *
      * Follow-up: Could you solve the problem in linear time and in O(1) space?
      */
     public static void main(String args[]) {
@@ -23,7 +24,7 @@ public class Majority_Element_169 {
         return arr[arr.length/2];
     }
 
-    private Integer searchLinearMethod(int[] arr) {
+    private Integer searchLinearMethod(int[] arr) { //O(n) space complexity
         HashMap<Integer,Integer> map =new HashMap<>();
         int maxOccur=0;
         int retVal = 0;
@@ -40,6 +41,18 @@ public class Majority_Element_169 {
             }
         }
         return retVal;
+    }
+
+    //Boyer-Moore Voting Algorithm
+    public int majorityElement(int[] nums) {
+        int count=0, candidate=0;
+        for(int arr:nums){
+            if(count==0){
+                candidate=arr;
+            }
+            count+=(arr==candidate)?1:-1;
+        }
+        return candidate;
     }
 
 }

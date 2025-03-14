@@ -1,12 +1,12 @@
 package LeetCode;
 
-
 import java.util.*;
 
 public class Binary_Tree_Level_Order_Traversal_102 {
     /*
-     * Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
-     * Input: root = [3,9,20,null,null,15,7]   Output: [[3],[9,20],[15,7]]
+     * Given the root of a binary tree, return the level order traversal of its nodes' values.            3
+     * (i.e., from left to right, level by level).                                                      9   20
+     * Input: root = [3,9,20,null,null,15,7]   Output: [[3],[9,20],[15,7]]                                 15 7
      */
     public static void main(String args[]) {
         Binary_Tree_Level_Order_Traversal_102 c4 = new Binary_Tree_Level_Order_Traversal_102();
@@ -70,7 +70,7 @@ public class Binary_Tree_Level_Order_Traversal_102 {
         if (root == null) {
             return new ArrayList<>();  // Return an empty list if the tree is empty
         }
-        Queue<Node> queue = new ArrayDeque<Node>();
+        Queue<Node> queue = new ArrayDeque<>();
         List<List<Integer>> traversal = new ArrayList<>();
         queue.add(root);  // Add the root node to the queue
         // Start level-order traversal

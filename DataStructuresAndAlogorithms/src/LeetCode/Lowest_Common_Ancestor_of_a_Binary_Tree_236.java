@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Lowest_Common_Ancestor_of_a_Binary_Tree_236 {
     /*
      * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
-     * Definition of LCA: “The lowest common ancestor is defined between two nodes p and q
+     * Definition of LCA: The lowest common ancestor is defined between two nodes p and q
      * as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself)
      * Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1  Output:3   Explanation: The LCA of nodes 5 and 1 is 3
      */
@@ -32,15 +32,16 @@ public class Lowest_Common_Ancestor_of_a_Binary_Tree_236 {
         backTrack(root,p,new ArrayList<>(),pList);
         backTrack(root,q,new ArrayList<>(),qList);
         //[160 Intersection of Two Linked Lists], pick smaller
-        int retVal= pList.size()<qList.size()? findIntersectionOfReversed(pList,qList): findIntersectionOfReversed(qList,pList);//Ternary
+        int retVal= pList.size()<qList.size()? findIntersectionOfLinkedList(pList,qList): findIntersectionOfLinkedList(qList,pList);//Ternary
         return retVal;
     }
 
-    private int findIntersectionOfReversed(List<Integer> in, List<Integer> out) {//should be a List instead of a String
+    private int findIntersectionOfLinkedList(List<Integer> in, List<Integer> out) {//should be a List instead of a String
         int val=0;
         for (int i=0;i<in.size();i++){
             if (in.get(i)!=out.get(i)){
-                val= in.get(i-1); break;
+                val= in.get(i-1);
+                break;
             }
         }
         return val;
@@ -114,9 +115,9 @@ public class Lowest_Common_Ancestor_of_a_Binary_Tree_236 {
         if(root == p) return p;
         if(root == q) return q;
         if(root == null) return null;
-        TreeNode left= lowestCommonAncestorAccepted(root.left, p , q);
-        TreeNode right= lowestCommonAncestorAccepted(root.right, p , q);
-        if(left!= null && right != null) return root; //if both left and right are not null means one will be p and other will be q
+        TreeNode left = lowestCommonAncestorAccepted(root.left, p, q);
+        TreeNode right = lowestCommonAncestorAccepted(root.right, p, q);
+        if(left != null && right != null) return root;
         if(left == null){ // if left is null then right can be p or q
             return right;
         } else{

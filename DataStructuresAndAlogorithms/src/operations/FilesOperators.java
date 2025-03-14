@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class FilesOperators {
 
     final static String FILE_PATH ="res/nashorn1.js";
-    public static void main(String arg[]){
 
+    public static void main(String arg[]){
         try{
             List<String> list= Files.readAllLines(Paths.get(FILE_PATH));//read operation
             if (list!=null){
@@ -32,8 +32,7 @@ public class FilesOperators {
         for (File f :dir.listFiles()){
             if (f.isDirectory()){
                 readfileDir(f);//recurse
-            }
-            else{
+            } else{
                 System.out.println(f.getName());
             }
         }

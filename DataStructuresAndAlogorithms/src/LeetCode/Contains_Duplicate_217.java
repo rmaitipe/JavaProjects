@@ -9,7 +9,7 @@ public class Contains_Duplicate_217 {
      */
     private boolean findDuplicates(int[] prices) {
         boolean retVal=true;
-        Arrays.sort(prices);
+        Arrays.sort(prices);//n*log(n)
         for (int i=1;i<prices.length;i++){
             if (prices[i]==prices[i-1]){
                 retVal=false;

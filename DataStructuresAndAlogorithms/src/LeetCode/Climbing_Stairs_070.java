@@ -11,6 +11,8 @@ public class Climbing_Stairs_070 {
         Climbing_Stairs_070 ob = new Climbing_Stairs_070();
         int count= ob.uniqueStairPath(10);
         System.out.println(count);
+        int count2= ob.uniqueStairPath(8);
+        System.out.println(count2);
     }
 
     private int uniqueStairPath(int length) {

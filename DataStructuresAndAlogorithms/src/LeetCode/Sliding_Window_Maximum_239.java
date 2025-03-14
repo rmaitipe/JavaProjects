@@ -5,7 +5,7 @@ import java.util.*;
 public class Sliding_Window_Maximum_239 {
     /* You are given an array of integers nums, there is a sliding window of size k which is moving from the
      * very left of the array to the very right. You can only see the k numbers in the window.
-     * Each time the sliding window moves right by one position. Return the max sliding window.
+     * Each time the sliding window moves right by one position. Return the max of sliding window.
      * Input: nums = [1,3,-1,-3,5,3,6,7], k = 3     Output: [3,3,5,5,6,7]
      * Explain [1,3,-1]=3 [3,-1,-3]=3 [-1,-3,5]=5 etc...
      *
@@ -40,10 +40,10 @@ public class Sliding_Window_Maximum_239 {
     }
 
     /*
-     * Track in such a way that First element of this deque is always max element of current window.
+     * TreeMap put, get
      */
     public int[] maxSlidingWindowAccepted(int[] nums, int k) {
-        //Use TreeMap to get largest element from sorted map.
+        //Use TreeMap to get the largest element from sorted map.
         TreeMap<Integer, Integer> map = new TreeMap<>(Collections.reverseOrder());
         //first put k values in TreeMap
         for (int i = 0; i < k; i++) {
@@ -67,6 +67,7 @@ public class Sliding_Window_Maximum_239 {
             list.add(val);
         }
         // Convert list to int array and return it
+        Integer[] ret= list.toArray(new Integer[0]);
         int[] ans = list.stream().mapToInt(i -> i).toArray();
         return ans;
     }

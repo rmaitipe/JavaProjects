@@ -34,5 +34,35 @@ public class Maximum_Product_Subarray_152 {
         System.out.println(ob.maxProd(input));
         int[] input2 = new int[] {2,3,0,-2,4,-2};
         System.out.println(ob.maxProd(input2));
+        int[] input3=new int[] {-2, 6, -3, -10, 0, 2};
+        System.out.println(ob.maxProd(input3));//180
+    }
+
+    /*
+     * special cases: 0, negative odd, even
+     * int maxProduct = nums[0], minProduct = nums[0], globalMax = nums[0];
+     * for (int i = 1; i < nums.length; i++) {
+     *     int current = nums[i];
+     *     int tempMax = Math.max(current, Math.max(current * maxProduct, current * minProduct));
+     *      minProduct = Math.min(current, Math.min(current * maxProduct, current * minProduct));
+     *      maxProduct = tempMax;
+     *       globalMax = Math.max(globalMax, maxProduct);
+     * }
+     * return globalMax;
+     */
+    public int maxProductAccepted(int[] nums) {
+        int max = nums[0], min = nums[0], ans = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            // Swapping min and max
+            if (nums[i] < 0){
+                int temp = max;
+                max = min;
+                min = temp;
+            }
+            max = Math.max(nums[i], max * nums[i]);
+            min = Math.min(nums[i], min * nums[i]);
+            ans = Math.max(ans, max);
+        }
+        return ans;
     }
 }
