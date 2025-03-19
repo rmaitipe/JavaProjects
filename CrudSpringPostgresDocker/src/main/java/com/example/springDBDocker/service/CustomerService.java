@@ -1,5 +1,6 @@
 package com.example.springDBDocker.service;
 
+import com.example.springDBDocker.controller.ResourceNotFoundException;
 import com.example.springDBDocker.dto.CreateCustomerDto;
 import com.example.springDBDocker.model.Customer;
 
@@ -11,5 +12,5 @@ public interface CustomerService {
 
     void createCustomer(CreateCustomerDto dto);
 
-    Customer findById(Long customerId) throws Exception;
+    Customer findById(Long customerId) throws ResourceNotFoundException;
 }

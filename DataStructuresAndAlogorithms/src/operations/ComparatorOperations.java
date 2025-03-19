@@ -7,8 +7,8 @@ import java.util.List;
 public class ComparatorOperations {
 
     public static void main(String [] args){
-        List<Employee> empList=List.of(new Employee("a",1),new Employee("c",4),
-                new Employee("d",34), new Employee("b",4));
+        List<Employee> empList=List.of(new Employee("a",1),new Employee("c",4),new Employee("d",
+            34), new Employee("b",4));
         List<String> strList=List.of("a","c","d","b");
         /*
          * compare() Prerequisite: Comparator Interface - essential for custom sorting

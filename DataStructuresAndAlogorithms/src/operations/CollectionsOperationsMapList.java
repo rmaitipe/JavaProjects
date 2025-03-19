@@ -30,13 +30,14 @@ public class CollectionsOperationsMapList {
 
         List<String> resultList = List.of("a","c","d","b","t","a","e","b","z","r");
 
-        List<Employee>empList2=List.of(new Employee("a",1),new Employee("c",4), new Employee("d",34), new Employee("b",4));
+        List<Employee>empList2=List.of(new Employee("a",1),new Employee("c",4), new Employee("d",
+            34), new Employee("b",4));
 
         Map<String,Integer>map2=Map.ofEntries(entry("a",2),entry("c",4), entry("d",10), entry("b",4));
 //====================================================================================================================//
         // Example: Accumulate into a Map.   map.put(k, map.getOrDefault(k, 0) + 1);
         Map<String,Long>resultKVMap = resultList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-            //.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+            //.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(o, n) -> o, LinkedHashMap::new));
 
         Map<String,Long> sortedKVMap = resultKVMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
             .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(oldValue,newValue)->oldValue,LinkedHashMap::new));

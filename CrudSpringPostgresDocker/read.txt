@@ -1,6 +1,7 @@
 //C 1. CRUD DockerCompose Spring 3.4 project 2. Postgres DB support 3. With Swagger support
 
 https://medium.com/@saygiligozde/using-docker-compose-with-spring-boot-and-postgresql-235031106f9f
+https://medium.com/@AlexanderObregon/spring-hateoas-building-hypermedia-driven-restful-apis-70aa02133c2f
 
 1.add dependencies to pom.xml file
 <dependency>
@@ -27,7 +28,7 @@ my-docker-project/
 6. docker build . -t spring-postgres
 7. docker-compose up //docker-compose down
 8. http://localhost:8081/customers
-
+   http://localhost:8080/swagger-ui/index.html (Run w/o Docker maps to 8080)
 DataInitializer/DataLoader (worked through local but not through Docker)
 /init.sql (worked through Docker but not through local-because of entry point?, Runs 2 times creating duplicates)
 when copy is commented out both DataInitializer & DataLoader worked through Docker

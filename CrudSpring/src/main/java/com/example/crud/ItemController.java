@@ -1,11 +1,13 @@
 package com.example.crud;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/item")
@@ -17,12 +19,15 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<Void> saveItem(@Valid @RequestBody Item item) {
         itemService.addItem(item);
+        //return itemService.addItem(item);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public List<Item> fetchItemList() {
-        return itemService.fetchItemList();
+    public ResponseEntity<List<Item>> fetchItemList() {
+        //return itemService.fetchItemList();
+        List<Item> items = itemService.fetchItemList();
+        return ResponseEntity.ok(items);
     }
 
     @GetMapping("/{id}")
@@ -40,9 +45,19 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteItemById(@PathVariable("id") Long id) {
-        Item item= itemService.getItem(id).orElseThrow(()-> new ItemNotFoundException("Item not found"));
+    public ResponseEntity<Void> deleteItemById(@PathVariable("id") Long id) {
+        /*
+        Using GlobalExceptionHandler is cleaner than this approach
+        Optional<Item> item= itemService.getItem(id);
+        if (item.isPresent()) {//
+                itemService.deleteItem(item.get());
+                return new ResponseEntity<>(null, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }*/
+        Item item= itemService.getItem(id).get();
         itemService.deleteItem(item);
+        return ResponseEntity.noContent().build();
     }
 
 }
