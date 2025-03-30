@@ -1,7 +1,0 @@
-com\example\crud\ItemNotFoundException.class
-com\example\crud\ItemRepository.class
-com\example\crud\ItemService.class
-com\example\crud\ItemController.class
-com\example\crud\CrudApplication.class
-com\example\crud\ItemServiceImpl.class
-com\example\crud\Item.class
