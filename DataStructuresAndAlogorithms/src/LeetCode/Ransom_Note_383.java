@@ -5,9 +5,10 @@ public class Ransom_Note_383 {
 	 * Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from
 	 * magazine and false otherwise. Each letter in magazine can only be used once in ransomNote.
 	 * Input: ransomNote = "aa", magazine = "ab"	Output: false
+	 *
 	 */
 	public boolean canConstruct(String ransomNote, String magazine) {
-		// map1, map2,
+		// HashMap is the intuitive answer.
 		// int[] charMag iterate ransom note & decrement if 0 break;
 		boolean retVal=true;
 		int[] charCount = new int[256];

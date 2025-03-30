@@ -16,18 +16,22 @@ public class Spiral_Matrix_054 {
 		while (count<matrix.length*matrix[0].length){
 			for (int i=colL;i<=colR-1;i++){
 				System.out.print(matrix[rowD][i]);
+				System.out.print(" ");
 				count++;
 			}
 			for (int i=rowD;i<=rowU-1;i++){
 				System.out.print(matrix[i][colR]);
+				System.out.print(" ");
 				count++;
 			}
 			for (int i=colR;i>=colL+1;i--){
 				System.out.print(matrix[rowU][i]);
+				System.out.print(" ");
 				count++;
 			}
 			for (int i=rowU;i>=rowD+1;i--){
 				System.out.print(matrix[i][colL]);
+				System.out.print(" ");
 				count++;
 			}
 			if(rowD==rowU && colR==colL){
@@ -41,7 +45,42 @@ public class Spiral_Matrix_054 {
 		}
 	}
 
-	public static void main(String args[]) {
+	public void spiralOrder2(int[][] matrix) {
+		iterateMat(0,0,matrix.length,matrix);
+	}
+
+	private void iterateMat(int idX, int idY, int length, int[][] matrix) {
+		if (length==1){
+			System.out.print(matrix[idX][idY]);
+		}
+		if  (length>0) {
+			for (int i = idY; i <= length - 1; i++) {
+				System.out.print(matrix[idX][i]);
+				System.out.print(" ");
+			}
+		} else return;
+		if  (length-1>0) {
+			for (int i = idX+1; i <= length - 1; i++) {
+				System.out.print(matrix[i][idY + length - 1]);
+				System.out.print(" ");
+			}
+		} else return;
+		if  (length-1>0) {
+			for (int i = idY + length - 2; i >= idY; i--) {
+				System.out.print(matrix[idX + length - 1][i]);
+				System.out.print(" ");
+			}
+		} else return;
+		if  (length-2>0) {
+			for (int i = idX+length-2; i >= idX+1; i--) {
+				System.out.print(matrix[i][idY]);
+				System.out.print(" ");
+			}
+		} else return;
+		iterateMat(idX+1,idY+1,length-2,matrix);
+	}
+
+public static void main(String args[]) {
 		Spiral_Matrix_054 ob = new Spiral_Matrix_054();
 		int[][] scores = new int[3][3];
 		scores[0] = new int[]{1,2,3};
@@ -57,6 +96,7 @@ public class Spiral_Matrix_054 {
 		ob.spiralOrder(scores2);
 		System.out.println(" ");
 		System.out.println(ob.spiralOrderAccepted(scores2));
+		ob.spiralOrder2(scores);
 	}
 
 	public List<Integer> spiralOrderAccepted(int[][] mat) {

@@ -14,30 +14,48 @@ public class Product_of_Array_Except_Self_238 {
     private int[] findProducts(int[] input) {
         int[] output=new int [input.length];
         int[] outputL=new int [input.length];
-        outputL[0]=input[0];
         int[] outputR=new int [input.length];
+        outputL[0]=input[0];
         outputR[input.length-1]=input[input.length-1];
         for (int i=1;i<input.length;i++){
-           outputL[i]=input[i]*outputL[i-1];
+           outputL[i]=input[i]*outputL[i-1];                //outputL[i]=input[i-1]*outputL[i-1];
         }
         for (int j=input.length-2;j>=0;j--){
-            outputR[j]=input[j]*outputR[j+1];
+            outputR[j]=input[j]*outputR[j+1];               //outputR[j]=input[j+1]*outputR[j+1];
         }
         for (int k=0;k<input.length;k++){
             if (k == 0) {
                 output[k]=outputR[k+1];
-            }else if (k==input.length-1){
+            } else if (k==input.length-1){
                 output[k]=outputL[k-1];
             } else {
-                output[k] = outputL[k - 1] * outputR[k + 1];
+                output[k] = outputL[k - 1] * outputR[k + 1];// Code for output[k] = outputL[k] * outputR[k];
             }
         }
         return output;
     }
 
+    public int[] findProducts2nd(int[] nums) {
+        int n= nums.length;
+        int[] ans = new int[n];
+        int prodL = 1;
+        int prodR = 1;
+        for (int i=n-1;i>-1;i--){
+            ans[i] = prodR;
+            prodR = prodR * nums[i];
+        }
+        for (int i=0;i<nums.length;i++){
+            ans[i] = prodL *  ans[i];
+            prodL = prodL * nums[i];
+        }
+        return ans;
+    }
+
+
     public static void main(String args[]) {
         Product_of_Array_Except_Self_238 ob = new Product_of_Array_Except_Self_238();
-        int[] input= {-1,1,0,-3,3};
+        //int[] input= {-1,1,0,-3,3};
+        int[] input= {1,2,3,4};
         System.out.println(Arrays.toString(ob.findProducts(input)));
     }
 

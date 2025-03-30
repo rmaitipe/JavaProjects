@@ -4,12 +4,12 @@ https://chameerar.medium.com/dockerized-spring-boot-rest-application-57b4de4a2be
 
 [Local Test]
 mvn package -DskipTests  
-java -jar DockerBaseSpring-1.0-SNAPSHOT.jar
-localhost:8080/hello/message
+java -jar CrudSpringH2Docker-1.0-SNAPSHOT.jar
+localhost:8080/hello
 
-docker build -t spring-rest:1.0 .
+docker build -t spring-h2docker:1.0 .
 docker images (You should see the newly created image)
-docker run -p 4000:8080 --name spring-rest-container spring-rest:1.0
+docker run -p 4000:8080 --name spring-h2d-container spring-h2docker:1.0
 This means, service is visible on your machine as http://localhost:4000 for others containers in the network as service1:8080.
 
 https://www.baeldung.com/spring-boot-h2-database

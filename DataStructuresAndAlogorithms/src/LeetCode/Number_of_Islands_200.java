@@ -3,33 +3,34 @@ package LeetCode;
 import java.util.*;
 
 public class Number_of_Islands_200 {
-    /*
+    /* Similar to Flood_Fill_733
      * Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
      * An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
      * You may assume all four edges of the grid are all surrounded by water.
      *
      * List addition & removal.
      * BFS approach is Time complexity:O(m*n)  Space complexity:O(m*n)-> can be reduced to O(1) by updating grid
-     * comparable Interface for a Pair class?
+     * comparable Interface for a Pair class - needed for removeAll
      */
 
     public static void main(String args[]) {
         Number_of_Islands_200 ob = new Number_of_Islands_200();
-        int[][] seaSq = new int[4][5];
-        seaSq[0][0] = 1;seaSq[0][1] = 1;seaSq[0][2] = 0;seaSq[0][3] = 0;seaSq[0][4] = 0;
-        seaSq[1][0] = 1;seaSq[1][1] = 1;seaSq[1][2] = 0;seaSq[1][3] = 0;seaSq[1][4] = 0;        
-        seaSq[2][0] = 0;seaSq[2][1] = 0;seaSq[2][2] = 1;seaSq[2][3] = 0;seaSq[2][4] = 0;
-        seaSq[3][0] = 0;seaSq[3][1] = 0;seaSq[3][2] = 0;seaSq[3][3] = 1;seaSq[3][4] = 1;
+        char[][] seaSq = new char[4][5];
+        seaSq[0][0] = '1';seaSq[0][1] = '1';seaSq[0][2] = '0';seaSq[0][3] = '0';seaSq[0][4] = '0';
+        seaSq[1][0] = '1';seaSq[1][1] = '1';seaSq[1][2] = '0';seaSq[1][3] = '0';seaSq[1][4] = '0';
+        seaSq[2][0] = '0';seaSq[2][1] = '0';seaSq[2][2] = '1';seaSq[2][3] = '0';seaSq[2][4] = '0';
+        seaSq[3][0] = '0';seaSq[3][1] = '0';seaSq[3][2] = '0';seaSq[3][3] = '1';seaSq[3][4] = '1';
         System.out.println(ob.calcIslands(seaSq));
+        System.out.println(ob.numIslandsAccepted(seaSq));
     }
 
-    private int calcIslands(int[][] grid) {
+    private int calcIslands(char[][] grid) {
         List<Pair> totalRemainingList= new ArrayList<>();
         int[][] visited=new int [grid.length][grid[0].length];
         int count=0;
         for (int i=0;i<grid.length;i++){
             for (int j=0;j<grid[0].length;j++){
-                if (grid[i][j]==1){
+                if (grid[i][j]=='1'){
                     Pair p =new Pair(i,j);
                     totalRemainingList.add(p);
                 }
@@ -54,18 +55,18 @@ public class Number_of_Islands_200 {
         return count;
     }
 
-    private List<Pair> calcList(Pair p, int [][] grid, int[][] visited){
+    private List<Pair> calcList(Pair p, char [][] grid, int[][] visited){
         List<Pair> nextList=new ArrayList<>();
-        if (p.getX()+1<grid.length && grid[p.x+1][p.y]==1 && visited[p.x+1][p.y]==0) {
+        if (p.getX()+1<grid.length && grid[p.x+1][p.y]=='1' && visited[p.x+1][p.y]==0) {
             nextList.add(new Pair(p.getX()+1,p.getY())); visited[p.x+1][p.y]=1;
         }
-        if (p.getX()-1>=0 && grid[p.x-1][p.y]==1 && visited[p.x-1][p.y]==0) {
+        if (p.getX()-1>=0 && grid[p.x-1][p.y]=='1' && visited[p.x-1][p.y]==0) {
             nextList.add(new Pair(p.getX()-1,p.getY())); visited[p.x-1][p.y]=1;
         }
-        if (p.getY()+1<grid[0].length && grid[p.x][p.y+1]==1 && visited[p.x][p.y+1]==0) {
+        if (p.getY()+1<grid[0].length && grid[p.x][p.y+1]=='1' && visited[p.x][p.y+1]==0) {
             nextList.add(new Pair(p.getX(),p.getY()+1)); visited[p.x][p.y+1]=1;
         }
-        if (p.getY()-1>=0 && grid[p.x][p.y-1]==1 && visited[p.x][p.y-1]==0) {
+        if (p.getY()-1>=0 && grid[p.x][p.y-1]=='1' && visited[p.x][p.y-1]==0) {
             nextList.add(new Pair(p.getX(),p.getY()-1)); visited[p.x][p.y-1]=1;
         }
         return nextList;
@@ -104,11 +105,11 @@ public class Number_of_Islands_200 {
         }
     }
 
+    //Modifies original array to keep track of remaining tiles
     public int numIslandsAccepted(char[][] grid) {
         int islands = 0;
         int rows = grid.length;
         int cols = grid[0].length;
-
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
                 if (grid[r][c] == '1') {

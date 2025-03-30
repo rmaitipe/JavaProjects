@@ -14,7 +14,7 @@
 #ENTRYPOINT ["java","-jar","/usr/local/lib/DockerBaseSpring-1.0-SNAPSHOT.jar"]
 
 FROM openjdk:23
-COPY /target/DockerBaseSpring-1.0-SNAPSHOT.jar app.jar
+COPY /target/CrudSpringH2Docker-1.0-SNAPSHOT.jar app.jar
 EXPOSE 8080
 USER 10014
 ENTRYPOINT ["java","-jar","app.jar"]

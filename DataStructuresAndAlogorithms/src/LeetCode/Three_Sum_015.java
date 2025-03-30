@@ -22,7 +22,7 @@ public class Three_Sum_015 {
 		}
 	}
 
-	public int[] twoSumExtend(int arr[],int k,int offset){
+	public int[] twoSumExtend(int[] arr,int k,int offset){
 		int[] retVal=null;
 		Map<Integer,Integer> myMap =new HashMap<>();
 		for (int j=offset+1;j<arr.length;j++) {
@@ -37,7 +37,7 @@ public class Three_Sum_015 {
 		return retVal;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		int arr[] = {23, 34, 15, 12, 22, -10, -5};
 		Three_Sum_015 ob = new Three_Sum_015();
 		ob.sumMethod(arr);
@@ -78,7 +78,6 @@ public class Three_Sum_015 {
 					while (j < k && nums[k] == nums[k - 1]) {
 						k--;
 					}
-
 					j++;
 					k--;
 				}else if(sum < target){

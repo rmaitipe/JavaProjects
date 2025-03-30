@@ -17,11 +17,11 @@ public class Climbing_Stairs_070 {
 
     private int uniqueStairPath(int length) {
         int[] arr=new int [length];
-        if (length==1){
+        /*if (length==1){
             return 1;
         } else if (length==2){
             return 2;
-        }
+        }*/
         arr[0]=1;
         arr[1]=2;
         for (int j=2;j<=length-1;j++){

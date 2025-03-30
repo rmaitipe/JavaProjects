@@ -24,6 +24,7 @@ public class Valid_Parenthesis_020 {
 			if (c == '(' || c == '{' || c == '[') {
 				stack.push(c);
 			}
+			else if (stack.isEmpty()) {return false;}
 			else {
 				if (c==')' && stack.peek()=='('){
 					stack.pop();

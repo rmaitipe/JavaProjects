@@ -8,14 +8,33 @@ public class Valid_Palindrome_125 {
      * Given a string s, return true if it is a palindrome, or false otherwise.
      */
 
+    private boolean validatePalindrome(String input) {
+        boolean retVal=true;
+        char[] charArr= input.toCharArray();
+        StringBuilder sb= new StringBuilder();
+        for (char c:charArr) {
+            if (Character.isLetterOrDigit(c)) {
+                char d = Character.toLowerCase(c);
+                sb.append(d);
+            }
+        }
+        String s1=sb.toString();
+        String s2=sb.reverse().toString();
+        if (!s1.equals(s2)){
+            retVal=false;
+        }
+        return retVal;
+    }
+
     public static void main(String args[]) {
         Valid_Palindrome_125 ob = new Valid_Palindrome_125();
         String input ="A man, a plan, a canal: Panama";
-        System.out.print(ob.validatePalindrome(input));
+        System.out.println(ob.validatePalindrome(input));
+        System.out.println(ob.validatePalindromeAccepted(input));
     }
 
-    private boolean validatePalindrome(String input) {
-        //two pointers left /right while left<right - if valid compare, if not shift accordingly
+    private boolean validatePalindromeAccepted(String input) {
+        //Solve without using extra space. Two pointers left/right shift accordingly while left<right - if valid compare
         int left=0;
         int right=input.length()-1;
         boolean retVal=true;

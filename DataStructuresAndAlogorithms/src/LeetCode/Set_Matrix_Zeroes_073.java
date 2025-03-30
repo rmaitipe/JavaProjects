@@ -25,6 +25,7 @@ public class Set_Matrix_Zeroes_073 {
 		/* Modify the input matrix mat[] using the above constructed row[] and col[] arrays */
 		for (int i = 0; i < row.length; i++) {
 			if ( row[i] == 0 ) {
+				//Arrays.fill(mat[i],0);
 				nullifyRow(mat,i);
 			}
 		}
@@ -34,6 +35,7 @@ public class Set_Matrix_Zeroes_073 {
 			}
 		}
 		System.out.println("modifyMatrix complete");
+		System.out.println(Arrays.deepToString(mat));
 	}
 
 	private void nullifyCol(int[][] mat, int j) {
@@ -51,6 +53,9 @@ public class Set_Matrix_Zeroes_073 {
 	public static void main(String args[]) {
 		Set_Matrix_Zeroes_073 ob = new Set_Matrix_Zeroes_073();
 		int[][] scores = new int[3][3];
+		//scores[0][0] = 1;scores[0][1] = 1;scores[0][2] = 0;
+		//scores[1][0] = 1;scores[1][1] = 1;scores[1][2] = 1;
+		//scores[2][0] = 0;scores[2][1] = 1;scores[2][2] = 1;
 		scores[0][0] = 1;
 		scores[0][1] = 1;
 		scores[1][0] = 1;
@@ -67,7 +72,7 @@ public class Set_Matrix_Zeroes_073 {
 	 * is taken twice. To solve this problem we will take an extra variable fr & fc
 	 */
 	public void setZeroesAccepted(int[][] matrix) {
-		boolean fr = false,fc = false;
+		boolean fr = false, fc = false;
 		for(int i = 0; i < matrix.length; i++) {
 			for(int j = 0; j < matrix[0].length; j++) {
 				if(matrix[i][j] == 0) {

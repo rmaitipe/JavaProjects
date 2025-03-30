@@ -27,6 +27,7 @@ public class ItemController {
     public ResponseEntity<List<Item>> fetchItemList() {
         //return itemService.fetchItemList();
         List<Item> items = itemService.fetchItemList();
+        //return ResponseEntity.status(HttpStatus.OK).body(items);
         return ResponseEntity.ok(items);
     }
 
@@ -41,6 +42,7 @@ public class ItemController {
         Item itemOld= itemService.getItem(id).orElseThrow(()->new ItemNotFoundException("Item Not Found"));
         itemOld.setDesc(item.getDesc());
         itemService.updateItem(itemOld);
+        //return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         return ResponseEntity.noContent().build();
     }
 

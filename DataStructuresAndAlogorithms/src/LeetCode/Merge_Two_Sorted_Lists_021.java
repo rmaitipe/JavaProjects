@@ -7,8 +7,9 @@ public class Merge_Two_Sorted_Lists_021 {
 	 * The list should be made by splicing together the nodes of the first two lists.
 	 *
 	 * Final solution notes:New Nodes not needed
+	 * Input: list1 = [1,7,14,16,19], list2 = [2,5,6,21]	Output: [1,1,2,3,4,4]
 	 */
-	private ListNode mergeSorted(ListNode leftP,ListNode rightP) {
+	private ListNode mergeSortedMissingLastElem(ListNode leftP,ListNode rightP) {
 		//ListNode leftP = sl1;//nn
 		//ListNode rightP = sl2;//nn
 		ListNode retVal=null;
@@ -63,17 +64,14 @@ public class Merge_Two_Sorted_Lists_021 {
 		l2Head.next.next.next =new ListNode(16);
 		l2Head.next.next.next.next=new ListNode(19);
 	    Merge_Two_Sorted_Lists_021 ob = new Merge_Two_Sorted_Lists_021();
-		ListNode finalNode=ob.mergeSorted(l1Head,l2Head);
+		//ListNode finalNode=ob.mergeSortedMissingLastElem(l1Head,l2Head);
+		ListNode finalNode=ob.mergeTwoListsAccepted(l1Head,l2Head);
 		while (finalNode!=null){
 			System.out.println(finalNode.val);
 			finalNode=finalNode.next;
 		}
-		ListNode finNode=ob.mergeTwoListsAccepted(l1Head,l2Head);
-		while (finNode!=null){
-			System.out.println(finNode.val);
-			finNode=finNode.next;
-		}
     }
+
 	public static class ListNode {
     	int val;
   		ListNode next;

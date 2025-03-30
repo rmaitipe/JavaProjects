@@ -53,11 +53,13 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{id}")
-    EntityModel<Customer> one(@PathVariable Long id) throws Exception {
-
-        Customer customer = customerService.findById(id);
-
-        return assembler.toModel(customer);
+    EntityModel<Customer> one(@PathVariable Long id) {
+        try {
+            Customer customer = customerService.findById(id);
+            return assembler.toModel(customer);
+        } catch (Exception e){
+            return assembler.toModel(new Customer());
+        }
     }
 
     @GetMapping("/customers")

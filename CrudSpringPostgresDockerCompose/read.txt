@@ -24,10 +24,9 @@ my-docker-project/
    |-- docker-compose.yml
    |-- Dockerfile
 
-5. mvn package -DskipTests
-6. docker build . -t spring-postgres
-7. docker-compose up //docker-compose down
-8. http://localhost:8081/customers
+5. mvn clean package -DskipTests
+6. docker-compose up //docker-compose down
+7. http://localhost:8081/customers
    http://localhost:8080/swagger-ui/index.html (Run w/o Docker maps to 8080)
 DataInitializer/DataLoader (worked through local but not through Docker)
 /init.sql (worked through Docker but not through local-because of entry point?, Runs 2 times creating duplicates)

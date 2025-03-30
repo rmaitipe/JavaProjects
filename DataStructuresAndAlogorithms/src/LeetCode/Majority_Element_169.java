@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Majority_Element_169 {
     /*
      * Given an array nums of size n, return the majority element. The majority element is the element that appears
-     * more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+     * more than [n / 2] times. You may assume that the majority element always exists in the array.
      *
      * Follow-up: Could you solve the problem in linear time and in O(1) space?
      */
@@ -26,22 +26,19 @@ public class Majority_Element_169 {
 
     private Integer searchLinearMethod(int[] arr) { //O(n) space complexity
         HashMap<Integer,Integer> map =new HashMap<>();
-        int maxOccur=0;
+        int maxOccur=arr.length/2;
         int retVal = 0;
         for (Integer i:arr){
-            if (map.containsKey(i)){
-                int v= map.get(i);
-                map.put(i,++v);
-                if (v>maxOccur){
-                    maxOccur=v;
-                    retVal=i;
-                }
-            }else{
-                map.put(i,1);
+            int v= map.getOrDefault(i,0)+1;
+            map.put(i,v);
+            if (v>maxOccur){
+                retVal=i;
+                break;
             }
         }
         return retVal;
     }
+
 
     //Boyer-Moore Voting Algorithm
     public int majorityElement(int[] nums) {

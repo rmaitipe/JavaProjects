@@ -11,30 +11,26 @@ public class Sliding_Window_Maximum_239 {
      *
      * https://stackoverflow.com/questions/55694015/java-8-stream-max-function-argument-type-comparator-vs-comparable
      */
-    public int findMaxWindow(int[] nums,int k) {
-        int[] dpSum = new int [nums.length];
+    public int[] findMaxWindow(int[] nums,int k) {
+        int[] dpSum = new int [nums.length-k+1];
         List<Integer> list=new LinkedList<>();
         for (int i=0;i<k;i++){
             list.add(nums[i]);
         }
         dpSum[0]= list.stream().max(Integer::compareTo).get();//***//
-        int max=dpSum[0];
-        for (int i=1;i<nums.length-k;i++){
+        for (int i=0;i<nums.length-k;i++){
             list.removeFirst();
             list.add(nums[i+k]);
-            dpSum[i]=list.stream().max(Integer::compareTo).get();
-            if (dpSum[i]>max){
-                max=dpSum[i];
-            }
+            dpSum[i+1]=list.stream().max(Integer::compareTo).get();
         }
-        return max;
+        return dpSum;
     }
 
     public static void main(String args[])    {
         int[] prices = {1,3,-1,-3,5,3,6,7};
         Sliding_Window_Maximum_239 ob = new Sliding_Window_Maximum_239();
-        int out=ob.findMaxWindow(prices,3);
-        System.out.println(out);
+        int[] out=ob.findMaxWindow(prices,3);
+        System.out.println(Arrays.toString(out));
         int[] out2=ob.maxSlidingWindowAccepted(prices,3);
         System.out.println(Arrays.toString(out2));
     }
@@ -64,6 +60,29 @@ public class Sliding_Window_Maximum_239 {
             }
             map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
             val = map.keySet().iterator().next();//map.firstEntry().getKey();
+            list.add(val);
+        }
+        // Convert list to int array and return it
+        Integer[] ret= list.toArray(new Integer[0]);
+        int[] ans = list.stream().mapToInt(i -> i).toArray();
+        return ans;
+    }
+
+    public int[] maxSlidingWindowPQ(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i = 0; i < k; i++) {
+            pq.add(nums[i]);
+        }
+        // To return, create an ArrayList to store the largest element in window
+        ArrayList<Integer> list = new ArrayList<>();
+        Integer val = pq.peek();
+        list.add(val);
+        for (int i = k; i < nums.length; i++) {
+            int temp = nums[i - k];
+            //subtract or remove
+            pq.remove(nums[i-k]);
+            pq.add(nums[i]);
+            val = pq.peek();
             list.add(val);
         }
         // Convert list to int array and return it
