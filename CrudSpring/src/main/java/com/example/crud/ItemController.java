@@ -57,8 +57,8 @@ public class ItemController {
         } else {
             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }*/
-        Item item= itemService.getItem(id).get();
-        itemService.deleteItem(item);
+        Optional<Item> item= itemService.getItem(id);
+        itemService.deleteItem(item.orElseThrow(()->new ItemNotFoundException("Item Not Found")));
         return ResponseEntity.noContent().build();
     }
 

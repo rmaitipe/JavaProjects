@@ -1,7 +1,9 @@
 //C 1. CRUD DockerCompose Spring 3.4 project 2. Postgres DB support 3. With Swagger support
 
+Some of the resources referenced in this project
 https://medium.com/@saygiligozde/using-docker-compose-with-spring-boot-and-postgresql-235031106f9f
 https://medium.com/@AlexanderObregon/spring-hateoas-building-hypermedia-driven-restful-apis-70aa02133c2f
+https://www.baeldung.com/lombok-builder Builder pattern
 
 1.add dependencies to pom.xml file
 <dependency>
@@ -16,7 +18,7 @@ https://medium.com/@AlexanderObregon/spring-hateoas-building-hypermedia-driven-r
 
 2. Add docker-compose.yaml  file
 3. Add Docker file
-4. Ensure following structure https://github.com/GozdeSaygiliYalcin/docker-compose-demo
+4. Ensure following structure
 my-docker-project/
    |-- src/
    |   |-- main/
@@ -28,7 +30,12 @@ my-docker-project/
 6. docker-compose up //docker-compose down
 7. http://localhost:8081/customers
    http://localhost:8080/swagger-ui/index.html (Run w/o Docker maps to 8080)
-DataInitializer/DataLoader (worked through local but not through Docker)
-/init.sql (worked through Docker but not through local-because of entry point?, Runs 2 times creating duplicates)
-when copy is commented out both DataInitializer & DataLoader worked through Docker
-Docker port is different from when running locally
+
+DataInitializer/DataLoader 
+The init.sql creates the db and populates with initial data from the csv file.
+Similarly either DataInitializer & DataLoader(@PostConstruct) classes can also setup data.
+
+* Observations during data setup
+init.csv runs 2 times creating duplicates + missing first record from DataInitializer
+When init.sql copy is commented out both DataInitializer & DataLoader worked through Docker
+(worked through Docker but not through local-because of entry point?)

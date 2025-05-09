@@ -18,5 +18,6 @@ my-docker-project/
    |-- Dockerfile
 
 5. mvn package -DskipTests
-6. docker build . -t spring-kafka 
-7. docker-compose up //docker-compose down
+6. docker-compose up //docker-compose down   docker-compose up  -d
+
+http://localhost:8081/swagger-ui/index.html
