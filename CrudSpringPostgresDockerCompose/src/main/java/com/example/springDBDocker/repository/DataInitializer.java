@@ -20,10 +20,8 @@ public class DataInitializer implements CommandLineRunner {
         CreateCustomerDto chef1 = new CreateCustomerDto("Gordon","Ramsay");
         CreateCustomerDto chef2 = new CreateCustomerDto("Jamie","Oliver");
         CreateCustomerDto chef3 = new CreateCustomerDto("Anthony","Bourdain");
-
         customerService.createCustomer(chef1);
         customerService.createCustomer(chef2);
         customerService.createCustomer(chef3);
-
     }
 }

@@ -31,11 +31,10 @@ public class CustomerServiceImpl implements CustomerService {
         if (ObjectUtils.isEmpty(dto)) {
             throw new IllegalArgumentException("customer is empty");
         }
-        Customer customer = new Customer(dto.getFirstName(), dto.getLastName());
-        /*
+        //Customer customer = new Customer(dto.getFirstName(), dto.getLastName());
         Customer customer = Customer.builder().firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
-                .build();*/
+                .build();
         customerRepository.save(customer);
         System.out.println("SAVE End");
     }

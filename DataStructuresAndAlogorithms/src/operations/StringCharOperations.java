@@ -16,6 +16,10 @@ public class StringOperations {
         if (str4.substring(5, 10).equals("yuiop")){
             System.out.println("Pass 1");
         }
+        char myChar = 'A';	int asciiValue = (int) myChar;
+        System.out.println(asciiValue);
+        System.out.println(Character.getNumericValue('A'));
+        System.out.println(Character.getNumericValue('2'));
     }
 }
 
