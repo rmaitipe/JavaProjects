@@ -44,4 +44,7 @@ Spring Data’s method derivation, the query is generated from the method name a
 
     @Query(value = "SELECT * FROM ITEM WHERE ID = ?1 AND DESC = ?2", nativeQuery = true)
     Item getUserByUserIDAndAddress(String itemId, String desc);
+
+    @Query("SELECT b FROM Item b WHERE b.orderDate =?1")
+    List<Item> findByDate(LocalDate date);
 }

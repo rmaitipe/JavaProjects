@@ -40,7 +40,7 @@ public class Majority_Element_169 {
     }
 
 
-    //Boyer-Moore Voting Algorithm
+    //Boyer-Moore Voting Algorithm - only possible because majority element appears more than n/2 times
     public int majorityElement(int[] nums) {
         int count=0, candidate=0;
         for(int arr:nums){

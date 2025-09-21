@@ -92,7 +92,7 @@ public class Palindrome_Linked_List_234 {
 			slow = slow.next;
 			fast = fast.next.next;
 		}
-		if (fast != null) {
+		if (fast != null) { //odd even check
 			slow = slow.next;
 		}
 		ListNode temp = reverse(slow); //12321  slow at 3 ->  12123   123321 slow at 3 ->  123123

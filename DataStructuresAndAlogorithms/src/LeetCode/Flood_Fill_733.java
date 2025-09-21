@@ -16,6 +16,8 @@ public class Flood_Fill_733 {
      * The process stops when there are no more adjacent pixels of the original color to update.
      * Return the modified image after performing the flood fill.
      *
+     * Input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2   Output: [[2,2,2],[2,2,0],[2,0,1]]
+     *
      * List addition & removal.
      * BFS approach is Time complexity:O(m*n)  Space complexity:O(m*n)-> can be reduced to O(1) by updating grid
      */

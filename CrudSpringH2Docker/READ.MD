@@ -45,14 +45,14 @@ Database "mem:testdb" not found, either pre-create it or allow remote database c
 Edit: If using @SpringBootApplication in your main class:
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 
-Failed to introspect Class [org.springdoc.webmvc.ui.SwaggerConfig
+Failed to introspect Class org.springdoc.webmvc.ui.SwaggerConfig
 Upgraded spring-boot-starter-parent to 3.5.0-SNAPSHOT
 
 //{} has been compiled by a more recent version of the Java Runtime (class file version 65.0), this version of the Java Runtime only recognizes class file versions up to 62.0
 Fix line//FROM openjdk:21 ->FROM openjdk:23
 
 https://stackoverflow.com/questions/15598210/the-import-javax-persistence-cannot-be-resolved
-The javax.persistence package was moved to a newly named dependency (jakarta.persistence.
+The javax.persistence package was moved to a newly named dependency jakarta.persistence.
 
 h2 not starting + Autowiring not detected
 remove @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})

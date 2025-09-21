@@ -1,9 +1,8 @@
-package hash;
+package structures;
 
 import java.util.ArrayList;
 
-    public class HashMapClass<K, V>
-    {
+    public class HashMapClass<K, V> {
         // Implementation backed by ArrayList of LinkedList - could also be array of LinkedList
         private ArrayList<HashNode<K, V>> bucketArray;
         private int numBuckets;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 
         // Constructor-Initializes capacity, size and empty chains.
         public HashMapClass()  {
-            bucketArray = new ArrayList<>(); // not an array because we need to support more then primitives
+            bucketArray = new ArrayList<>(); // Can also be an array
             numBuckets = 10;
             size = 0;
             // Create empty chains

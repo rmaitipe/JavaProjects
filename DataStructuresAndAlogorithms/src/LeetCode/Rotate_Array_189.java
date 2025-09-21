@@ -13,7 +13,10 @@ public class Rotate_Array_189 {
     public static void main(String args[]) {
         Rotate_Array_189 ob = new Rotate_Array_189();
         int[] arr = {1,2,3,4,5,6,7};
+        int[] arr2 = {1,2,3,4,5,6,7};
         System.out.println(Arrays.toString(ob.rotateArray(arr, 3)));
+        ob.rotateAccepted(arr2, 3);
+        System.out.println(Arrays.toString(arr2));
     }
 
     private int[] rotateArray(int[] num,int rShift) {

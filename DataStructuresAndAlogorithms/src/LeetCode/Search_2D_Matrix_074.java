@@ -28,7 +28,8 @@ public class Search_2D_Matrix_074 {
 		while (left<=right){
 			int mid=(left+right)/2;//9=>30
 			int dx=mid/col;
-			int dy=(mid-(dx*col))%row;
+			int dy=(mid-(dx*col))%col;
+			//int dy= mid%col; Accepted solution
 			System.out.println("Mid: "+mid+" MidVal: "+scores[dx][dy]+" Dx: "+dx+" Dy: "+dy);
 			if (scores[dx][dy]<target){
 				left=mid+1;

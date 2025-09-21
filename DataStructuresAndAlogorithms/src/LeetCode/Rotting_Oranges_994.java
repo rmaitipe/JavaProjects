@@ -22,10 +22,11 @@ public class Rotting_Oranges_994 {
         oranges[2][1] = 1;
         oranges[2][2] = 1;
         System.out.println(ob.calcMinTime(oranges));
+        System.out.println(ob.orangesRottingAccepted(oranges));
     }
 
     private int calcMinTime(int[][] grid) {
-        List<Pair> list=new ArrayList<>();
+        List<Pair> rottenList=new ArrayList<>();
         //Set<Pair> set=new HashSet<>();
         int[][] visited= new int[grid.length][grid[0].length];
         int count=0;
@@ -33,28 +34,28 @@ public class Rotting_Oranges_994 {
             for (int j=0;j<grid[0].length;j++){
                 if (grid[i][j]==2){
                     Pair p =new Pair(i,j);
-                    list.add(p);
+                    rottenList.add(p);
                     visited[i][j]=1;
                     //set.add(p);
                 }
             }
         }
-        while (!list.isEmpty()){
-            List<Pair> listIn=new ArrayList<>();
-            for (Pair p : list) {
+        while (!rottenList.isEmpty()){
+            List<Pair> innerList=new ArrayList<>();
+            for (Pair p : rottenList) {
                 List<Pair> nextList = calcList(p, grid.length, grid[0].length);
                 //4d set.add if true i.e new entries add to list
                 for (Pair n : nextList) {
                     //boolean isAdd= set.add(n);
                     if (visited[n.x][n.y] != 1 && grid[n.x][n.y]==1) {
-                        listIn.add(n);
+                        innerList.add(n);
                         visited[n.x][n.y] = 1;
                     } else {
                         System.out.println("Already included");
                     }
                 }
             }
-            list=listIn;
+            rottenList=innerList;// track fresh oranges in a separate list if innerList empty & fresh not empty return -1
             count++;
         }
         return count-1;
@@ -82,7 +83,7 @@ public class Rotting_Oranges_994 {
         public int getY(){
             return y;
         }
-
+        /*
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -95,7 +96,7 @@ public class Rotting_Oranges_994 {
         public int hashCode() {
             return Objects.hash(x, y);
         }
-        /*
+
         @Override
         public int compareTo(Pair other) {
             int c = this.getX().compareTo(other.x);
@@ -107,7 +108,7 @@ public class Rotting_Oranges_994 {
 
     /*
      * The problem requires can be modeled as a breadth-first search (BFS) problem. The BFS is appropriate here because
-     * it allows us to explore the grid level by level (minute by minute)
+     * it allows us to explore the grid level by level (minute by minute). It uses int[] in favor of a Pair class
      */
     public int orangesRottingAccepted(int[][] grid) {
         int m = grid.length;

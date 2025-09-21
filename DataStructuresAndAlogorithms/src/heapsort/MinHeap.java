@@ -1,12 +1,12 @@
 package heapsort;
 
-/*A Binary heapArr is a Binary Tree with following properties.
+/* A Binary heapArray is a Binary Tree with following properties.
  * 1. It's a complete tree
- * 2. A Binary heapArr is either Min heapArr or Max heapArr
+ * 2. A Binary heapArray is either Min heapArray or Max heapArray
  * 
  * For an array backed implementation the pseudocode can be thought of as
  * while not end of array, 
-	if heapArr is empty, 
+	if heapArray is empty,
 		place item at root; 
 	else, 
 		place item at bottom of heapArr; 
@@ -17,10 +17,10 @@ package heapsort;
     [1]
   [2] [3]
 [4][5][6][7]
- * */
-public class MinHeap
+ * Overall Complexity of insert/delete operation  is O(log N).
+ */
+public class MinHeap {
 
-{
     private int[] heapArr;
     private int currSize;
     private int maxsize;
@@ -38,15 +38,14 @@ public class MinHeap
     	MinHeap minHeap = new MinHeap(15);
         minHeap.insert(17);
         minHeap.insert(22);
-        minHeap.insert(9);
-        minHeap.insert(10);
-        minHeap.insert(8);
-        minHeap.insert(19);
-        minHeap.insert(16);
+        minHeap.insert(9); //9,17,22 -> 9,10,22,17 -> 8,9,10,22,17
+        minHeap.insert(10);//                           3
+        minHeap.insert(8); //                      5         16
+        minHeap.insert(19);//                   9     8    19  17
+        minHeap.insert(16);//                 22 30 10
         minHeap.insert(5);
         minHeap.insert(30);  
-        minHeap.insert(3);
-        minHeap.minHeap();
+        minHeap.insert(3);// [-2147483648, 3, 5, 16, 9, 8, 19, 17, 22, 30, 10, 0, 0, 0, 0, 0]
         minHeap.print();
         System.out.println("Retrieve Minimum value: " + minHeap.remove());
     }
@@ -108,6 +107,7 @@ public class MinHeap
     }
 
     public void minHeap(){
+        System.out.println("minHeap() ");
         for (int pos = (currSize / 2); pos >= 1 ; pos--){
             minHeapify(pos);
         }

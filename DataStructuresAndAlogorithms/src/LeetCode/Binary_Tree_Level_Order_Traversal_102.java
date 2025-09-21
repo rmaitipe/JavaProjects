@@ -20,9 +20,8 @@ public class Binary_Tree_Level_Order_Traversal_102 {
         System.out.println(list);
     }
 
-    public void levelTraverse(Node node) {
-        Queue<Node> queue = new PriorityQueue<>();//wrong structure
-        queue=new LinkedList<>();
+    public void levelTraverse(Node node) { //Without using return structure List<List<Integer>>
+        Queue<Node> queue = new LinkedList<>();//new PriorityQueue<>();wrong structure
         queue.add(node);
         while (!queue.isEmpty()) {
             node = queue.poll();

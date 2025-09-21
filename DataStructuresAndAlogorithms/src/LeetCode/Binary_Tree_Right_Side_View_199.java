@@ -6,28 +6,35 @@ import java.util.stream.Collectors;
 
 public class Binary_Tree_Right_Side_View_199 {
     /*
-     * Given the root of a binary tree, imagine yourself standing on the right side of it,
-     * return the values of the nodes you can see ordered from top to bottom.
-     * Input: root = [1,2,3,null,5,null,4]  Output: [1,3,4]
+     * Given the root of a binary tree, imagine yourself standing on the right side of it,         1
+     * return the values of the nodes you can see ordered from top to bottom.                    2    3
+     * Input: root = [1,2,3,null,5,null,4]  Output: [1,3,4]                                        5   4
      */
     public LinkedHashMap<Integer,Node> transposedTree(Node root) {
-        LinkedList<Node> pq=new LinkedList<>();
+        LinkedList<Node> linkedList=new LinkedList<>();
         LinkedHashMap<Node,Integer> map =new LinkedHashMap<>();
-        pq.add(root);
-        map.put(root,1);
-        while (!pq.isEmpty()) {
-            Node node=pq.poll();
+        linkedList.add(root);
+        //map.put(root,1);
+        int count =1;
+        int target=1;
+        while (!linkedList.isEmpty()) {
+            Node node=linkedList.poll();
+
             if (node == null) {
                 return null;
             } else {
-                int level = map.get(node);
+                //if target==count //addtoList(), count is incremented for each node
+                //int level = map.get(node);
+                //
                 if (node.right != null) {
-                    pq.add(node.right);
-                    map.put(node.right, level+1);
+                    linkedList.add(node.right);
+                    //map.put(node.right, level+1);
+                    //target++
                 }
                 if (node.left != null) {
-                    pq.add(node.left);
-                    map.put(node.left, level+1);
+                    linkedList.add(node.left);
+                    //map.put(node.left, level+1);
+                    //target++
                 }
             }
         }

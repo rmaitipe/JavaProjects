@@ -38,7 +38,7 @@ and removing an element from the end of the list (we do this by swapping the ele
         if (hashMap.containsKey(val)) {
             int index = hashMap.get(val);
             hashMap.remove(val);
-            int lastVal = arrayList.removeLast();
+            int lastVal = arrayList.remove(arrayList.size()-1);//removeLast() compiler issues
             hashMap.put(lastVal, index);
             arrayList.set(index, lastVal);
             retVal=true;
@@ -51,11 +51,10 @@ and removing an element from the end of the list (we do this by swapping the ele
         return arrayList.get((int) (size*Math.random()));
     }
 
-public static void main(String args[]) {
-    Insert_Delete_GetRandom_380 lRUCache = new Insert_Delete_GetRandom_380();
-
-    System.out.println(lRUCache);
-}
+    public static void main(String args[]) {
+        Insert_Delete_GetRandom_380 lRUCache = new Insert_Delete_GetRandom_380();
+        System.out.println(lRUCache);
+    }
 
 
 }

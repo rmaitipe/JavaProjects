@@ -39,6 +39,7 @@ public class Validate_Binary_Search_Tree_098 {
                     isValid= false;
                 }
             }
+            //both nodes null
         }
         return isValid;
     }

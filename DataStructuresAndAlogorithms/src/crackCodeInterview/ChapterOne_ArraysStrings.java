@@ -12,7 +12,7 @@ public class ChapterOne_ArraysStrings {
      * 2. Check Permutation: Given two strings, write a method to decide if one is a permutation of the other.
      *
      * 3. URLify: Write a method to replace all spaces in a string with '%20'. You may assume that the string
-     * has sufficient space at the end to hold the additional characters, and that you are given the "true"length of the string.
+     * has sufficient space at the end to hold the additional characters, and that you are given the true length of the string.
      * (Note: If implementing in Java, please use a character array so that you can perform this operation in place.)
      *
      * 4. Palindrome Permutation: Given a string, write a function to check if it is a permutation of a palindrome.
@@ -28,9 +28,10 @@ public class ChapterOne_ArraysStrings {
      * bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
      *
      * 8. Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0 (Array), its entire row and column are set to 0.
+     * (Set Matrix Zeroes 073)
      *
      * 9. String Rotation:Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings,
-     * sl and s2, write code to check if s2 is a rotation of sl using only one call to isSubstring (e.g., "waterbottle" is a rotation of"erbottlewat").
+     * s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring (e.g., "waterbottle" is a rotation of"erbottlewat").
      */
 
     public static void main(String args[]){
@@ -39,16 +40,17 @@ public class ChapterOne_ArraysStrings {
         String test2="asdverwxyq";
         String test3="tacoatc";
         String test4="taco cat  ";
-        cc.isUnique(test1); cc.isUniqueNoStrctures(test1); cc.isUniqueOptimal(test2);
-        cc.isPermutation(test1,test2);
-        cc.isOneAway(test1,test2);
-        cc.isOneAway("test1","test2");
-        cc.isOneAway("test1","test");
+        System.out.println(cc.isUnique(test1));
+        System.out.println(cc.isUniqueNoStructures(test1));
+        System.out.println(cc.isUniqueOptimal(test2));
+        System.out.println(cc.isPermutation(test1,test2));
         cc.urlify(test4);
         cc.urlifyInSpace("Mr John Smith    ",13);
-        cc.isPermutePalindrome(test3);
-        cc.compressString(test1);
-        cc.StringRotate(test1, test2);
+        System.out.println(cc.isOneAway(test1,test2));
+        System.out.println(cc.isOneAway("test1","test2"));
+        System.out.println(cc.isOneAway("test1","test"));
+        System.out.println(cc.isPermutePalindrome(test3));
+        System.out.println(cc.compressString(test1));
         int[][] scores = new int[3][3];
         scores[0][0] = 1;
         scores[0][1] = 1;
@@ -58,6 +60,7 @@ public class ChapterOne_ArraysStrings {
         scores[1][2] = 1;
         scores[2][1] = 1;
         cc.modifyMatrix(scores);
+        System.out.println(cc.stringRotate(test1, test2));
     }
 
     private boolean isUnique(String test) {//HashSet add() method
@@ -65,9 +68,7 @@ public class ChapterOne_ArraysStrings {
         char[] arr1 =test.toCharArray();
         Set<Character> set=new HashSet<>();
         for (Character c:arr1){
-            if (set.add(c)){
-            }
-            else{
+            if (!set.add(c)){
                 System.out.println("isUnique test failed: " +test);
                 ret=false;
                 break;
@@ -93,7 +94,7 @@ public class ChapterOne_ArraysStrings {
         return ret;
     }
 
-    private boolean isUniqueNoStrctures(String test) {
+    private boolean isUniqueNoStructures(String test) {
         boolean ret=true;
         char[] arr1 =test.toCharArray();
         nest_loop:
@@ -179,8 +180,15 @@ public class ChapterOne_ArraysStrings {
                 if (count==1) ret=true;
             }
             else{
-                if (test1.length()>test2.length()){//abcd acd   abc
-                    int j=0; int jump=0;
+                //switch
+                if (test2.length()>test1.length()){
+                    String temp= test2;
+                    test2=test1;
+                    test1=temp;
+                }
+                //if (test1.length()>test2.length()){
+                    int j=0;
+                    int jump=0;
                     for (int i=0;i<test2.length();i++){
                         if (test1.charAt(j+jump)!=test2.charAt(i)){
                             jump++;
@@ -188,11 +196,11 @@ public class ChapterOne_ArraysStrings {
                             j++;
                         }
                     }
-                    if (j==test2.length()){
+                    if (j==test2.length()){//1 away [abcd abcde]  [abd abcd]
                         jump++;
                     }
                     if (jump==1) ret=true;
-                }
+                //}
             }
         }
         System.out.println("isOneAway:"+ret);
@@ -241,6 +249,7 @@ public class ChapterOne_ArraysStrings {
     }
 
     public String compressString(String str){//aabcccccaaa -> a2blc5a3
+        String out="";
         if (str.length()==1){
             return str;
         }
@@ -262,10 +271,10 @@ public class ChapterOne_ArraysStrings {
             }
             sb.append(temp);
             sb.append(seq);
-            str = sb.toString();
+            out = sb.toString();
         }
-        System.out.println("compressString: "+str);
-        return str;
+        System.out.println("compressString: "+out);
+        return str.length()<out.length()? str: out;
     }
 
     private void modifyMatrix(int[][] mat){
@@ -315,7 +324,7 @@ public class ChapterOne_ArraysStrings {
         }
     }
 
-    public boolean StringRotate(String a, String b){
+    public boolean stringRotate(String a, String b){
         boolean ret=false;
         int length1=1;
         int val=0;
@@ -339,6 +348,13 @@ public class ChapterOne_ArraysStrings {
         }
         return ret;
     }
-    /* concatenate it a 2nd time and original text will be found inside the string*/
+    /* Above solution does not use the given method isSubString.
+     The accepted solution:
+     Concatenate the s1 string with itself
+     Check if the string s2 is substring of the concatenated s1 string.
+     If the substring is a part of the concatenated string then the strings are rotation of each other
+     ex. if you concatenate the same string twice     "terbottlewaterbottle"
+     Then we see that the string “erbottlewat” is a substring of the concatenated s1 string.
+     */
 }
 

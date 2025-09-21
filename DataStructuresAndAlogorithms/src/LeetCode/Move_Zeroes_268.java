@@ -59,6 +59,9 @@ public class Move_Zeroes_268 {
     [i=2,j=4]87505      //swap	 87500
     k=3 -> 4
      */
+
+// Shift non-zero values as far forward as possible
+// Fill remaining space with zeros
     public int[] moveZeroesAccepted(int[] nums) {
         int i =0;
         for (int j =0; j<nums.length; j++){
@@ -72,6 +75,7 @@ public class Move_Zeroes_268 {
         }
         return nums;
     }
+
 
     public int[] moveZeroesAccepted2(int[] nums) {
         int i = 0; int temp=0;

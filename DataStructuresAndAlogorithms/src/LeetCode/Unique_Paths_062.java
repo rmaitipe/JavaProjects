@@ -36,7 +36,6 @@ public class Unique_Paths_062 {
 		}
 	}
 
-
 	private int uniquePathSumRecursion(int x, int y, int[][]scores) {
 		int retVal=0;
 		if (x == scores.length-1 && y == scores[0].length-1) {
@@ -54,7 +53,7 @@ public class Unique_Paths_062 {
 
 	/*
 	 * The idea behind this approach is to use a 2D array to store the number of unique paths to each cell.
-	 * A cell (i,j) can be reached either from (i−1,j) or (i,j−1), so unique paths to (i,j) is the sum of recursionthese two cells.
+	 * A cell (i,j) can be reached either from (i−1,j) or (i,j−1), so unique paths to (i,j) is the sum of these two cells.
 	 * Time Complexity: O(m×n) — We iterate through each cell once.	Space Complexity: O(m×n) — For the DP array.
 	 */
 	public int uniquePathsDPAccepted(int m, int n) {
@@ -73,4 +72,13 @@ public class Unique_Paths_062 {
 		return dp[m-1][n-1];
 	}
 
+	/*
+	This can further be improved.
+    Initialization:
+        Initialize two 1D arrays curr_row and prev_row with n elements, setting all elements to 1.
+    Main Algorithm:
+        Iterate over the rows starting from 1 (the second row).
+        For each cell (i,j), set curr_row[j] = curr_row[j-1] + prev_row[j] .
+        Swap curr_row and prev_row for the next iteration.
+	 */
 }

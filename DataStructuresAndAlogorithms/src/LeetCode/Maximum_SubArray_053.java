@@ -1,8 +1,9 @@
 package LeetCode;
 
 public class Maximum_SubArray_053 {
-    /* Given an integer array, find the subarray with the largest sum, and return its sum.
-     * Input: nums = [-2,1,-3,4,-1,2,1,-5,4] Output:The subarray [4,-1,2,1] has the largest sum- 6.
+    /*
+     * Given an integer array, find the subarray with the largest sum, and return its sum.
+     * Input: nums = [-2,1,-3,4,-1,2,1,-5,4] Output:The subarray [4,-1,2,1] has the largest sum: 6.
      *
      * If you have figured out the O(n) solution, try coding another solution using the divide & conquer approach.
      */
@@ -23,7 +24,7 @@ public class Maximum_SubArray_053 {
         return max;
     }
 
-    public static void main(String args[])    {
+    public static void main(String[] args)    {
         int[] prices = {-2,1,-3,4,-1,2,1,-5,4};
         Maximum_SubArray_053 ob = new Maximum_SubArray_053();
         int out=ob.findMaxSubArr(prices);
@@ -32,12 +33,12 @@ public class Maximum_SubArray_053 {
         System.out.println("Accepted2: "+String.valueOf(ob.maxSubArray(prices)));
     }
 
-/*
-Approach 1 : Divide and Conquer (Non-intuitive Approach -ignore)
-1. calculate maxSum (maximum positive sum) from mid to left
-2. calculate maxSum(maximum positive sum ) from mid+1 to right side
-3. int midSum = leftMaxSUM+rightMaxSUM
- */
+    /*
+    Approach 1 : Divide and Conquer (Non-intuitive Approach -ignore)
+    1. calculate maxSum (maximum positive sum) from mid to left
+    2. calculate maxSum(maximum positive sum ) from mid+1 to right side
+    3. int midSum = leftMaxSUM+rightMaxSUM
+    */
     public int maxSubArrayDivideConquer(int[] nums) {
         return helper(nums,0,nums.length-1);
     }
@@ -66,11 +67,12 @@ Approach 1 : Divide and Conquer (Non-intuitive Approach -ignore)
                 helper(nums, mid + 1, j ));
         return Math.max(maxLeftRight, leftMaxSUM + rightMaxSUM );
     }
-/*
-Approach 2 : Dynamic Programming
-Take one variable as a global maximum, say max (To keep track maximum value). dp[i] means max sum subarray ending
-at index i If sum till i-1 is usefull, then take it, otherwise take current cell as sum till i
- */
+
+    /*
+    Approach 2 : Dynamic Programming
+    Take one variable as a global maximum, say max (To keep track maximum value). dp[i] means max sum subarray ending
+    at index i If sum till i-1 is useful, then take it, otherwise take current cell as sum till i
+    */
     private int dynamicProgrammingMaxSubArrAccepted(int[] nums){
         int[] sum = new int[nums.length];
         sum[0] = nums[0];//initial case
@@ -82,11 +84,11 @@ at index i If sum till i-1 is usefull, then take it, otherwise take current cell
         return max;
     }
 
-/*
-Approach 3 : Kadane Algorithm (Best Approach) - O(n) time Complexity
-if overall sum become negative then it is better to reinitialize sum to zero, because a positive sum can increase later,
-but if we move with negative sum then it can only decrease our positive sum.
- */
+    /*
+    Approach 3 : Kadane Algorithm (Best Approach) - O(n) time Complexity
+    if overall sum become negative then it is better to reinitialize sum to zero, because a positive sum can increase later,
+    but if we move with negative sum then it can only decrease our positive sum.
+    */
     public int maxSubArray(int[] nums) {
         int sum = 0;
         int maxSum = Integer.MIN_VALUE;

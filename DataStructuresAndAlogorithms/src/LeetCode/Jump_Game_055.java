@@ -10,6 +10,8 @@ public class Jump_Game_055 {
      * Input:nums=[2,3,1,1,4]       Output:true     Jump 1 step from index 0 to 1, then 3 steps to the last index.
      * Input:nums =[3,2,1,0,4]      Output:false    You will always arrive at index 3 no matter what.
      * Its maximum jump length is 0, which makes it impossible to reach the last index.
+     *
+     * Solution without using extra space
      */
     private boolean jumpPath(int[] num) {
         int[] visited=new int [num.length];

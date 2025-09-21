@@ -3,7 +3,7 @@ spring:
     name: springDockerKafka
   kafka:
     #bootstrap-servers: localhost:29092
-    bootstrap-servers: kafka:29092
+    bootstrap-servers: kafka:9092
     consumer:
       group-id: test-consumer-group
       auto-offset-reset: earliest

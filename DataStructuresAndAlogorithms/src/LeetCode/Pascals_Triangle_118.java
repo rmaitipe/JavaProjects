@@ -24,21 +24,21 @@ public class Pascals_Triangle_118 {
             if (i==1){
                 List<Integer> list1= List.of(1);
                 list.add(list1);
-                if (k==1) {
-                    break;
-                }
+                //if (k==1) {
+                //    break;
+                //}
             }
             else if (i==2) {
                 List<Integer> list2= Arrays.asList(1,1);
                 list.add(list2);
-                if (k==2) {
-                    break;
-                }
+                //if (k==2) {
+                //    break;
+                //}
             }else {
                 int left=0;
                 List<Integer> list3= new ArrayList<>();
                 list3.add(1);
-                List<Integer> prior= list.get(i-2);//i-1 elems
+                List<Integer> prior= list.get(i-2);//because of 0 index not i-1 elems
                 while(left<i-2){
                     list3.add(prior.get(left)+prior.get(left+1));
                     left++;

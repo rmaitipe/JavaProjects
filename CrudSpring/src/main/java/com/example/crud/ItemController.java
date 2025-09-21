@@ -33,13 +33,13 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Item> fetchItemById(@PathVariable Long id) {
-        Item item= itemService.getItem(id).orElseThrow(()->new ItemNotFoundException("Item Not Found"));
+        Item item= itemService.getItem(id);
         return ResponseEntity.ok(item);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateItem(@RequestBody Item item, @PathVariable("id") final Long id) {
-        Item itemOld= itemService.getItem(id).orElseThrow(()->new ItemNotFoundException("Item Not Found"));
+        Item itemOld= itemService.getItem(id);
         itemOld.setDesc(item.getDesc());
         itemService.updateItem(itemOld);
         //return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -57,8 +57,8 @@ public class ItemController {
         } else {
             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }*/
-        Optional<Item> item= itemService.getItem(id);
-        itemService.deleteItem(item.orElseThrow(()->new ItemNotFoundException("Item Not Found")));
+        Item item= itemService.getItem(id);
+        itemService.deleteItem(item);
         return ResponseEntity.noContent().build();
     }
 

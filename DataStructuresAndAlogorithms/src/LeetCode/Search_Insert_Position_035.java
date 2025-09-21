@@ -2,7 +2,7 @@ package LeetCode;
 
 public class Search_Insert_Position_035 {
 
-	/* Similar to 704
+	/* Similar to 704, 278
 	 * Given a sorted array of distinct integers and a target value, return the index if the target is found.
 	 * If not, return the index where it would be if it were inserted in order.
 	 * You must write an algorithm with O(log n) runtime complexity.

@@ -3,6 +3,7 @@ package com.example.crud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +14,8 @@ public class ItemServiceImpl implements ItemService{
     private ItemRepository itemRepository;
 
     @Override
-    public Optional<Item> getItem(Long itemId) {
-        return itemRepository.findById(itemId);
+    public Item getItem(Long itemId) {
+        return itemRepository.findById(itemId).orElseThrow(()-> new ItemNotFoundException("Item Not Found"));
     }
     /*
     @Override
@@ -27,9 +28,13 @@ public class ItemServiceImpl implements ItemService{
         }
     }
     */
-/*
-It is not required to use Optional with List<T> since Spring Data will return an empty list if nothing found.
-*/
+
+    @Override
+    public List<Item> getItemByOrderDate(LocalDate date) {
+        return itemRepository.findByDate(date);
+    }
+
+
     @Override
     public List<Item> fetchItemList() {
         return (List<Item>) itemRepository.findAll();

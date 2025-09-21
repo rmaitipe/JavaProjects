@@ -1,7 +1,5 @@
 package LeetCode;
 
-import java.util.HashMap;
-
 public class Find_Duplicate_Number_287 {
     /*
      * Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
@@ -25,8 +23,12 @@ public class Find_Duplicate_Number_287 {
                 if (Math.sqrt(res)==input[i]){
                     return input[i];
                 }*/
+                /*
                 int res=input[i]^input[j];
                 if (res==0){
+                    return input[i];
+                }*/
+                if (input[i]==input[j]){
                     return input[i];
                 }
             }

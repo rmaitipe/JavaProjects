@@ -1,5 +1,6 @@
 package operations;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -7,45 +8,67 @@ import java.util.List;
 public class ComparatorOperations {
 
     public static void main(String [] args){
-        List<Employee> empList=List.of(new Employee("a",1),new Employee("c",4),new Employee("d",
-            34), new Employee("b",4));
+        Employee a= new Employee("a","dev",1);
+        Employee b= new Employee("b","sri",4);
+        Employee c= new Employee("c","ray",4);
+        Employee d= new Employee("d","mal",34);
+
+        List<Employee> empList=List.of(a,b,c,d);//Immutable-> will produce exception
         List<String> strList=List.of("a","c","d","b");
+
+        List<Employee> empList2=new ArrayList<>();
+        empList2.add(a);
+        empList2.add(b);
+        empList2.add(c);
+        empList2.add(d);
+        List<String> strList2=new ArrayList<>();
+        strList2.add("a");
+        strList2.add("b");
+        strList2.add("c");
+        strList2.add("d");
+
         /*
          * compare() Prerequisite: Comparator Interface - essential for custom sorting
-         * CompareTo() Prerequisite: Comparable Interface
+         * CompareTo() Prerequisite: Comparable Interface - defines natural ordering
          * Multiple implementations vs. single implementation
          * example: String & Integer classes has both and implements Comparable so has compareTo() which is natural ordering
          *
          * Behind the scenes compareTo will call a compare method or a similar method with same signature.
          * Integer.compare(x, y) returns -1 if x is less than y, 0 if they’re equal, and 1 otherwise.
          */
-        Comparator<Employee> compareByLastNameOldFormat = new Comparator<Employee>() {
+        Comparator<Employee> compareByFirstNameOldFormat = new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {
-                //return Integer.compare(o1.salary,o2.salary);
                 return o1.firstName.compareTo(o2.firstName);
             }
         };
         Comparator<Employee> compareByLastName = Comparator.comparing(Employee::getLastName);
         Comparator<Employee> compareById = Comparator.comparingInt(Employee::getId);
         Comparator<Employee> compareByFirstName= (h1,h2)->h1.getFirstName().compareTo(h2.getFirstName());
-        Comparator<Employee> compareByRank=(emp1,emp2)->Integer.compare(emp1.getId(),emp2.getId());
+        Comparator<Employee> compareByIdReverse=(emp1,emp2)->Integer.compare(emp2.getId(),emp1.getId());
 
-        Collections.sort(empList, compareByLastName);
-
-        empList.sort(compareByLastName);//pass Comparator
-        empList.sort(compareByFirstName.reversed());//pass Comparator reversed
-        strList.sort(Comparator.reverseOrder());//pass Natural Comparator reversed where it exists.
+        Collections.sort(empList2, compareById);
+        System.out.println("compareById");
+        empList2.stream().forEach(x -> System.out.print(x.firstName+x.lastName));
+        empList2.sort(compareByLastName);//pass Comparator
+        System.out.println("compareByLastName");
+        empList2.stream().forEach(x -> System.out.print(x.firstName+x.lastName));
+        empList2.sort(compareByFirstName.reversed());//pass Comparator reversed
+        System.out.println("compareByFirstName Reverse");
+        empList2.stream().forEach(x -> System.out.print(x.firstName+x.lastName));
+        strList2.sort(Comparator.reverseOrder());//pass Natural Comparator reversed where it exists.
+        System.out.println("compareById Reverse Order");
+        empList2.stream().forEach(x -> System.out.print(x.firstName+x.lastName));
         /*
          * Any Comparable type can be turned into a Comparator object by using a method reference
          * (Comparator<String>) String::compareTo, (Comparator<Integer>) Integer::compareTo
          */
-        strList.sort(String::compareTo);
-        empList.sort(Employee::compareByNameThenAge);//refer by custom static method
-        empList.sort((h1, h2) -> h1.getFirstName().compareTo(h2.getFirstName()));//lambda
+        strList2.sort(String::compareTo);
+        empList2.sort(Employee::compareByNameThenAge);//refer by custom static method
+        empList2.sort((h1, h2) -> h1.getFirstName().compareTo(h2.getFirstName()));//lambda
 
         Comparator<Employee> compareByFullName = compareByFirstName.thenComparing(compareByLastName);
-        empList.sort((h1,h2) -> h1.getLastName().compareTo(h2.getLastName()));
+        empList2.sort((h1,h2) -> h1.getLastName().compareTo(h2.getLastName()));
     }
 
     static class Employee{
@@ -56,9 +79,10 @@ public class ComparatorOperations {
         int grade;
         int id;
 
-        public Employee(String name, int id) {
+        public Employee(String firstName, String lastName,int id) {
             this.id=id;
-            this.lastName=name;
+            this.lastName=lastName;
+            this.firstName=firstName;
         }
 
         int getSalary(){return salary;}
@@ -79,11 +103,6 @@ public class ComparatorOperations {
                 return lhs.lastName.compareTo(rhs.lastName);
             }
         }
-    }
-
-    static class Department{
-        int salary;
-        int getSalary(){return salary;}
     }
 
 }

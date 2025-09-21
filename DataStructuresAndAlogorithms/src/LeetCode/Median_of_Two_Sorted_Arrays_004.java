@@ -17,7 +17,7 @@ public class Median_of_Two_Sorted_Arrays_004 {
         for (int i=0;i<arr2.length;i++){
             arr3[arr1.length+i]=arr2[i];
         }
-        Arrays.sort(arr3);//log(m+n)
+        Arrays.sort(arr3);//log((m+n)*m+n)
         if (length%2==0){
             return (arr3[(length/2)-1]+ arr3[length/2])/2;
         } else{

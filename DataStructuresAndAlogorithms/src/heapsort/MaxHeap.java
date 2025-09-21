@@ -1,5 +1,18 @@
 package heapsort;
-
+/*
+ * For an array backed implementation the pseudocode can be thought of as
+ * while not end of array,
+	if heapArray is empty,
+		place item at root;
+	else,
+		place item at bottom of heapArr;
+		while (child < parent)
+			swap(parent, child);
+	go to next array element;
+   end
+ * Overall Complexity of insert/delete operation  is O(log N).
+ * https://www.geeksforgeeks.org/java/max-heap-in-java/
+ */
 public class MaxHeap {
 
 	private int[] heapArr;
@@ -27,7 +40,7 @@ public class MaxHeap {
     	maxHeap.insert(5);
     	maxHeap.insert(30);  
     	maxHeap.insert(3);
-    	maxHeap.minHeap();
+    	//maxHeap.minHeap();
     	maxHeap.print();
         System.out.println("Retrieve Maximum value: " + maxHeap.remove());
     }

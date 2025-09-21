@@ -11,7 +11,6 @@ public class Sort_Colors_075 {
      * Input: nums = [2,0,2,1,1,0]  Output: [0,0,1,1,2,2]
      * See Accepted Solution
      */
-
     public static void main(String args[]) {
         Sort_Colors_075 ob = new Sort_Colors_075();
         int[] colors = {2,0,2,1,1,0};
@@ -20,7 +19,7 @@ public class Sort_Colors_075 {
     }
 
     private int[] sortColorsInsert(int[] input) {
-        //Disregard see Accepted
+        //Disregard and see Accepted
         int uB=0;//1st elem sorted
         int rB=-1; int wB=-1; int bB=-1;
         for (int i=1;i<input.length;i++){

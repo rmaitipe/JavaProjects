@@ -2,7 +2,6 @@ package LeetCode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Stack;
 
 public class Binary_Tree_In_Order_Traversal_094 {
@@ -21,25 +20,26 @@ public class Binary_Tree_In_Order_Traversal_094 {
         l2Head.right.right = new TreeNode(7);
         c4.inTraverse(l2Head);
         System.out.println(c4.inorderTraversalAccepted(l2Head));
+        System.out.println(c4.inorderTraversalAccepted2(l2Head));
     }
 
     public void inTraverse(TreeNode node) {
         Stack<TreeNode> stack = new Stack<>();
-        stack=inOrderTraverse(node,stack);
+        inOrderTraverse(node,stack);
         while (!stack.isEmpty()){
             System.out.println(stack.pop().val);
         }
     }
 
-    private Stack inOrderTraverse(TreeNode node, Stack<TreeNode> stack){
+    //Using a stack reverses order, so goes to right first. Ignore and see inorderTraversalAccepted
+    private void inOrderTraverse(TreeNode node, Stack<TreeNode> stack){
         if (node.right != null) {
-            stack=inOrderTraverse(node.right,stack);
+            inOrderTraverse(node.right,stack);
         }
         stack.push(node);
         if (node.left != null) {
-            stack=inOrderTraverse(node.left,stack);
+            inOrderTraverse(node.left,stack);
         }
-        return stack;
     }
 
     public List<Integer> inorderTraversalAccepted(TreeNode root) {
@@ -65,19 +65,23 @@ public class Binary_Tree_In_Order_Traversal_094 {
         public TreeNode(int i) {
             this.val = i;
         }
+    }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            TreeNode node = (TreeNode) o;
-            return Objects.equals(val, node.val) && Objects.equals(left, node.left) && Objects.equals(right, node.right);
-        }
+    public List<Integer> inorderTraversalAccepted2(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if(root == null) return list;
+        Stack<TreeNode> stack = new Stack<>();
+        while(root != null || !stack.empty()){
+            while(root != null){
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            list.add(root.val);
+            root = root.right;
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(val, left, right);
         }
+        return list;
     }
 }
 

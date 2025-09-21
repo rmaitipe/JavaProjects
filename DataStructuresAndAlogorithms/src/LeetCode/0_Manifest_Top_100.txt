@@ -3,7 +3,7 @@ Backtracking (7/8)      017 Letter Combinations of a Phone Number
                         022 Generate Parentheses
                         039 *Combination Sum
                         046 *Permutations
-                N-Queens (H)
+                        051 *N-Queens (H)
                         078 *Subsets
                         079 *Word Search
                         131 *Palindrome Partitioning
@@ -80,12 +80,12 @@ Sliding Window (4/4)    003 Longest Substring Without Repeating Characters
                         239 Sliding Window Maximum (H)
                         438 Find All Anagrams in a String
 Stack (4/5)             020 Valid Parentheses (E)
-                Largest Rectangle in Histogram (H)
+                        084* Largest Rectangle in Histogram (H)
                         155 Min Stack
                         394* Decode String
                         739 Daily Temperatures
 Two Pointers (3/4)      011* Container With Most Water
-                        015 3Sum
+                        015 Three Sum
                         042 Trapping Rain Water (H)
                         268* Move Zeroes (E)
 Trie (1/1)              208 Implement Trie (Prefix Tree)
@@ -101,18 +101,37 @@ Misc (8/10)     Next Permutation
                         287 Find the Duplicate Number
 
 Easy (20/20)
-Valid Parentheses, Reverse Linked List, Best Time to Buy and Sell Stock, Majority Element, Climbing Stairs
-Invert Binary Tree, Pascal's Triangle, Maximum Depth of Binary Tree, Search Insert Position, Symmetric Tree
-Merge Two Sorted Lists, Intersection of Two Linked Lists, Linked List Cycle, Palindrome Linked List, Single Number
-Two Sum, Convert Sorted Array to Binary Search Tree
+Valid Parentheses 020, Reverse Linked List 206, Best Time to Buy and Sell Stock 121, Majority Element 169, Climbing Stairs 070
+Invert Binary Tree 226, Pascal's Triangle 118, Maximum Depth of Binary Tree 104, Search Insert Position 035, Symmetric Tree 101
+Merge Two Sorted Lists 021, Intersection of Two Linked Lists 160, Linked List Cycle 141, Palindrome Linked List 234, Single Number 136
+Two Sum 001, Convert Sorted Array to Binary Search Tree 108,Binary Tree Inorder Traversal 094, Move Zeroes 268
 
-094 Binary Tree Inorder Traversal (E), 543 Diameter of Binary Tree (E), 268* Move Zeroes (E)
+543 Diameter of Binary Tree
 
-Medium (/68)
+Medium (25/68)
+ThreeSum 015, Number of Islands 200, Validate Binary Search Tree 098, Kth Smallest Element in a BST 230, Swap Nodes in Pairs 024
+Lowest Common Ancestor of a Binary Tree 236, Group Anagrams 049, Spiral Matrix 054, Jump Game II 045, Letter Combinations of a Phone Number 017
+Kth Largest Element in an Array 215, Top K Frequent Elements 347, Longest Consecutive Sequence 128, 056 Merge Intervals, 053 Maximum Subarray
+055 JumpGame, 198 House Robber, 005 Longest Palindrome Substring, 002 Add Two Numbers, 019 Remove Nth Node From End of List
+238 Product of Array Except Self, 073 Set Matrix Zeroes, 994 Rotting Oranges, 199 Binary Tree Right Side View, 074 Search 2D Matrix
+
+022 Generate Parentheses,039 *Combination Sum, 046 *Permutations,078 *Subsets, 287 Find the Duplicate Number
+079 *Word Search, 131 *Palindrome Partitioning, 033* Search in Rotated Sorted Array, 034 Find First and Last Position of Element in Sorted Array, 189* Rotate Array,
+153* Find Minimum in Rotated Sorted Array, 075 Sort Colors, 102 Binary Tree Level Order Traversal
+Construct Binary Tree from Preorder and Inorder Traversal, 114 Flatten Binary Tree to Linked List, 437 Path Sum III,
+062 Unique Paths, 064 Minimum Path Sum, Edit Distance, 139 Word Break, 152 Maximum Product Subarray,
+279 Perfect Squares, 300 Longest Increasing Subsequence, 322 Coin Change, Partition Equal Subset Sum,1143* Longest Common Subsequence
+207 Course Schedule, 763 Partition Labels, 560* Subarray Sum Equals K, 208 Implement Trie (Prefix Tree), Next Permutation
+138 Copy List with Random Pointer, 142 Linked List Cycle II, 146 LRU Cache, 148 Sort List
+048 Rotate Image, 240 Search a 2D Matrix II, 003 Longest Substring Without Repeating Characters
+438 Find All Anagrams in a String, 155 Min Stack, 394* Decode String, 739 Daily Temperatures, 011* Container With Most Water
+
 
 Hard (/12)
 
-
+032 Longest Valid Parentheses, 026* Merge k Sorted Lists, 025* Reverse Nodes in k-Group, 295* Find Median from Data Stream
+004* Median of Two Sorted Arrays, 124 Binary Tree Maximum Path Sum, 076 Minimum Window Substring, 239 Sliding Window Maximum
+ First Missing Positive, 042 Trapping Rain Water, Largest Rectangle in Histogram, N-Queens (H)
 
 //Revise Priority
 String:
@@ -142,4 +161,3 @@ Sorting and searching:
 2       Binary Search, Search in Rotated Sorted Array
 4       |Kth Smallest Element in a Sorted Matrix, Search a 2D Matrix, Kth Largest Element in an Array,
         |Find Minimum in Rotated Sorted Array, Median of Two Sorted Arrays
-
